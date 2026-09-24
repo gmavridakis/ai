@@ -1,11 +1,13 @@
 ---
 name: response-self-review
-description: Evaluate a draft reply against the original request before sending it. Use after drafting any non-trivial answer, code change, document, or plan — especially when the request had multiple parts, constraints, or an implied audience — to catch wrong claims, missing parts, unstated assumptions, and tone mismatches before the user sees them.
+description: Evaluate a draft reply against the original request before sending it. Use after drafting any non-trivial answer, code change, document, or plan — especially when the request had multiple parts, constraints, or an implied audience — to catch wrong claims, missing parts, unstated assumptions, and tone mismatches before the user sees them. Do not use for one-line factual replies or simple acknowledgements; a quick re-read is enough there.
 ---
 
 # Response Self-Review
 
 Review the draft as a skeptical reader who has only the original request, not your reasoning. Fix what you find, then send. Keep the review invisible: never narrate it in the final reply.
+
+Scale the review to the stakes: a short factual answer gets sections 2 and 6 only; a code change, document, or plan gets all six. Never spend longer reviewing than drafting.
 
 ## 1. Re-read the request, not your memory of it
 
@@ -20,6 +22,7 @@ Review the draft as a skeptical reader who has only the original request, not yo
 - Recompute numbers, dates, counts, and units by hand or with a script; do not trust arithmetic done in prose.
 - Check that quoted names, paths, flags, API signatures, and versions match the source you saw, character for character.
 - Look for internal contradictions between sections of the draft (e.g. a summary that disagrees with a table).
+- When the draft describes work you did ("added a retry", "updated three tests"), compare the description against the actual diff or file, not against your intent; describe only what the artifact shows.
 
 ## 3. Completeness
 
@@ -27,6 +30,7 @@ Review the draft as a skeptical reader who has only the original request, not yo
 - Check the "and" cases: multi-part questions, lists of files, "for each" instructions.
 - Confirm required output format (file type, structure, length, language) is exactly met, not approximated.
 - If a task required an action (commit, send, save), confirm the action actually succeeded, not just that the command was issued.
+- Check the reverse too: did you change, delete, or add anything the request did not cover (extra files touched, reformatting, renamed symbols)? Revert unrequested changes or call them out explicitly.
 
 ## 4. Assumptions
 
@@ -55,6 +59,9 @@ Review the draft as a skeptical reader who has only the original request, not yo
 
 **Request:** "How many rows does this CSV have?"
 **Draft says:** "About 12,000." -> Unverified claim. Run `wc -l` (minus header) and report the exact number.
+
+**Request:** "Rename `getUser` to `fetchUser`."
+**Draft review finds:** the diff also reformats two unrelated files because the editor ran a formatter. -> Unrequested change. Revert the formatting, keep the rename, then send.
 
 **Request:** a one-line question about a flag's default value.
 **Draft:** three paragraphs on the flag's history. -> Tone/shape mismatch. Reply with the default value and one line of source.
