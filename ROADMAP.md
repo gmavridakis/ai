@@ -3,7 +3,7 @@
 Ordered checklist of skills to add. The daily maintenance routine takes the first unchecked item each run.
 
 - [x] response-self-review — evaluate a draft reply against the request before sending (correctness, completeness, assumptions, tone)
-- [ ] debug-from-raw-logs — get raw debug logs/stack traces first, reproduce, bisect, form hypotheses from evidence
+- [x] debug-from-raw-logs — get raw debug logs/stack traces first, reproduce, bisect, form hypotheses from evidence
 - [ ] error-triage — classify errors by layer (network/auth/config/code/data) and pick the fastest diagnostic
 - [ ] context-hygiene — keep the context window lean: what to read, what to summarize, when to compact
 - [ ] structured-prompting — clear prompts with examples, constraints, output format
