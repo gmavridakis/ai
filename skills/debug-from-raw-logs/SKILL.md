@@ -1,18 +1,20 @@
 ---
 name: debug-from-raw-logs
-description: Diagnose a failure from evidence instead of guesswork. Use when a user reports a bug, crash, failing test, or "it doesn't work" and you are tempted to propose a fix from the description alone — first obtain the raw logs and stack trace, reproduce the failure, bisect to the smallest failing configuration, then form and test hypotheses. Do not use for feature requests or for errors whose exact cause is already printed and unambiguous (e.g. a missing import).
+description: Diagnose a failure from evidence instead of guesswork. Use when a user reports a bug, crash, failing or flaky test, or "it doesn't work" in a known layer (code, data, or a pinned config/env difference) and a fix would otherwise be proposed from the description alone — obtain the raw logs and stack trace, reproduce, bisect to the smallest failing case, then test hypotheses. Do not use while the failing layer (network/auth/config/code/data) is still unknown — run error-triage first — nor for feature requests or errors whose exact cause is already printed and unambiguous (e.g. a missing import).
 ---
 
 # Debug From Raw Logs
 
 Treat every bug as a claim to be verified. Fixes proposed before seeing the raw error are guesses; most are wrong and cost the user a round trip. Work through the steps in order and skip none unless the evidence already covers it.
 
+Entry condition: the layer is known (error-triage has pinned it, or the trace makes it obvious). If a `502`, `403`, or "works on their machine" report arrives with no layer, hand off to `error-triage` and come back with its one-line verdict.
+
 ## 1. Get the raw evidence first
 
 - Ask for, or fetch yourself, the **unedited** output: the full stack trace, surrounding log lines (at least 20 before the error), exit code, and the exact command that produced it. Paraphrases ("it throws a null error") are not evidence.
 - Turn verbosity up before re-running: `--verbose`, `--debug`, `DEBUG=*`, `LOG_LEVEL=debug`, `set -x` for shell, `pytest -vv --tb=long`, `npm run ... --loglevel verbose`. Capture stderr as well as stdout (`2>&1 | tee run.log`).
 - Record the environment alongside the log: OS, runtime version, package versions, branch/commit, config flags, whether it is local or CI. Many bugs are "works on my machine" bugs.
-- If the log is huge, do not skim it. Grep for the first `ERROR`, `Traceback`, `Exception`, `panic`, `FATAL`, or non-zero exit; the first error is usually the cause and later ones are fallout.
+- If the log is huge, do not skim it: `grep -n -m1 -E 'ERROR|Traceback|Exception|panic|FATAL' run.log` finds the first error; then `sed -n '<line-20>,<line+40>p' run.log` for its context. The first error is usually the cause and later ones are fallout.
 
 ## 2. Read the stack trace properly
 
@@ -24,13 +26,20 @@ Treat every bug as a claim to be verified. Fixes proposed before seeing the raw 
 ## 3. Reproduce before changing anything
 
 - Run the failing command yourself with the same inputs. If you cannot, ask for the minimal input that triggers it.
-- Confirm the failure is deterministic. If it is flaky, run it 5–10 times and note the rate; flaky failures point at timing, ordering, shared state, or environment rather than logic.
+- Measure determinism, do not assume it: `for i in $(seq 10); do <cmd> >/dev/null 2>&1 || echo FAIL; done | grep -c FAIL`. Read the rate:
+
+| Fails | Points at | Next check |
+| --- | --- | --- |
+| 10/10 | logic or data | bisect the input (step 4) |
+| 2–8/10 | race, ordering, shared state | run the test alone: `pytest tests/x.py::t -p no:randomly`; passes alone ⇒ test pollution, find the polluter with `pytest --lf -x` after `-p randomly --randomly-seed=<failing seed>` |
+| ≤ 1/10 | timing, network, resource limits | re-run under load (`stress-ng` / parallel `-n 4`) and with `--timeout` doubled; rate changes ⇒ timing |
+| 0/10 locally, fails in CI | environment | diff `env`, runtime version, and lockfile between the two; do not touch code yet |
 - Write down the exact repro command. A bug you cannot reproduce is a bug you cannot verify as fixed.
 
 ## 4. Bisect to the smallest failing case
 
 - **Input bisection:** halve the input (rows, request body, config file) until removing anything more makes the failure disappear.
-- **Code bisection:** `git bisect start; git bisect bad HEAD; git bisect good <last-known-good>` then `git bisect run <repro-command>` when the repro is scripted.
+- **Code bisection:** `git bisect start; git bisect bad HEAD; git bisect good <last-known-good>` then `git bisect run <repro-command>`. The command must exit 0 for good, 1–127 for bad, and 125 to skip an unbuildable commit; `git bisect log > bisect.log` before `git bisect reset`. Ten commits cost ~4 runs, a thousand cost ~10.
 - **Environment bisection:** toggle one variable at a time (dependency version, env var, feature flag, OS). Change one thing per run; two changes per run tell you nothing.
 - Stop when the remaining difference between passing and failing is one thing.
 
@@ -50,10 +59,8 @@ Treat every bug as a claim to be verified. Fixes proposed before seeing the raw 
 
 ## Anti-patterns to refuse
 
-- Proposing a fix from the bug description alone without asking for the trace.
-- Editing code while the failure has not yet been reproduced.
-- Changing several things at once and declaring victory when the error disappears.
-- Deleting or suppressing the error (`|| true`, `catch (e) {}`, `@ts-ignore`) and calling it fixed.
+- Declaring a fix from a run that passed once when the failure rate was below 10/10: re-run the loop from step 3 and require 0 failures in 10.
+- Deleting or suppressing the error (`|| true`, `catch (e) {}`, `@ts-ignore`, widening a timeout) and calling it fixed.
 
 ## Example
 
