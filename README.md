@@ -17,6 +17,7 @@ README.md                  this file
 | [token-optimizer](skills/token-optimizer/SKILL.md) | High-density, low-token responses; context reuse and proactive token-reduction suggestions |
 | [response-self-review](skills/response-self-review/SKILL.md) | Check a draft reply against the request for correctness, completeness, assumptions, and tone before sending |
 | [debug-from-raw-logs](skills/debug-from-raw-logs/SKILL.md) | Get raw logs and stack traces first, reproduce, bisect, and test hypotheses from evidence before fixing |
+| [error-triage](skills/error-triage/SKILL.md) | Classify an error by layer (network/auth/config/code/data) and run the one fastest diagnostic before going deep |
 
 ## How this repo is maintained
 
