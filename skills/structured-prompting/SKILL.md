@@ -1,6 +1,6 @@
 ---
 name: structured-prompting
-description: Author or fix a prompt that another model will run — a system prompt, prompt template, Claude Code subagent brief, tool description, or CLAUDE.md instruction block. Use when the user asks to write, review, or improve such a prompt, or when a prompt-driven output is wrong in a repeatable way (wrong shape, ignored rule, copied example, injected instruction). Do not use when the request is to answer or perform the task yourself rather than write a prompt for it, and do not use to shape the length or density of your own reply — token-optimizer owns that.
+description: Author or fix a prompt that another model will run — a system prompt, prompt template, Claude Code subagent brief, tool description, or CLAUDE.md instruction block. Use when the user asks to write, review, or improve such a prompt, or when a prompt-driven output is wrong in a repeatable way (wrong shape, ignored rule, copied example, injected instruction). Do not use when the request is to answer or perform the task yourself rather than write a prompt for it; do not use when the model call itself fails (HTTP 4xx/5xx, timeout, 400 on prefill) — error-triage owns that; and do not use to shape the length or density of your own reply — token-optimizer owns that.
 ---
 
 # Structured Prompting

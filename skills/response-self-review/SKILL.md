@@ -1,13 +1,22 @@
 ---
 name: response-self-review
-description: Evaluate a draft reply against the original request before sending it. Use after drafting any non-trivial answer, code change, document, or plan — especially when the request had multiple parts, constraints, or an implied audience — to catch wrong claims, missing parts, unstated assumptions, and tone mismatches before the user sees them. Do not use for one-line factual replies or simple acknowledgements; a quick re-read is enough there.
+description: Check a finished draft against the original request before sending it. Use when the draft is longer than ~5 lines, contains a code change, a created or edited file, a number or count, or a plan, or when the request had two or more parts or explicit constraints — to catch claims without evidence, unanswered parts, unrequested changes, and unstated assumptions. Do not use for one-line factual replies or acknowledgements; do not use it to trim length or density (token-optimizer owns that); and do not use it to validate a prompt written for another model — structured-prompting's test loop owns that.
 ---
 
 # Response Self-Review
 
 Review the draft as a skeptical reader who has only the original request, not your reasoning. Fix what you find, then send. Keep the review invisible: never narrate it in the final reply.
 
-Scale the review to the stakes: a short factual answer gets sections 2 and 6 only; a code change, document, or plan gets all six. Never spend longer reviewing than drafting.
+Pick the depth from the draft, not from how confident you feel:
+
+| Draft contains | Run sections | Also |
+| --- | --- | --- |
+| ≤ 5 lines, no artifact, no number | none — send | — |
+| a number, count, date, or version | 2 | recompute it |
+| a code change or edited file | 2, 3 | `git diff --stat` vs. the files the request named |
+| a new file, document, or plan | 1–4 | map every explicit ask to a line in the draft |
+
+Never spend longer reviewing than drafting.
 
 ## 1. Re-read the request, not your memory of it
 
@@ -17,12 +26,17 @@ Scale the review to the stakes: a short factual answer gets sections 2 and 6 onl
 
 ## 2. Correctness
 
-- For each factual or technical claim, ask: how do I know this? Verified (ran it, read it, searched it), inferred, or assumed? Mark anything unverified as such in the reply, or verify it now.
-- Run code before claiming it works. If you cannot run it, say so and point out the risky lines.
-- Recompute numbers, dates, counts, and units by hand or with a script; do not trust arithmetic done in prose.
-- Check that quoted names, paths, flags, API signatures, and versions match the source you saw, character for character.
-- Look for internal contradictions between sections of the draft (e.g. a summary that disagrees with a table).
-- When the draft describes work you did ("added a retry", "updated three tests"), compare the description against the actual diff or file, not against your intent; describe only what the artifact shows.
+For each claim in the draft, classify it as verified (you ran, read, or searched it this session), inferred, or assumed. Every inferred or assumed claim is either verified now with the matching check, or labelled as unverified in the reply. There is no third option.
+
+| Claim in draft | Evidence that counts | Not evidence |
+| --- | --- | --- |
+| "the code works" / "tests pass" | you ran it this turn and saw exit code 0 | it compiled; it looked right |
+| a count, total, or date | output of `wc -l`, `grep -c`, a script, or `date -d` | arithmetic done in prose |
+| a flag, path, signature, or version | `--help`, the file, or `pkg --version` shown in this session | memory |
+| "I changed X" / "updated three tests" | `git diff --stat` and `git status --short` name exactly those files | your intent |
+| a quoted line or error | the line as it appears in the tool output | a paraphrase |
+
+Then read the draft once end-to-end for internal contradictions: a summary sentence that disagrees with its own table or list is the most common tell.
 
 ## 3. Completeness
 
@@ -38,15 +52,7 @@ Scale the review to the stakes: a short factual answer gets sections 2 and 6 onl
 - Surface material assumptions in one short line in the reply ("I assumed X; if Y, then ..."). Drop trivial ones.
 - Do not present a guess as a fact; do not hedge a verified fact as a guess.
 
-## 5. Tone and shape
-
-- Match the user's register and the request's stakes: terse for a quick fix, thorough for a design decision.
-- Cut preamble, apology, and restatement of the question. Lead with the answer.
-- Remove filler and unearned confidence words ("clearly", "simply", "just").
-- Check formatting renders: blank line before lists, code in fences, no broken tables.
-- Delete anything the user did not ask for and does not need to act (side commentary, alternative approaches nobody requested), unless it prevents a real mistake.
-
-## 6. Decide
+## 5. Decide
 
 - All checks pass: send.
 - A gap or error is found: fix it, then re-run only the checks the fix could have affected.
@@ -60,11 +66,11 @@ Scale the review to the stakes: a short factual answer gets sections 2 and 6 onl
 **Request:** "How many rows does this CSV have?"
 **Draft says:** "About 12,000." -> Unverified claim. Run `wc -l` (minus header) and report the exact number.
 
+**Request:** "Fix the failing date parser."
+**Draft says:** "Fixed; tests pass." **Review finds:** no test run in this session. -> Run `pytest tests/test_dates.py -q`; report the exit code and the pass/fail counts it printed, or say the tests were not run.
+
 **Request:** "Rename `getUser` to `fetchUser`."
 **Draft review finds:** the diff also reformats two unrelated files because the editor ran a formatter. -> Unrequested change. Revert the formatting, keep the rename, then send.
-
-**Request:** a one-line question about a flag's default value.
-**Draft:** three paragraphs on the flag's history. -> Tone/shape mismatch. Reply with the default value and one line of source.
 
 ## Anti-patterns
 

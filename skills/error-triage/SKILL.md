@@ -1,6 +1,6 @@
 ---
 name: error-triage
-description: Classify an error by the layer it comes from (network, auth, config, code, data) and run the single fastest diagnostic for that layer before anything else. Use when a user pastes an error message, status code, or "it fails" report and the cause is not yet known — especially for errors that could plausibly come from several layers (timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value"). Do not use once the failing layer is already established; hand off to debug-from-raw-logs for deep investigation of a known-layer bug.
+description: Classify an error by the layer it comes from (network, auth, config, code, data) and run the single fastest diagnostic for that layer before anything else. Use when a user pastes an error message, status code, or "it fails" report and the cause is not yet known — especially for errors that could plausibly come from several layers (timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value"). Do not use once the failing layer is already established — hand off to debug-from-raw-logs for deep investigation of a known-layer bug — nor when an LLM call succeeds (HTTP 200) but returns the wrong shape or content; structured-prompting owns that.
 ---
 
 # Error Triage
