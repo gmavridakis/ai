@@ -6,7 +6,7 @@ Ordered checklist of skills to add. The daily maintenance routine takes the firs
 - [x] debug-from-raw-logs — get raw debug logs/stack traces first, reproduce, bisect, form hypotheses from evidence
 - [x] error-triage — classify errors by layer (network/auth/config/code/data) and pick the fastest diagnostic
 - [x] context-hygiene — keep the context window lean: what to read, what to summarize, when to compact
-- [ ] structured-prompting — clear prompts with examples, constraints, output format
+- [x] structured-prompting — clear prompts with examples, constraints, output format
 - [ ] bug-report-writing — minimal repro, expected vs actual, environment, logs
 - [ ] code-review-checklist — security, correctness, tests, readability, performance
 - [ ] test-first-fixes — reproduce with a failing test before changing code

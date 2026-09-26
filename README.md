@@ -21,6 +21,7 @@ README.md                   this file
 | [debug-from-raw-logs](skills/debug-from-raw-logs/SKILL.md) | A bug/crash/failing test is reported and a fix would otherwise be guessed from the description | Feature requests; errors whose cause is already printed; layer still unknown (error-triage) |
 | [error-triage](skills/error-triage/SKILL.md) | An error, status code, or "it fails" report arrives and the failing layer is unknown | The layer is established (debug-from-raw-logs) |
 | [response-self-review](skills/response-self-review/SKILL.md) | A non-trivial answer, code change, document, or plan has been drafted | One-line factual replies or acknowledgements |
+| [structured-prompting](skills/structured-prompting/SKILL.md) | The user asks to write, review, or fix a prompt another model will run (system prompt, template, subagent brief, tool description, CLAUDE.md block), or a prompt-driven output is wrong in a repeatable way | The task is to answer/do the thing yourself rather than write a prompt for it; shaping your own reply's length (token-optimizer) |
 | [token-optimizer](skills/token-optimizer/SKILL.md) | The user wants brevity or lower cost, or a reply would repeat content already in context | Tutorial-style answers; self-contained hand-over documents; what to *read* (context-hygiene) |
 
 ## How auto-loading works
