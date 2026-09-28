@@ -7,7 +7,14 @@ Ordered checklist of skills to add. The daily maintenance routine takes the firs
 - [x] error-triage — classify errors by layer (network/auth/config/code/data) and pick the fastest diagnostic
 - [x] context-hygiene — keep the context window lean: what to read, what to summarize, when to compact
 - [x] structured-prompting — clear prompts with examples, constraints, output format
-- [ ] bug-report-writing — minimal repro, expected vs actual, environment, logs
+- [x] bug-report-writing — minimal repro, expected vs actual, environment, logs
+- [x] java-spring-stack — Java / Java EE (Spring Boot, Spring, Hibernate & JPA, JAX-RS & JAX-WS) — idioms, conventions, and common pitfalls
+- [ ] nodejs — Node.js — idioms, conventions, and common pitfalls
+- [ ] python-django — Python (Django) — idioms, conventions, and common pitfalls
+- [ ] angular — Angular — idioms, conventions, and common pitfalls
+- [ ] flutter-dart — Flutter & Dart — idioms, conventions, and common pitfalls
+- [ ] react — React — idioms, conventions, and common pitfalls
+- [ ] react-native — React Native — idioms, conventions, and common pitfalls
 - [ ] code-review-checklist — security, correctness, tests, readability, performance
 - [ ] test-first-fixes — reproduce with a failing test before changing code
 - [ ] safe-refactoring — small verifiable steps, behavior-preserving, diff discipline
