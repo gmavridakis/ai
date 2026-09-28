@@ -1,6 +1,6 @@
 ---
 name: context-hygiene
-description: Control what enters the context window and when to compact it. Use at the start of any task that touches more than ~5 files or any file over 200 lines, whenever a tool result is longer than 100 lines, before running tests/builds/log scans, and whenever the session is past ~60% of its auto-compact window (check with /context). Do not use for the wording or length of the reply itself — token-optimizer owns output density.
+description: Control what enters the context window and when to compact it. Use at the start of any task that touches more than ~5 files or any file over 200 lines, whenever a tool result is longer than 100 lines, before running tests/builds/log scans, and whenever the session is past ~60% of its auto-compact window (check with /context). Do not use for the wording or length of the reply itself — token-optimizer owns output density — nor for writing the brief a subagent will run, which structured-prompting owns.
 ---
 
 # Context Hygiene
@@ -33,15 +33,15 @@ Check size first: `wc -l <file>` (or `ls -la` for a directory). Then:
 | Binary / generated / lockfile / minified | never open; `head -c 200` to identify, `file <path>` | read |
 
 - One symbol, one grep: `grep -rn --include='*.ts' 'fetchUser' src/` beats opening three candidate files.
-- A file already read this session and not edited since has not changed; do not re-read it. A tool-confirmed edit does not require a verification read either.
 
 ## 3. Cap every tool result at the source
 
 - Tests: `pytest -q 2>&1 | tail -40` or `pytest -q --tb=short -x`; `npm test 2>&1 | grep -E 'FAIL|✕|Error' -A5 | head -60`; `go test ./... 2>&1 | grep -v '^ok' | head -60`.
 - Logs and builds: `cmd > /tmp/out.log 2>&1; grep -n -m 20 -E 'ERROR|FATAL|Traceback|panic' /tmp/out.log` then `tail -30 /tmp/out.log`. Keep the path; read ranges on demand.
+- PowerShell (Windows, outside Git Bash `head`/`tail`/`grep` do not exist): `cmd *> out.log; Select-String -Path out.log -Pattern 'ERROR|FATAL|Exception' | Select-Object -First 20`; `Get-Content out.log -Tail 30`; `Get-Content x.csv -TotalCount 20`; `(Get-ChildItem -Recurse -Filter *.py).Count`.
 - Data files: `head -20 x.csv; wc -l x.csv`, `jq -c '.[0]' x.json`, `sqlite3 db 'SELECT ... LIMIT 5'`.
 - Directory listings: `find . -name '*.py' | wc -l` before `find . -name '*.py'`.
-- Anything that would return > 100 lines: run it in a subagent (`Agent` tool / Task) with "return only failures, ≤ 30 lines" in the prompt. The verbose output stays in the subagent's window.
+- Anything that would return > 100 lines: run it in a subagent (`Agent` tool / Task) with "return only failures, ≤ 30 lines" in the prompt (write that brief per structured-prompting). The verbose output stays in the subagent's window.
 - Hard rule: no single tool result over 200 lines in the main context. If one lands, do not paste it back; summarize it in ≤ 5 lines and move on.
 
 ## 4. Snapshot before the window fills
