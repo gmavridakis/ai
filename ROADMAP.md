@@ -9,7 +9,7 @@ Ordered checklist of skills to add. The daily maintenance routine takes the firs
 - [x] structured-prompting — clear prompts with examples, constraints, output format
 - [x] bug-report-writing — minimal repro, expected vs actual, environment, logs
 - [x] java-spring-stack — Java / Java EE (Spring Boot, Spring, Hibernate & JPA, JAX-RS & JAX-WS) — idioms, conventions, and common pitfalls
-- [ ] nodejs — Node.js — idioms, conventions, and common pitfalls
+- [x] nodejs — Node.js — idioms, conventions, and common pitfalls
 - [ ] python-django — Python (Django) — idioms, conventions, and common pitfalls
 - [ ] angular — Angular — idioms, conventions, and common pitfalls
 - [ ] flutter-dart — Flutter & Dart — idioms, conventions, and common pitfalls
