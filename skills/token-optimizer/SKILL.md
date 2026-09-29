@@ -1,53 +1,48 @@
 ---
 name: token-optimizer
-description: Produce dense, low-token replies and code output. Use when the user asks for brevity or lower cost, or when a reply would otherwise repeat code, files, or tool output already in context. Do not use for deciding what to read, how to cap tool results, or when to compact — context-hygiene owns the input side; and do not use when the user asks for a tutorial-style or exhaustive explanation, or when the reply must be self-contained for someone who will not see this conversation (a handover doc, an incident report).
+description: Choose the output form (diff, snippet, reference, or full file) and the tool-output report format that costs the fewest tokens without losing anything the user must act on. Use when the user asks for brevity or lower cost, when a reply is about to include more than ~20 lines of code, a file, or tool output that is already in context, or when a single reply would exceed ~150 lines. Do not use for deciding what to read, how to cap tool results, or when to compact — context-hygiene owns the input side; do not use when the user asks for a tutorial-style or exhaustive explanation, or when the reply must be self-contained for someone who will not see this conversation (a handover doc, an incident report, a bug report — bug-report-writing owns that).
 ---
 
-# Token Efficiency & Context Reuse Skill
+# Token optimizer (output side)
 
-Adopt a high-density, low-token communication style to extend context lifetime and cut cost and latency. Density never overrides correctness: keep every detail the user needs to act safely (error handling, caveats, exact paths and flags). This skill governs what you *emit*; what you *read* and when to compact is `context-hygiene` — hand off there when the window, not the reply, is the problem.
+This skill governs what you *emit*. What you *read* and when to compact is `context-hygiene` — hand off there when the window, not the reply, is the problem. Density never overrides correctness: shorten prose around literals, never the literals.
 
-## Core Rules for Claude Outputs
+## 1. Pick the output form (decision table)
 
-1. **Concise Direct Answers**
-   - Eliminate filler phrases ("Sure, I can help with that!", "Based on the code provided above...").
-   - Lead directly with code, solutions, or key findings.
-   - Omit full file rewrites when only a few lines change. Use concise diffs or focused snippets with clear file/line references instead.
-   - Exception: when the user must copy-paste a file that does not exist yet, or a snippet would be ambiguous to apply, give the complete file.
+Measure first: `wc -l <file>` and the number of lines you will change.
 
-2. **Reuse Existing Workspace & Knowledge**
-   - Reference existing definitions, variables, and files by path/name rather than repeating their code in response blocks.
-   - Do not paste tool output (test runs, logs, `ls`) back to the user. Report the result: the count, the first failing line, the exit code, and the path to the full output if it was saved.
-   - Summarize prior discussion points into bulleted state references instead of quoting past messages verbatim.
+| Situation | Emit | Never |
+| --- | --- | --- |
+| File does not exist yet, or user must copy‑paste it whole | full file | a diff against nothing |
+| Change touches ≤ 30 % of lines **and** ≤ 40 lines | unified diff hunk(s), `// path:line` on the first line | the full file |
+| Change touches > 30 % of lines or > 40 lines, file ≤ 150 lines | full file | scattered hunks the user must apply by hand |
+| Change touches > 30 % of a file > 150 lines | apply it with an edit tool and report `path` + hunk count + one‑line summary | pasting either version into the reply |
+| Content already in context (a file you read, a function the user pasted) | reference by `path:symbol` or `path:L10-L24` | re‑quoting it |
+| Same edit in N files | one diff plus the list of paths it was applied to | N diffs |
+| Multi‑hundred‑line implementation requested | interfaces/signatures first (≤ 40 lines), then ask which part to expand | the whole thing unprompted |
 
-3. **High-Density Code Generation**
-   - Omit obvious comments (`// import React`) and redundant docstrings unless explicitly requested.
-   - Prefer idiomatic, compact logic patterns without sacrificing readability or safety.
+## 2. Report tool output, do not paste it
 
-## Proactive Token Reduction Proposals
+Rule: never paste more than 20 lines of tool output (test runs, logs, `ls`, `git diff`). Report in this shape:
 
-When a reply or a requested output would be needlessly large, offer these output-side interventions (reading and compaction proposals belong to `context-hygiene`):
+```
+<tool> → exit <code>; <N> of <M> <units> failed
+first failure: <path:line> — <first line of the message>
+full output: <path or "not saved">
+```
 
-- **Output Truncation:** Propose returning high-level architecture/interfaces first before outputting multi-hundred-line implementations.
-- **Diff-Only Format:** Offer to return unified diffs (`git diff` style) instead of full file replacements for existing refactors.
+Thresholds: a green run is one line (`npm test → exit 0; 212/212 passed, 4.1 s`). A red run is the shape above plus **at most 3** distinct failure lines; group identical messages (`×17 ECONNREFUSED 127.0.0.1:5432`). Save anything longer with `> /tmp/<name>.log 2>&1` and give the path.
 
-## What density must never cut
+## 3. What density must never cut
 
-- Exact error messages, commands, paths, flags, and version numbers: shorten the prose around them, never the literal.
-- A file path and location on every snippet; a diff with no path is shorter but costs the user a search.
-- Caveats that change what the user should do (data loss, irreversible steps, security). One sentence is enough; zero is not.
+- Exact error messages, commands, paths, flags, version numbers — the literal is the payload.
+- A file path (and line or enclosing function) on every snippet; a pathless diff costs the user a search.
+- One sentence for any caveat that changes what the user should do (data loss, irreversible step, security). One is enough; zero is not.
+- The stated assumption when you picked a form the user did not ask for ("applied directly, 3 hunks, no reply paste — say so if you want the diff").
 
-## Response Format Guidelines
+## Examples
 
-- Use concise bullet points instead of prose paragraphs; a single-sentence answer needs no bullets at all.
-- Keep code snippets scoped strictly to modified functions or blocks, with the file path and line (or enclosing function) on the first line.
-- Bold key actions or outputs for rapid visual scanning.
-
-## Example
-
-**Ask:** "Fix the null check in `parseUser` in src/auth.ts."
-**Verbose:** restates the request, pastes the whole 120-line file, explains what a null check is.
-**Dense:**
+**Ask:** "Fix the null check in `parseUser` in src/auth.ts." (`wc -l` → 120; change = 1 line ⇒ row "≤ 30 % and ≤ 40 lines")
 
 ```ts
 // src/auth.ts:42
@@ -55,4 +50,15 @@ When a reply or a requested output would be needlessly large, offer these output
 + if (user?.email?.length) {
 ```
 
-One line of context: "`user` can be undefined when the session cookie is expired."
+One line of context: "`user` is undefined when the session cookie has expired."
+
+**Ask:** "Run the tests." (`vitest` prints 340 lines)
+
+```
+vitest run → exit 1; 3 of 212 tests failed
+first failure: test/orders.test.ts:88 — expected 200, received 500
+also: test/orders.test.ts:104 (same cause: ECONNREFUSED 127.0.0.1:5432 ×3)
+full output: /tmp/vitest.log
+```
+
+Not: the 340 lines, nor "Here are the results of running the tests:".

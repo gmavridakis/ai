@@ -25,7 +25,7 @@ README.md                   this file
 | [nodejs](skills/nodejs/SKILL.md) | Code is written, reviewed, or fixed in a Node.js project (package.json present), or a Node-specific symptom appears (ERR_REQUIRE_ESM, ERR_MODULE_NOT_FOUND, unhandled rejection crash, ERESOLVE, heap OOM, event-loop lag, SIGTERM ignored) | The failing layer is still unknown (error-triage); the generic reproduce/bisect procedure (debug-from-raw-logs); Java/Spring (java-spring-stack); browser-only React/Angular code |
 | [response-self-review](skills/response-self-review/SKILL.md) | A non-trivial answer, code change, document, or plan has been drafted | One-line factual replies or acknowledgements |
 | [structured-prompting](skills/structured-prompting/SKILL.md) | The user asks to write, review, or fix a prompt another model will run (system prompt, template, subagent brief, tool description, CLAUDE.md block), or a prompt-driven output is wrong in a repeatable way | The task is to answer/do the thing yourself rather than write a prompt for it; shaping your own reply's length (token-optimizer) |
-| [token-optimizer](skills/token-optimizer/SKILL.md) | The user wants brevity or lower cost, or a reply would repeat content already in context | Tutorial-style answers; self-contained hand-over documents; what to *read* (context-hygiene) |
+| [token-optimizer](skills/token-optimizer/SKILL.md) | The user wants brevity or lower cost, or a reply is about to include >20 lines of code/file/tool output already in context, or would exceed ~150 lines | Tutorial-style answers; self-contained hand-over documents (bug-report-writing); what to *read* (context-hygiene) |
 
 ## How auto-loading works
 

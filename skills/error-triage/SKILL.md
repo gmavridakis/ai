@@ -1,6 +1,6 @@
 ---
 name: error-triage
-description: Classify an error by the layer it comes from (network, auth, config, code, data) and run the single fastest diagnostic for that layer before anything else. Use when a user pastes an error message, status code, or "it fails" report and the cause is not yet known — especially for errors that could plausibly come from several layers (timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value"). Do not use once the failing layer is already established — hand off to debug-from-raw-logs for deep investigation of a known-layer bug (java-spring-stack first when the project is Java/Spring and the symptom is in its table) — nor when an LLM call succeeds (HTTP 200) but returns the wrong shape or content; structured-prompting owns that.
+description: Classify an error by the layer it comes from (network, auth, config, code, data) and run the single fastest diagnostic for that layer before anything else. Use when a user pastes an error message, status code, or "it fails" report and the cause is not yet known — especially for errors that could plausibly come from several layers (timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value"). Do not use once the failing layer is already established — hand off to debug-from-raw-logs for deep investigation of a known-layer bug (a stack skill first when its symptom table names the tell: java-spring-stack for Java/Spring, nodejs for Node.js) — nor when an LLM call succeeds (HTTP 200) but returns the wrong shape or content; structured-prompting owns that.
 ---
 
 # Error Triage
@@ -35,7 +35,7 @@ Rules of thumb:
 ## 3. Run exactly one diagnostic, then reclassify
 
 - Run the fastest diagnostic for the chosen layer and read its output literally.
-- If it confirms the layer, stop triaging and fix (or hand off to `debug-from-raw-logs` if the cause is still unclear within that layer). Code or data layer in a Java/Spring project (`pom.xml`/`build.gradle` names `org.springframework.boot`): check `java-spring-stack` §2 first — a matching row gives the fix without a bisect.
+- If it confirms the layer, stop triaging and fix (or hand off to `debug-from-raw-logs` if the cause is still unclear within that layer). Code or data layer in a Java/Spring project (`pom.xml`/`build.gradle` names `org.springframework.boot`): check `java-spring-stack` §2 first; in a Node project (`package.json` present): `nodejs` §2 — a matching row gives the fix without a bisect.
 - If it rules the layer out, move to the next best-fitting layer. Do not run diagnostics for three layers at once; results become impossible to attribute.
 - Write down each ruled-out layer and the evidence that ruled it out. This prevents circling back.
 
