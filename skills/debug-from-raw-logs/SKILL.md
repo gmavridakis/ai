@@ -1,13 +1,13 @@
 ---
 name: debug-from-raw-logs
-description: Diagnose a failure from evidence instead of guesswork. Use when a user reports a bug, crash, failing or flaky test, or "it doesn't work" in a known layer (code, data, or a pinned config/env difference) and a fix would otherwise be proposed from the description alone — obtain the raw logs and stack trace, reproduce, bisect to the smallest failing case, then test hypotheses. Do not use while the failing layer (network/auth/config/code/data) is still unknown — run error-triage first — nor for feature requests or errors whose exact cause is already printed and unambiguous (e.g. a missing import), nor when a stack skill's symptom table names the exact tell (java-spring-stack for Spring/Hibernate errors, nodejs for Node.js module/loop/npm errors) — apply that row first and come back only if it does not hold.
+description: Diagnose a failure from evidence instead of guesswork. Use when a user reports a bug, crash, failing or flaky test, or "it doesn't work" in a known layer (code, data, or a pinned config/env difference) and a fix would otherwise be proposed from the description alone — obtain the raw logs and stack trace, reproduce, bisect to the smallest failing case, then test hypotheses. Do not use while the failing layer (network/auth/config/code/data) is still unknown — run error-triage first — nor for feature requests or errors whose exact cause is already printed and unambiguous (e.g. a missing import), nor when a stack skill's symptom table names the exact tell (java-spring-stack for Spring/Hibernate errors, nodejs for Node.js module/loop/npm errors, python-django for Django settings/migration/ORM/async errors) — apply that row first and come back only if it does not hold.
 ---
 
 # Debug From Raw Logs
 
 Treat every bug as a claim to be verified. Fixes proposed before seeing the raw error are guesses; most are wrong and cost the user a round trip. Work through the steps in order and skip none unless the evidence already covers it.
 
-Entry condition: the layer is known (error-triage has pinned it, or the trace makes it obvious). If a `502`, `403`, or "works on their machine" report arrives with no layer, hand off to `error-triage` and come back with its one-line verdict. In a Java/Spring project, look the first error line up in `java-spring-stack` §2 before bisecting; in a Node project, `nodejs` §2. Only an unmatched tell continues here.
+Entry condition: the layer is known (error-triage has pinned it, or the trace makes it obvious). If a `502`, `403`, or "works on their machine" report arrives with no layer, hand off to `error-triage` and come back with its one-line verdict. In a Java/Spring project, look the first error line up in `java-spring-stack` §2 before bisecting; in a Node project, `nodejs` §2; in a Django project, `python-django` §2. Only an unmatched tell continues here.
 
 ## 1. Get the raw evidence first
 
