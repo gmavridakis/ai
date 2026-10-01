@@ -1,15 +1,17 @@
 ---
 name: token-optimizer
-description: Choose the output form (diff, snippet, reference, or full file) and the tool-output report format that costs the fewest tokens without losing anything the user must act on. Use when the user asks for brevity or lower cost, when a reply is about to include more than ~20 lines of code, a file, or tool output that is already in context, or when a single reply would exceed ~150 lines. Do not use for deciding what to read, how to cap tool results, or when to compact — context-hygiene owns the input side; do not use when the user asks for a tutorial-style or exhaustive explanation, or when the reply must be self-contained for someone who will not see this conversation (a handover doc, an incident report, a bug report — bug-report-writing owns that).
+description: Choose the cheapest output form and how to report tool output, keeping everything the user must act on. Use when the user wants brevity or lower cost, when a reply would include more than 20 lines of code or tool output already in context, or would exceed 150 lines. Do not use for what to read or when to compact (context-hygiene), tutorials, or a self-contained handover (bug-report-writing).
 ---
 
 # Token optimizer (output side)
 
-This skill governs what you *emit*. What you *read* and when to compact is `context-hygiene` — hand off there when the window, not the reply, is the problem. Density never overrides correctness: shorten prose around literals, never the literals.
+This skill governs what you *emit*. Density never overrides correctness: shorten the prose around literals, never the literals; the literal is the *payload*.
 
-## 1. Pick the output form (decision table)
+The window, not the reply, is the problem: Call the Skill tool with "context-hygiene". The reply must stand alone for someone outside this conversation (an upstream issue, a vendor ticket): Call the Skill tool with "bug-report-writing".
 
-Measure first: `wc -l <file>` and the number of lines you will change.
+## 1. Pick the output form
+
+Measure first: `wc -l <file>` and the number of lines you will change. Then match every row:
 
 | Situation | Emit | Never |
 | --- | --- | --- |
@@ -21,24 +23,28 @@ Measure first: `wc -l <file>` and the number of lines you will change.
 | Same edit in N files | one diff plus the list of paths it was applied to | N diffs |
 | Multi‑hundred‑line implementation requested | interfaces/signatures first (≤ 40 lines), then ask which part to expand | the whole thing unprompted |
 
-## 2. Report tool output, do not paste it
+**Done when** `wc -l` and the changed-line count are known and exactly one row's *Emit* column is what the reply contains.
+
+## 2. Report tool output in the fixed shape
 
 Rule: never paste more than 20 lines of tool output (test runs, logs, `ls`, `git diff`). Report in this shape:
 
 ```
 <tool> → exit <code>; <N> of <M> <units> failed
-first failure: <path:line> — <first line of the message>
+first failure: <path:line>: <first line of the message>
 full output: <path or "not saved">
 ```
 
 Thresholds: a green run is one line (`npm test → exit 0; 212/212 passed, 4.1 s`). A red run is the shape above plus **at most 3** distinct failure lines; group identical messages (`×17 ECONNREFUSED 127.0.0.1:5432`). Save anything longer with `> /tmp/<name>.log 2>&1` and give the path.
 
-## 3. What density must never cut
+**Done when** every tool result mentioned in the reply is in the shape above, at most 20 lines, and anything longer has a saved path.
 
-- Exact error messages, commands, paths, flags, version numbers — the literal is the payload.
+## What density must never cut
+
+- Exact error messages, commands, paths, flags, version numbers: the literal is the payload.
 - A file path (and line or enclosing function) on every snippet; a pathless diff costs the user a search.
 - One sentence for any caveat that changes what the user should do (data loss, irreversible step, security). One is enough; zero is not.
-- The stated assumption when you picked a form the user did not ask for ("applied directly, 3 hunks, no reply paste — say so if you want the diff").
+- The stated assumption when you picked a form the user did not ask for ("applied directly, 3 hunks, no reply paste; say so if you want the diff").
 
 ## Examples
 
@@ -56,9 +62,9 @@ One line of context: "`user` is undefined when the session cookie has expired."
 
 ```
 vitest run → exit 1; 3 of 212 tests failed
-first failure: test/orders.test.ts:88 — expected 200, received 500
+first failure: test/orders.test.ts:88: expected 200, received 500
 also: test/orders.test.ts:104 (same cause: ECONNREFUSED 127.0.0.1:5432 ×3)
 full output: /tmp/vitest.log
 ```
 
-Not: the 340 lines, nor "Here are the results of running the tests:".
+Not the 340 lines, and not "Here are the results of running the tests:".
