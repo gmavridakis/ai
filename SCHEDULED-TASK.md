@@ -6,6 +6,9 @@ prompt must be re-pasted; the task does not read the file.
 
 ## Version history
 
+- **2026-10-01 (evaluation harness).** Step 4 also writes one eval case per new skill under
+  `evals/cases/<name>/`; the routine never runs the harness (it needs the claude CLI on the user's
+  machine). The report gains an *Eval case* line. The stored task prompt was updated by Claude.
 - **2026-10-01 (conventions pass).** The value bar and conflict rules moved into `docs/conventions.md`
   and are enforced by `scripts/lint-skills.py`; the prompt now points at them instead of restating
   them. New steps: run the linter before each commit, append to `CHANGELOG.md`, keep the README table
@@ -102,9 +105,14 @@ commit, and put the one-line command the user must run in the report under "Acti
    practice, exact tool names, real flags, and verbatim error strings: the goal is the hard
    artifacts, not prose. Write `skills/<name>/SKILL.md` to `docs/conventions.md`. Run
    `python3 scripts/lint-skills.py skills/<name>/SKILL.md` and fix every error. Tick the item, add
-   the README table row (name + one-line purpose), add a CHANGELOG line, regenerate INDEX.md. Write
-   files with a heredoc or a short python script in device_bash; never re-type a file from
-   truncated tool output. If every item is checked, skip this step and say so.
+   the README table row (name + one-line purpose), add a CHANGELOG line, regenerate INDEX.md.
+   Then write one evaluation case for it under `evals/cases/<name>/` (an `evals.json` with a
+   realistic prompt, a small fixture directory, deterministic checks, and one expectation per
+   phase phrased as that phase's Done-when; format in `evals/README.md`) and confirm it loads:
+   `python3 -c "import sys; sys.path.insert(0,'evals'); from harness import load_cases; print(len(load_cases('<name>')))"`.
+   The harness itself (`evals/run.py`) needs the claude CLI and runs only on the user's machine:
+   never run it here. Write files with a heredoc or a short python script in device_bash; never
+   re-type a file from truncated tool output. If every item is checked, skip this step and say so.
 
 5. **REFINE.** Among existing skills excluding the new one, pick the oldest by
    `git log -1 --format=%ci -- skills/<name>`. Read it against `docs/conventions.md`. Make one
@@ -135,6 +143,7 @@ commit, and put the one-line command the user must run in the report under "Acti
   (https://github.com/gmavridakis/ai/commit/<sha>)
 - Refined skill: name + what changed (including anything deleted) + commit link
 - Conflict check: pairs found, what was done, any overlap deferred to next run
+- Eval case: `evals/cases/<name>/evals.json` written (checks and expectations count), to be run by the user
 - Lint: `N skills, 0 errors, M warnings` (list the warnings left and why)
 - Remaining unchecked items under *Skills to write*: count
 - Any problem in one line
