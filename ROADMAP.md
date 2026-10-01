@@ -36,7 +36,8 @@ Ordered checklist. The daily maintenance routine takes the first unchecked item 
 
 Prerequisite, before the first item: an evaluation harness that runs a skill against recorded cases on this machine and grades the `**Done when**` states, so every migrated or refined skill has a pass rate before it is committed.
 
-- [ ] evaluation harness: `evals/<skill>/cases/*.md` + a runner (`claude -p` with the skill loaded) + a grader that checks each phase's Done-when against the transcript; baseline pass rates for all 11 existing skills
+- [x] evaluation harness: `evals/` (cases per skill with deterministic checks and one judge line per Done-when, run.py / grade.py / report.py around `claude -p`, results committed); 15 cases written, smoke-tested in the sandbox
+- [ ] baseline: `python evals/run.py --all` on the user's machine, results committed under `evals/results/`, pass rates recorded in CHANGELOG
 - [ ] requirements-clarification ← `grilling`: the frontier-by-rounds interview, numbered questions with a recommended answer, facts are the agent's job and decisions the user's
 - [ ] code-review-checklist ← `code-review`: two-axis review (standards + spec) in parallel subagents, Fowler smell baseline, aggregated without re-ranking
 - [ ] test-first-fixes ← `tdd` merged with debug-from-raw-logs §3: red before green, one seam per cycle, the failure-rate table

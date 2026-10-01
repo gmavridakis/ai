@@ -1,0 +1,54 @@
+{
+  "skill_name": "java-spring-stack",
+  "evals": [
+    {
+      "id": 1,
+      "name": "orders-lazy-init-no-session",
+      "fixture": "fixtures/orders-lazy",
+      "prompt": "GET /orders fails with the exception in logs/app.log. This is a Spring Boot project (pom.xml, sources under src/). Fix it properly; mvn is not available here, so reason from the files.",
+      "expected_output": "Pinned Boot 3.3.4 / Hibernate 6 from pom.xml; LazyInitializationException row: JOIN FETCH or @EntityGraph on findByStatus and/or a DTO instead of returning the entity; open-in-view stays false; no FetchType.EAGER, no fail-on-empty-beans.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "java-spring-stack"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "\\[tool (Read|Grep|Bash)\\].*pom\\.xml",
+          "text": "pom.xml was consulted (pin)"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "3\\.3\\.4|Boot 3|Hibernate 6|jakarta",
+          "text": "The Boot line was named"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "\\[tool (Edit|Write|MultiEdit)\\].*(JOIN FETCH|join fetch|@EntityGraph|select new|record |Dto|DTO)",
+          "text": "The fix is a fetch join, entity graph, or DTO projection"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/main/resources/application.properties",
+          "pattern": "open-in-view\\s*=\\s*true",
+          "text": "open-in-view was not switched on"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/main/java/com/acme/orders/Order.java",
+          "pattern": "FetchType\\.EAGER",
+          "text": "No EAGER fetch added"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "fail-on-empty-beans\\s*=\\s*false",
+          "text": "No Jackson silencing"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the Boot line (3.3.4), the Hibernate major and the jakarta namespace were written down from pom.xml before any fix, and the chosen table row is named.",
+        "Phase 2 done: the LazyInitializationException row was matched, its fix applied in the listed order (fetch join / entity graph first, DTO projection second), and the reply says how the tell would be verified gone (the endpoint or a test re-run), without open-in-view=true or EAGER."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "skill_name": "nodejs",
+  "evals": [
+    {
+      "id": 1,
+      "name": "express4-unhandled-rejection",
+      "fixture": "fixtures/express4-crash",
+      "prompt": "Our API dies every night at 02:00 with the crash in logs/crash.log and the container restarts. Node 22, Express 4 (package.json). Fix the crash properly; npm install and the database are not available here, so reason from the files.",
+      "expected_output": "Pinned Node 22 / commonjs / Express 4 from package.json and .nvmrc; row 'UnhandledPromiseRejection' + Express 4 clause: upgrade to express@5 or add express-async-errors, keep crash-on-unhandled, add a SIGTERM hook; no log-only unhandledRejection handler.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "nodejs"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "node -v|\\.nvmrc|\"type\"|engines|package\\.json",
+          "text": "Runtime and module type were pinned from the files"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "express@5|express 5|express-async-errors",
+          "text": "The Express 4 async-handler fix is proposed"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "server.js",
+          "pattern": "process\\.on\\(['\"]unhandledRejection['\"]",
+          "text": "No global unhandledRejection handler added to server.js"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "convert (the )?(whole )?project to ESM",
+          "where": "final",
+          "text": "Does not propose an ESM migration"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the Node major (22), the module type (commonjs), the package manager and lockfile situation were written down from the files before any fix, and the table row (22.x) is named.",
+        "Phase 2 done: the ERR_UNHANDLED_REJECTION row was matched with its Express 4 clause and the fix applied in the listed order (express@5, or express-async-errors when the upgrade is out of scope), the crash-on-unhandled default kept, and the reply states how the tell is verified gone."
+      ]
+    }
+  ]
+}

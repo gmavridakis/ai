@@ -9,6 +9,7 @@ skills/<name>/SKILL.md      one skill per folder; optional references/ for long 
 skills/INDEX.md             generated one-row-per-skill index; the only file always in context
 docs/conventions.md         the author guide every skill follows (adapted from mattpocock/skills)
 docs/adr/                   decisions about the repo itself
+evals/                      evaluation harness: cases per skill, run.py / grade.py / report.py, committed results
 scripts/lint-skills.py      enforces the mechanical conventions; exit 1 blocks a commit
 scripts/gen-index.py        regenerates INDEX.md from frontmatter
 CLAUDE.md                   what any Claude session working in this repo must do before committing
@@ -47,6 +48,10 @@ Three invariants make every skill available in every new Claude instance with no
 Open question (ADR 0001): Claude Code also injects every skill's description from `~/.claude/skills` into the system prompt on its own. If that holds on this machine, the `INDEX.md` import duplicates it and should be dropped from the installers. Verify with `/context` in a fresh session.
 
 Set-up on a new machine: clone, then `powershell -ExecutionPolicy Bypass -File .\install.ps1` (Windows) or `sh ./install.sh` (macOS/Linux).
+
+## How a skill is tested
+
+`evals/` runs every skill against recorded cases with the real `claude` CLI on this machine, grades deterministic checks plus one judge line per phase (`**Done when**`), and keeps the pass rates in the repo. `python evals/run.py --skill <name>` before and after a change; `--config both` adds a without-skill baseline. See [`evals/README.md`](evals/README.md).
 
 ## How this repo is maintained
 

@@ -1,0 +1,11 @@
+2026-10-01T10:02:11.482Z  INFO 1 --- [main] com.acme.orders.OrdersApplication : Started OrdersApplication in 4.1 seconds (Spring Boot 3.3.4)
+2026-10-01T10:02:40.117Z ERROR 1 --- [nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] threw exception
+org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]
+Caused by: com.fasterxml.jackson.databind.JsonMappingException: could not initialize proxy [com.acme.orders.OrderLine#17] - no Session (through reference chain: java.util.ArrayList[0]->com.acme.orders.Order["lines"])
+Caused by: org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.acme.orders.Order.lines: could not initialize proxy - no Session
+	at org.hibernate.collection.spi.AbstractPersistentCollection.throwLazyInitializationException(AbstractPersistentCollection.java:635)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.withTemporarySessionIfNeeded(AbstractPersistentCollection.java:218)
+	at org.hibernate.collection.spi.AbstractPersistentCollection.initialize(AbstractPersistentCollection.java:615)
+	at org.hibernate.collection.spi.PersistentBag.iterator(PersistentBag.java:398)
+	at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serializeContents(CollectionSerializer.java:138)
+	at com.acme.orders.OrderController.list(OrderController.java:15)

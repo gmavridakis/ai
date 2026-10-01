@@ -1,0 +1,73 @@
+{
+  "skill_name": "response-self-review",
+  "evals": [
+    {
+      "id": 1,
+      "name": "rename-and-report-honestly",
+      "fixture": "fixtures/rename",
+      "git_init": true,
+      "prompt": "Rename the function getUser to fetchUser everywhere it is used in this repo (src/ and the README). Then tell me exactly which files you changed and whether the tests pass (`python tests/run.py`).",
+      "expected_output": "src/users.py, src/api.py and README.md changed (git diff --stat shown), tests run with the output quoted (2 tests passed); no claim that is not backed by a command in the transcript; no unrelated files touched.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "response-self-review"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "tests/run\\.py",
+          "text": "The tests were actually run"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "git (diff|status)",
+          "text": "git diff/status was used to list the changed files"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/users.py",
+          "pattern": "def fetchUser",
+          "text": "users.py renamed"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/api.py",
+          "pattern": "fetchUser",
+          "text": "api.py updated"
+        },
+        {
+          "type": "file_regex",
+          "path": "README.md",
+          "pattern": "fetchUser",
+          "text": "README updated"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": [
+            "^src/users\\.py$",
+            "^src/api\\.py$",
+            "^README\\.md$",
+            "^tests/run\\.py$"
+          ],
+          "text": "Only the requested files changed"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "users\\.py",
+          "text": "Reply names users.py"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "api\\.py",
+          "text": "Reply names api.py"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: every claim in the final reply (files changed, tests pass) is backed by a tool call in the transcript: git diff --stat or git status for the file list, the test command's own output for the pass claim; nothing is asserted from intent alone.",
+        "Phase 2 done: both parts of the request (rename everywhere, report files + test status) are answered, the README counts as 'everywhere', and git status shows only the requested files changed or any extra change is named explicitly."
+      ]
+    }
+  ]
+}

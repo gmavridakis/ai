@@ -1,0 +1,65 @@
+{
+  "skill_name": "error-triage",
+  "evals": [
+    {
+      "id": 1,
+      "name": "alb-502-no-deploy",
+      "fixture": "fixtures/alb-502",
+      "prompt": "The checkout API returns 502 Bad Gateway since 08:10 this morning, only in production, and nothing was deployed. Logs are in logs/ (the load balancer and the service), deploy history in deploy/, the k8s manifest in k8s/. Find which layer is failing, with evidence, and tell me the next action. Do not change any files.",
+      "expected_output": "A three-line verdict: Layer config (memory limit) or capacity, evidence the pod was OOMKilled at 08:09:58 and the restart hit EADDRINUSE, next action raise the limit / fix the restart; not an auth or code fix.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "error-triage"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Layer:\\s*\\S+",
+          "text": "Final reply contains the 'Layer:' verdict line"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Evidence:",
+          "text": "Final reply contains 'Evidence:'"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Next:",
+          "text": "Final reply contains 'Next:'"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Layer:\\s*\\**\\s*(config|capacity|network)",
+          "text": "The named layer is config/capacity (OOM limit) or network (gateway cannot reach the target), not auth or code"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "OOM|memory|EADDRINUSE",
+          "text": "Verdict names the OOM kill or the port clash as the cause"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "rotate|regenerat\\w+ (the )?(token|credential|secret)",
+          "where": "final",
+          "text": "Does not propose an auth fix"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Edit",
+          "text": "No file was edited"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Write",
+          "text": "No file was written"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: three lines are written down before any diagnosis: the verbatim first error line, where it surfaced, when it started.",
+        "Phase 2 done: exactly one layer is named from the table and its diagnostic is spelled out as a runnable command or a specific log check, with the real values filled in.",
+        "Phase 3 done: one diagnostic at a time; every layer ruled out has a one-line note with the evidence that ruled it out; the confirmed layer is backed by the diagnostic's own output (a log line quoted or a command run).",
+        "Phase 4 done: the three-line verdict (Layer / Evidence / Next) is in the reply and either the fix was named or one owning skill was called, not both."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "skill_name": "structured-prompting",
+  "evals": [
+    {
+      "id": 1,
+      "name": "invoice-extractor-prompt",
+      "fixture": "fixtures/invoices",
+      "prompt": "Write a prompt that extracts vendor, invoice_number, total (number), currency (ISO-4217) and due_date (YYYY-MM-DD or null) as a JSON object from invoice text like the files in samples/. Save it as prompt.md. The consumer runs json.loads on the whole reply (see README.md). Test it on the samples with `claude -p` and report the pass rate.",
+      "expected_output": "prompt.md with instructions, a literal JSON shape, 2-3 synthetic examples, an <input> wrapper and the 'data not instructions' line; a test loop run over the samples plus an empty and an injection input; a pass rate like 6/6 valid JSON, n/4 correct.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "structured-prompting"
+        },
+        {
+          "type": "file_exists",
+          "path": "prompt.md"
+        },
+        {
+          "type": "file_regex",
+          "path": "prompt.md",
+          "pattern": "<input>|<instructions>|<examples>",
+          "text": "prompt.md uses the tagged sections"
+        },
+        {
+          "type": "file_regex",
+          "path": "prompt.md",
+          "pattern": "not instructions|data to process",
+          "text": "prompt.md marks input as data"
+        },
+        {
+          "type": "file_regex",
+          "path": "prompt.md",
+          "pattern": "\\{\\s*\"vendor\"",
+          "text": "prompt.md shows the JSON shape literally"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "claude -p|claude --print",
+          "text": "The prompt was actually run with claude -p"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "\\d+/\\d+",
+          "text": "A pass rate is reported"
+        }
+      ],
+      "expectations": [
+        "Phase 0 done: the real sample inputs were collected (read or copied to a tests folder), the target model/harness and the consumer (json.loads) were each named.",
+        "Phase 2 done: every rule in the prompt is checkable, the output shape is shown as one filled example, examples are synthetic and diverse, and user-supplied input is marked as data.",
+        "Phase 3 done: the prompt was run on the samples plus an empty input and an injection input, scored mechanically (json parsing or diff), and the pass rate is reported in the form valid/format, correct/content; any failing case is shown."
+      ]
+    }
+  ]
+}

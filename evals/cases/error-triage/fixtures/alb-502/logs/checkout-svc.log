@@ -1,0 +1,10 @@
+2026-10-01T07:58:11Z INFO  checkout-svc started pid=1 version=4.12.0 heap=480Mi
+2026-10-01T08:04:02Z INFO  POST /api/checkout 200 41ms cart=8a1f
+2026-10-01T08:07:45Z INFO  POST /api/checkout 200 39ms cart=91c3
+2026-10-01T08:08:30Z WARN  report-cache size=61200 entries (grew 12x since 07:58)
+2026-10-01T08:09:12Z INFO  POST /api/checkout 200 44ms cart=b771
+2026-10-01T08:09:41Z WARN  report-cache size=118900 entries
+2026-10-01T08:09:58Z ERROR container killed: OOMKilled (limit 512Mi, usage 512Mi) exit=137
+2026-10-01T08:10:03Z INFO  checkout-svc started pid=1 version=4.12.0 heap=480Mi
+2026-10-01T08:10:04Z ERROR Error: listen EADDRINUSE: address already in use 0.0.0.0:8080
+2026-10-01T08:10:04Z INFO  process exited code=1

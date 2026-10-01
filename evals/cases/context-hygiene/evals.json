@@ -1,0 +1,51 @@
+{
+  "skill_name": "context-hygiene",
+  "evals": [
+    {
+      "id": 1,
+      "name": "big-log-small-fix",
+      "fixture": "fixtures/big-parser",
+      "prompt": "CI fails on `python tests/test_parser.py`. The CI log is logs/ci.log (about 3,000 lines) and the parser is src/parser.py (about 2,500 lines). Find the cause and fix it. Keep the context small: do not read either file whole.",
+      "expected_output": "The failing assertion found by grep in the log, parse_amount located by grep and read as a range, the thousands separator handled (number.replace(',', '')), test re-run green; no whole-file read of either big file.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "context-hygiene"
+        },
+        {
+          "type": "read_uses_ranges",
+          "min_lines": 200,
+          "text": "Every Read of a file over 200 lines used offset/limit"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "wc -l|grep -n|Select-String|Measure-Object",
+          "text": "Size check or grep was run before reading"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Bash",
+          "pattern": "\\bcat (src/parser\\.py|logs/ci\\.log)\\b",
+          "text": "Neither big file was cat'ed whole"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "test_parser\\.py",
+          "text": "The test was run"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/parser.py",
+          "pattern": "replace\\(['\"],['\"]|[0-9,.]|,\\s*['\"]['\"]",
+          "text": "parse_amount handles the thousands separator"
+        }
+      ],
+      "expectations": [
+        "Phase 2 done: every read of a file over 200 lines was preceded by a size check or a grep and used a line range (offset/limit or sed -n), never the whole file.",
+        "Phase 3 done: no single tool result in the transcript exceeds 200 lines; the CI log was searched with grep -n -m or an equivalent and only the hit's context was read."
+      ]
+    }
+  ]
+}

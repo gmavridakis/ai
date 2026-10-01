@@ -1,0 +1,86 @@
+{
+  "skill_name": "routing",
+  "evals": [
+    {
+      "id": 1,
+      "name": "eresolve-in-angular-workspace",
+      "fixture": "fixtures/angular-eresolve",
+      "skill_under_test": "nodejs",
+      "prompt": "npm install fails in this Angular workspace; the output is in npm-install.log. Fix the install.",
+      "expected_output": "nodejs fires (ERESOLVE is an npm failure), not angular; npm ls / bump the outlier, no --legacy-peer-deps committed.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "nodejs"
+        },
+        {
+          "type": "skill_not_fired",
+          "skill": "angular"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "legacy-peer-deps.*\\.npmrc|\\.npmrc.*legacy-peer-deps",
+          "where": "final",
+          "text": "Does not commit --legacy-peer-deps to .npmrc"
+        }
+      ],
+      "expectations": []
+    },
+    {
+      "id": 2,
+      "name": "unknown-layer-403-spring",
+      "fixture": "fixtures/spring-403",
+      "skill_under_test": "error-triage",
+      "prompt": "Since this morning every user gets 403 from our Spring service (/api/projects); nothing was deployed. The log is logs/app.log. What is going on?",
+      "expected_output": "error-triage fires first (layer unknown, 403 could be auth or config); auth layer pinned from the log (anonymous context although a token is present: issuer/JWT validation); a stack skill may follow but not before triage.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "error-triage"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Edit",
+          "text": "No code edited on a question"
+        }
+      ],
+      "expectations": []
+    },
+    {
+      "id": 3,
+      "name": "write-it-up-not-fix-it",
+      "skill_under_test": "bug-report-writing",
+      "prompt": "Open an issue for the maintainers of `fastcsv` about this crash and save it as report.md (no network here, so just write the file):\n\n$ python -c \"import fastcsv; fastcsv.read('latin1.csv')\"\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/usr/lib/python3.12/site-packages/fastcsv/__init__.py\", line 9, in read\n    return list(_csv.DictReader(fh))\nUnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 7: invalid continuation byte\n\nfastcsv 3.2.0, Python 3.12.4, Linux 6.8 x86_64. 3.1.2 worked.",
+      "expected_output": "bug-report-writing fires (the deliverable is the write-up); report.md produced; no attempt to fix fastcsv.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "bug-report-writing"
+        },
+        {
+          "type": "file_exists",
+          "path": "report.md"
+        }
+      ],
+      "expectations": []
+    },
+    {
+      "id": 4,
+      "name": "prompt-for-another-model",
+      "skill_under_test": "structured-prompting",
+      "prompt": "Write a system prompt for our support bot that classifies incoming tickets into billing, technical or other and returns JSON. Save it as prompt.md; we will test it ourselves later.",
+      "expected_output": "structured-prompting fires; prompt.md with a literal JSON shape and examples; the skill's own test loop may be skipped since the user said they will test.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "structured-prompting"
+        },
+        {
+          "type": "file_exists",
+          "path": "prompt.md"
+        }
+      ],
+      "expectations": []
+    }
+  ]
+}

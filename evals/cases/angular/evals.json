@@ -1,0 +1,56 @@
+{
+  "skill_name": "angular",
+  "evals": [
+    {
+      "id": 1,
+      "name": "zoneless-table-stops-updating",
+      "fixture": "fixtures/zoneless-dashboard",
+      "prompt": "Since we upgraded this app to Angular 21 the hosts table on the dashboard stops refreshing after the first message or two; no console errors. Sources in src/. Fix it; node_modules are not installed here, so reason from the files.",
+      "expected_output": "Pinned Angular 21, zoneless (no zone.js, provideZonelessChangeDetection); row 'view stops updating under zoneless': rows becomes a signal, set() in onmessage, template reads rows(); no markForCheck as the primary fix, no zone.js reintroduced.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "angular"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "zone\\.js|zoneless|provideZonelessChangeDetection",
+          "text": "Change-detection mode was pinned"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "21\\.0|Angular 21|@angular/core",
+          "text": "The major was named"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/app/dashboard.ts",
+          "pattern": "signal[<(]",
+          "text": "dashboard.ts stores rows in a signal"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/app/dashboard.ts",
+          "pattern": "rows\\(\\)",
+          "text": "template reads the signal"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/app/dashboard.ts",
+          "pattern": "markForCheck",
+          "text": "markForCheck is not the fix"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "angular.json",
+          "pattern": "zone\\.js",
+          "text": "zone.js was not reintroduced"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the Angular major (21), the change-detection mode (zoneless: no zone.js in package.json or polyfills, provideZonelessChangeDetection in main.ts) and strictTemplates were written down before any fix, and the 21 row is named.",
+        "Phase 2 done: the 'view stops updating' row was matched, the state moved into a signal with set() in the socket handler and the template reading rows(), and the reply states how the tell is verified gone (the table updates with no markForCheck)."
+      ]
+    }
+  ]
+}

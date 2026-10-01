@@ -1,0 +1,41 @@
+=== 2026-09-22 02:00:01 job=vendor-import cmd='python importer.py data/vendors_2026-09-22.csv' host=batch-01 python=3.12.4
+Traceback (most recent call last):
+  File "/srv/import/importer.py", line 27, in <module>
+    sys.exit(main(sys.argv))
+  File "/srv/import/importer.py", line 20, in main
+    rows = parse(argv[1])
+  File "/srv/import/importer.py", line 8, in parse
+    for i, row in enumerate(csv.DictReader(fh), start=2):
+  File "/usr/lib/python3.12/csv.py", line 111, in __next__
+    self.fieldnames
+  File "/usr/lib/python3.12/codecs.py", line 322, in decode
+    (result, consumed) = self._buffer_decode(data, self.errors, final)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 33: invalid continuation byte
+exit=1
+
+=== 2026-09-23 02:00:01 job=vendor-import cmd='python importer.py data/vendors_2026-09-23.csv' host=batch-01 python=3.12.4
+imported 2 rows, total 140.10
+exit=0
+
+=== 2026-09-24 02:00:01 job=vendor-import cmd='python importer.py data/vendors_2026-09-24.csv' host=batch-01 python=3.12.4
+imported 1 rows, total 10.00
+exit=0
+
+=== 2026-09-25 02:00:02 job=vendor-import cmd='python importer.py data/vendors_2026-09-25.csv' host=batch-01 python=3.12.4
+Traceback (most recent call last):
+  File "/srv/import/importer.py", line 27, in <module>
+    sys.exit(main(sys.argv))
+  File "/srv/import/importer.py", line 20, in main
+    rows = parse(argv[1])
+  File "/srv/import/importer.py", line 8, in parse
+    for i, row in enumerate(csv.DictReader(fh), start=2):
+  File "/usr/lib/python3.12/csv.py", line 111, in __next__
+    self.fieldnames
+  File "/usr/lib/python3.12/codecs.py", line 322, in decode
+    (result, consumed) = self._buffer_decode(data, self.errors, final)
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 17: invalid continuation byte
+exit=1
+
+=== 2026-09-26 02:00:01 job=vendor-import cmd='python importer.py data/vendors_2026-09-26.csv' host=batch-01 python=3.12.4
+imported 2 rows, total 11.00
+exit=0

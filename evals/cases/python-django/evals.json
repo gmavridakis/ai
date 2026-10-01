@@ -1,0 +1,50 @@
+{
+  "skill_name": "python-django",
+  "evals": [
+    {
+      "id": 1,
+      "name": "orders-n-plus-one",
+      "fixture": "fixtures/orders-n1",
+      "prompt": "GET /api/orders/ takes 6 s in production for 200 orders; logs/sql.log has the SQL of one request. Django project (requirements.txt, orders/). Fix it and lock it in with a test. Django is not installed here, so reason from the files.",
+      "expected_output": "Pinned Django 5.2.17 / DRF 3.16 from requirements.txt (so fetch_mode is off the table); row 'identical SELECTs': select_related('customer', 'shipping_address') + prefetch_related('items__product') in get_queryset; an assertNumQueries test; nothing from the 6.x rows.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "python-django"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "requirements\\.txt|Django==5\\.2|5\\.2\\.17",
+          "text": "Django line pinned from requirements.txt"
+        },
+        {
+          "type": "file_regex",
+          "path": "orders/views.py",
+          "pattern": "select_related\\(",
+          "text": "views.py uses select_related"
+        },
+        {
+          "type": "file_regex",
+          "path": "orders/views.py",
+          "pattern": "prefetch_related\\(",
+          "text": "views.py uses prefetch_related"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "orders/views.py",
+          "pattern": "fetch_mode",
+          "text": "No 6.1-only fetch_mode on a 5.2 project"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "\\[tool (Edit|Write|MultiEdit)\\].*assertNumQueries",
+          "text": "An assertNumQueries test was written"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the Django line (5.2.17), Python version if present, the database backend and DRF version were written down from the files before any fix, and the 5.2 row is named with the consequence that 6.x-only APIs are off the table.",
+        "Phase 2 done: the 'identical SELECTs' row was matched, select_related for the FKs and prefetch_related for the reverse relation applied, a test with assertNumQueries added, and the reply states the expected query count after the fix."
+      ]
+    }
+  ]
+}

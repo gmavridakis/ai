@@ -1,0 +1,15 @@
+npm ERR! code ERESOLVE
+npm ERR! ERESOLVE unable to resolve dependency tree
+npm ERR!
+npm ERR! While resolving: portal@0.0.0
+npm ERR! Found: @angular/core@21.0.3
+npm ERR! node_modules/@angular/core
+npm ERR!   @angular/core@"^21.0.0" from the root project
+npm ERR!
+npm ERR! Could not resolve dependency:
+npm ERR! peer @angular/core@"^18.0.0" from ngx-charts-legacy@18.0.2
+npm ERR! node_modules/ngx-charts-legacy
+npm ERR!   ngx-charts-legacy@"^18.0.0" from the root project
+npm ERR!
+npm ERR! Fix the upstream dependency conflict, or retry
+npm ERR! this command with --force or --legacy-peer-deps

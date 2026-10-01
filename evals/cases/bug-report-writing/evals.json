@@ -1,0 +1,93 @@
+{
+  "skill_name": "bug-report-writing",
+  "evals": [
+    {
+      "id": 1,
+      "name": "fastcsv-latin1-upstream-issue",
+      "fixture": "fixtures/fastcsv",
+      "prompt": "After upgrading fastcsv from 3.1.2 to 3.2.0 our import crashes on some customer files: `python -c \"import fastcsv; fastcsv.read('latin1.csv')\"` raises UnicodeDecodeError. Write the upstream bug report for github.com/acme/fastcsv into report.md. There is no network here, so do not run gh or search issues online; everything else per the usual bar. Python is on PATH.",
+      "expected_output": "report.md with the title formula (component: behaviour when condition (v3.2.0, since v3.2)), the seven fields (exact version 3.2.0, environment from commands, a one-line repro, numbered steps, expected citing the 3.1 default, actual verbatim error with rate 10/10, regression since 3.2), the full trace in a details block, a workaround note.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "bug-report-writing"
+        },
+        {
+          "type": "file_exists",
+          "path": "report.md"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "### Version",
+          "text": "report.md has the Version / environment section"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "### Minimal reproduction",
+          "text": "report.md has the Minimal reproduction section"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "### Expected",
+          "text": "report.md has Expected"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "### Actual",
+          "text": "report.md has Actual"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "### Regression",
+          "text": "report.md has Regression"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9",
+          "text": "Actual quotes the verbatim first error line"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "\\d+/10",
+          "text": "The failure rate is reported as n/10"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.md",
+          "pattern": "\\(v3\\.2\\.0",
+          "text": "Title carries the exact version"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "report.md",
+          "pattern": "\\blatest\\b",
+          "text": "No 'latest' as a version"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "fastcsv",
+          "text": "The repro was actually run"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Bash",
+          "pattern": "\\bgh\\b",
+          "text": "gh was not called (no network)"
+        }
+      ],
+      "expectations": [
+        "Phase 2 done: all seven fields were obtained with commands (version from the package, environment from python/uname/ver, exact repro, numbered steps, expected vs actual, full trace, regression status), none rejected values like 'latest' or prose steps.",
+        "Phase 3 done: the repro meets the thresholds (one file or command, under 30 lines, no private data) and the rate was measured with a loop and reported as n/10.",
+        "Phase 4 done: the title follows `<component>: <observed wrong behaviour> when <condition> (v<X.Y.Z>, since v<A.B>)` and the body follows the template with the full trace in a details block and a workaround in Notes."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Northwind Traders Inc.
+Invoice #NW-88213
+Total due: $4,019.99 USD
+Due date: 2026-12-15

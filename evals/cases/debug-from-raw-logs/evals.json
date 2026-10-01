@@ -1,0 +1,70 @@
+{
+  "skill_name": "debug-from-raw-logs",
+  "evals": [
+    {
+      "id": 1,
+      "name": "nightly-import-fails-sometimes",
+      "fixture": "fixtures/nightly-import",
+      "prompt": "The nightly vendor import fails sometimes. It runs `python importer.py data/<file>.csv`; the last five runs are in logs/nightly.log and the input files are in data/. Find the root cause and fix it for good, with a regression test (plain `python` and `assert`, no pytest).",
+      "expected_output": "Root cause: the files that fail are Latin-1 encoded (0xE9 = e-acute) while importer.py opens with utf-8. Fix the reader (detect or latin-1 fallback per vendor contract), add a test with a Latin-1 row, show the repro going red then green; not a timeout or a retry.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "debug-from-raw-logs"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "importer\\.py",
+          "text": "The failing command was actually run (repro)"
+        },
+        {
+          "type": "order",
+          "first": "^\\[tool Bash\\].*importer\\.py",
+          "then": "^\\[tool (Edit|Write|MultiEdit)\\].*importer\\.py",
+          "text": "The repro ran before importer.py was edited"
+        },
+        {
+          "type": "file_regex",
+          "path": "importer.py",
+          "pattern": "latin|iso-?8859|cp1252|errors=|detect|charset|encoding=(?!\"utf-8\")",
+          "text": "importer.py now handles the non-UTF-8 input"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Root cause:",
+          "text": "Final reply has the 'Root cause:' line"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Verified:",
+          "text": "Final reply has the 'Verified:' line"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "latin|0xe9|encod",
+          "text": "Root cause names the encoding"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "IMPORT_TIMEOUT|increase the timeout|retry the job",
+          "where": "final",
+          "text": "No timeout/retry guess"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "\\[tool (Write|Edit|MultiEdit)\\].*test",
+          "text": "A regression test file was written"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the unedited traceback from the log was quoted (not paraphrased) together with the exact command and the environment line (host, python version) before any hypothesis.",
+        "Phase 2 done: the innermost own-code frame is named as file:line (importer.py line 8, parse) and the exception message is read literally as a decoding error.",
+        "Phase 3 done: a red command is written down and was run at least once with its failure shown, and the determinism was measured or stated with a rate (for example 10/10 on the Latin-1 file) rather than assumed.",
+        "Phase 4 done: the failing input was narrowed to the one offending row or byte (0xE9 / 'Café' / 'José'), or the failing files were separated from the passing ones by one difference.",
+        "Phase 5 done: at least one hypothesis is stated as a falsifiable sentence with the single check that confirmed it (for example `file` output, a byte inspection, or decoding with latin-1 succeeding).",
+        "Phase 6 done: the red command was re-run and shown green, a regression test exists and was run, and the final reply carries the four lines Root cause / Evidence / Change / Verified."
+      ]
+    }
+  ]
+}

@@ -1,1 +1,8 @@
 .git-credentials-local
+# evaluation harness: keep graded summaries, drop raw transcripts, outputs and scratch runs
+evals/results/**/transcript.jsonl
+evals/results/**/outputs/
+evals/results/**/stderr.txt
+evals/results/_*/
+__pycache__/
+*.pyc
