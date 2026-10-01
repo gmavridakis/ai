@@ -1,26 +1,28 @@
 ---
 name: error-triage
-description: Classify an error by the layer it comes from (network, auth, config, code, data) and run the single fastest diagnostic for that layer before anything else. Use when a user pastes an error message, status code, or "it fails" report and the cause is not yet known — especially for errors that could plausibly come from several layers (timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value"). Do not use once the failing layer is already established — hand off to debug-from-raw-logs for deep investigation of a known-layer bug (a stack skill first when its symptom table names the tell: java-spring-stack for Java/Spring, nodejs for Node.js, python-django for Django, angular for NG-coded errors) — nor when an LLM call succeeds (HTTP 200) but returns the wrong shape or content; structured-prompting owns that.
+description: Classify an error by failing layer (network, auth, config, code, data) and run one diagnostic to confirm it. Use when a user pastes an error, status code, or "it fails" report and the cause is unknown: timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value". Do not use once the layer is known: a stack skill (java-spring-stack, nodejs, python-django, angular) or debug-from-raw-logs owns it; a 200 with wrong content is structured-prompting's.
 ---
 
 # Error Triage
 
-Most time lost on errors is spent debugging the wrong layer: reading application code for what is a DNS failure, or rotating credentials for what is a typo in a config key. Triage first: decide *which layer* is failing, confirm it with one cheap check, then go deep.
+Most time lost on errors is spent in the wrong *layer*: reading application code for a DNS failure, rotating credentials for a typo in a config key. Decide which layer fails, confirm it with one check, then hand off.
 
 ## 1. Capture the literal error (2 minutes, no interpretation)
 
 - Get the exact text: error type, message, status code, exit code, and the first line of the stack trace. Ask for a copy-paste, not a paraphrase.
 - Note **where** it surfaced: client, server, CI, proxy, browser console, a log file. The reporter of the error is often not the origin.
-- Note **when** it started: always / since a deploy / since a config change / intermittently. "Intermittent" almost always means network, capacity, or a race — not a logic bug.
+- Note **when** it started: always / since a deploy / since a config change / intermittently. "Intermittent" almost always means network, capacity, or a race, not a logic bug.
+
+**Done when** three lines are written down: the verbatim first error line, where it surfaced, when it started.
 
 ## 2. Classify by layer using the signature
 
-Match the error against the table. Pick the first layer whose signature fits; if two fit, test the one that is cheaper to check.
+Match the error against every row. Pick the first layer whose signature fits; if two fit, take the one that is cheaper to check.
 
 | Layer | Typical signatures | Fastest diagnostic |
 | --- | --- | --- |
 | **Network** | `ECONNREFUSED`, `ETIMEDOUT`, `ENOTFOUND`, `getaddrinfo`, `connection reset`, `502/503/504`, TLS handshake / certificate errors, works from one machine but not another | `curl -sv <url>` (or `nc -zv host port`) from the failing host. Separates DNS, TCP, TLS, and HTTP in one output. |
-| **Auth** | `401`, `403`, `Unauthorized`, `Forbidden`, `invalid token`, `signature expired`, `access denied`, works for one user/key but not another | Repeat the exact request with a known-good credential (`curl -H "Authorization: ..."`). If it passes, the credential is wrong/expired/under-scoped; if it still fails, it is not auth. |
+| **Auth** | `401`, `403`, `Unauthorized`, `Forbidden`, `invalid token`, `signature expired`, `access denied`, works for one user/key but not another | Repeat the exact request with a known-good credential (`curl -H "Authorization: ..."`). Passes: the credential is wrong, expired, or under-scoped. Still fails: it is not auth. |
 | **Config** | `undefined is not a function` on a client object, `KeyError: 'DATABASE_URL'`, `null` where a setting should be, wrong host/port/region, behaves differently per environment | Print the effective config at startup (`env \| grep PREFIX`, `--print-config`, a one-line log). Compare the failing env's values to a working env's. |
 | **Code** | `TypeError`, `NullPointerException`, `IndexError`, assertion failures, a stack trace with frames in your own source, reproducible with the same input every time | Re-run the smallest failing unit (one test, one function call) with the same input locally. Deterministic + own-code frame ⇒ code. |
 | **Data** | `ValidationError`, `UNIQUE constraint failed`, `invalid JSON`, `unexpected token`, encoding errors, fails only for *some* records/inputs | Isolate the one failing record (`head`/`jq`/`SELECT ... LIMIT 1`) and run it alone. Fails alone ⇒ data; passes alone ⇒ look at ordering/state instead. |
@@ -32,18 +34,36 @@ Rules of thumb:
 - "Works for me, fails for them" is auth or data until proven otherwise.
 - The first error in a log is the cause; later errors are fallout. Triage the first one.
 
+**Done when** one layer is named and its diagnostic is written out as a runnable command with the real host, URL, credential placeholder, or record filled in.
+
 ## 3. Run exactly one diagnostic, then reclassify
 
-- Run the fastest diagnostic for the chosen layer and read its output literally.
-- If it confirms the layer, stop triaging and fix (or hand off to `debug-from-raw-logs` if the cause is still unclear within that layer). Code or data layer in a Java/Spring project (`pom.xml`/`build.gradle` names `org.springframework.boot`): check `java-spring-stack` §2 first; in a Node project (`package.json` present): `nodejs` §2; in a Django project (`manage.py` present): `python-django` §2 — a matching row gives the fix without a bisect.
-- If it rules the layer out, move to the next best-fitting layer. Do not run diagnostics for three layers at once; results become impossible to attribute.
-- Write down each ruled-out layer and the evidence that ruled it out. This prevents circling back.
+- Run the diagnostic for the chosen layer and read its output literally.
+- Confirmed: stop triaging and go to step 4.
+- Ruled out: write down the layer and the evidence that ruled it out, pick the next best-fitting layer, repeat. One diagnostic at a time; three layers at once give results nobody can attribute.
 
-## 4. Report the triage
+**Done when** one layer is confirmed by the diagnostic's own output, and every layer tried before it has a one-line ruling-out note.
 
-State, in this order: the layer, the evidence that pinned it, the next action. One line each.
+## 4. Report the verdict and hand off
+
+Three lines, in this order:
+
+```
+Layer: <network|auth|config|code|data>. Evidence: <the diagnostic output that pinned it>. Next: <one action>.
+```
 
 > Layer: auth. Evidence: same request with a fresh token returns 200; the failing token's `exp` claim is yesterday. Next: rotate the token in the deploy secret.
+
+When the diagnostic already shows the fix, apply it. Otherwise hand the confirmed layer to the owner:
+
+- Code or data layer in a Spring project (`pom.xml` or `build.gradle` names `org.springframework.boot`): Call the Skill tool with "java-spring-stack".
+- Code or data layer with a `package.json` whose code runs in Node: Call the Skill tool with "nodejs".
+- Code or data layer with `manage.py`: Call the Skill tool with "python-django".
+- Code layer with `angular.json`: Call the Skill tool with "angular".
+- Any other layer or stack: Call the Skill tool with "debug-from-raw-logs".
+- An LLM call that returned 200 with the wrong shape or content: Call the Skill tool with "structured-prompting".
+
+**Done when** the three-line verdict is in the reply and exactly one of the above has happened: the fix applied, or one skill called.
 
 ## Anti-patterns to refuse
 
@@ -57,7 +77,6 @@ State, in this order: the layer, the evidence that pinned it, the next action. O
 **Report:** "The checkout API returns 502 since this morning, only in production."
 
 1. Capture: `502 Bad Gateway`, returned by the ALB, body empty, started 08:10 after nothing was deployed.
-2. Classify: `502` + empty body + no deploy ⇒ network layer (gateway cannot reach upstream), not code.
-3. Diagnostic: `curl -sv http://checkout-svc:8080/health` from inside the VPC ⇒ `connection refused`. Service process is down, gateway is fine.
-4. Reclassify: process crash ⇒ check the service's own logs; the first error is `OOMKilled` at 08:09 ⇒ capacity/config, not the handler code.
-5. Report: Layer: config (memory limit). Evidence: pod OOMKilled at 08:09, ALB 502s start 08:10. Next: raise the limit and find the allocation growth in a follow-up.
+2. Classify: `502` + empty body + no deploy ⇒ network layer (gateway cannot reach upstream), not code. Diagnostic: `curl -sv http://checkout-svc:8080/health` from inside the VPC.
+3. Run it ⇒ `connection refused`. Service process is down, gateway is fine. Reclassify: process crash ⇒ read the service's own logs; the first error is `OOMKilled` at 08:09 ⇒ config (memory limit), not the handler code.
+4. Verdict: `Layer: config (memory limit). Evidence: pod OOMKilled at 08:09, ALB 502s start 08:10. Next: raise the limit, then find the allocation growth.` The growth is a known-layer code bug in a Spring service: Call the Skill tool with "java-spring-stack".
