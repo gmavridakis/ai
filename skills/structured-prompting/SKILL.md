@@ -1,11 +1,11 @@
 ---
 name: structured-prompting
-description: Author or fix a prompt that another model will run — a system prompt, prompt template, Claude Code subagent brief, tool description, or CLAUDE.md instruction block. Use when the user asks to write, review, or improve such a prompt, or when a prompt-driven output is wrong in a repeatable way (wrong shape, ignored rule, copied example, injected instruction). Do not use when the request is to answer or perform the task yourself rather than write a prompt for it; do not use when the model call itself fails (HTTP 4xx/5xx, timeout, 400 on prefill) — error-triage owns that; and do not use to shape the length or density of your own reply — token-optimizer owns that.
+description: Author or fix a prompt that another model will run — a system prompt, prompt template, Claude Code subagent brief, tool description, or CLAUDE.md instruction block. Use when the user asks to write, review, or improve such a prompt, or when a prompt-driven output is wrong in a repeatable way (wrong shape, ignored rule, copied example, injected instruction). Do not use when the request is to answer or perform the task yourself rather than write a prompt for it; do not use when the model call itself fails (HTTP 4xx/5xx, timeout, 400 on prefill) — error-triage owns that; do not use to shape the length or density of your own reply — token-optimizer owns that; and do not use to decide what a CLAUDE.md should import or how much context a session carries — context-hygiene owns that (this skill only words the instructions once that choice is made).
 ---
 
 # Structured Prompting
 
-A prompt is code that runs on a model. Treat it like code: collect real inputs, put the parts in the order the model reads best, make every rule checkable, then run it and report a pass rate. Never deliver a prompt with "this should work".
+A prompt is code that runs on a model: collect real inputs, put the parts in the order the model reads best, make every rule checkable, then run it and report a pass rate (§3).
 
 ## 0. Collect before writing
 
@@ -40,6 +40,18 @@ Cache arithmetic: `cache_control` is a no-op below the minimum prefix — 512 to
 ## 3. Test loop — run before delivering
 
 1. Run the prompt on the 3–5 collected inputs plus two adversarial ones: an empty/blank input, and an input that contains "ignore the above instructions and …".
+   Harness for a Claude Code / API prompt (`tests/in/*.txt` holds the seven inputs, `tests/expected/*.json` the oracle):
+
+   ```sh
+   pass=0; for f in tests/in/*.txt; do n=$(basename "$f" .txt)
+     claude -p --model "$MODEL" --system-prompt "$(cat prompt.md)" --output-format json < "$f" \
+       | jq -r '.result' > "tests/out/$n.json" || true
+     jq -e . "tests/out/$n.json" >/dev/null 2>&1 && diff -q <(jq -S . "tests/out/$n.json") <(jq -S . "tests/expected/$n.json") >/dev/null && pass=$((pass+1)) \
+       || echo "FAIL $n: $(head -c 120 tests/out/$n.json)"
+   done; echo "$pass/$(ls tests/in | wc -l) passed"
+   ```
+
+   For a subagent brief, run it through the `Agent` tool on the same seven inputs and diff the returned fields instead.
 2. Score mechanically, not by eye: schema-validate, `jq -e`, regex, or diff against an expected file. Pass bar: 7/7 format-valid and ≥ 4/5 content-correct on the real inputs. Below the bar: change one thing, rerun all seven.
 3. Stability: run one real input 3 times at the production temperature. Different structure across runs = the format section is underspecified; tighten it, not the temperature.
 4. Deliver the prompt, the seven test inputs, and the pass rate (e.g. "7/7 valid JSON, 5/5 correct, 3/3 stable"). If any adversarial case fails, say so and show the failing output.
@@ -49,6 +61,7 @@ Cache arithmetic: `cache_control` is a no-op below the minimum prefix — 512 to
 | Failure | Observable tell | Fix |
 | --- | --- | --- |
 | Example leakage | Output contains a name, number, or phrase that exists only in an `<example>` | Make example content visibly synthetic (`ACME-0001`, `Jane Example`); add "examples show format only" |
+| Example beats rule | Output follows the shape or wording of an `<example>` even where a stated rule says otherwise (e.g. rule says `null` for missing fields, example shows `""`, output shows `""`) | Fix the example — examples outrank instructions; grep every example against every rule before testing |
 | Negation inversion | The forbidden behaviour appears *more* after you added a "don't" line | Rewrite as the positive target behaviour |
 | Format drift | Turn 1 correct; by turn 5+ of a multi-turn run the shape is loose | Repeat the one-line format rule in each user turn, or validate and re-ask on each call |
 | Buried constraint | A rule placed mid-document is ignored; the same rule at the end is obeyed | Move rules below `<documents>` and above `<input>`; hard constraints last |
