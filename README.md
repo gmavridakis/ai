@@ -17,6 +17,7 @@ README.md                   this file
 
 | Name | Fires when | Does not fire when |
 | --- | --- | --- |
+| [angular](skills/angular/SKILL.md) | Code is written, reviewed, or fixed in an Angular workspace (angular.json / @angular/core present), or an Angular-specific symptom appears (NG0100, NG0203, NG0201, NG8001/NG8002, NG05xx hydration, NG0600, NG0950, NG0955/NG0956, NG01203, a zoneless view that stops updating, CommonJS bailout, budget exceeded) | The failing layer is still unknown (error-triage); the generic reproduce/bisect procedure (debug-from-raw-logs); npm/Node-runtime failures in the workspace (nodejs); the backend API (java-spring-stack, nodejs, python-django) |
 | [bug-report-writing](skills/bug-report-writing/SKILL.md) | The user asks to file, report, or write up a bug for people who cannot see this conversation (upstream issue, other team, vendor ticket) | The goal is to diagnose or fix it here (error-triage, debug-from-raw-logs) |
 | [context-hygiene](skills/context-hygiene/SKILL.md) | A task touches many or large files, a tool result is long, or the session nears its auto-compact window | The question is the wording/length of the reply (token-optimizer) |
 | [debug-from-raw-logs](skills/debug-from-raw-logs/SKILL.md) | A bug/crash/failing test is reported and a fix would otherwise be guessed from the description | Feature requests; errors whose cause is already printed; layer still unknown (error-triage); a Spring/Hibernate tell listed in java-spring-stack |

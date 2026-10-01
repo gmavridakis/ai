@@ -1,0 +1,72 @@
+---
+name: angular
+description: Write, review, or fix code in an Angular project (Angular 17+, standalone components, signals, zoneless, SSR/hydration, Angular Material, NgRx/signal stores), or interpret an Angular-specific symptom (NG0100 ExpressionChangedAfterItHasBeenChecked, NG0203 inject() outside an injection context, NG0201 no provider, NG8001/NG8002 "is not a known element/property", NG0500–NG0507 hydration mismatch, NG0600 signal write in a reactive context, NG0950 required input read before set, NG0955/NG0956 broken @for track, NG01203 missing value accessor, NG05104 root element not found, a view that stops updating under zoneless, "CommonJS or AMD dependencies can cause optimization bailouts", "exceeded maximum budget"). Use as soon as an angular.json or an @angular/core dependency is present. Do not use while the failing layer (network/auth/config/code/data) is still unknown — error-triage runs first and hands off here once the layer is code or data in an Angular workspace — nor for the generic reproduce/bisect procedure, which stays with debug-from-raw-logs; npm/Node-runtime failures in the same workspace (ERESOLVE, lockfile drift, heap out of memory during ng build, wrong Node version) belong to nodejs, and the server API behind the app to java-spring-stack, nodejs, or python-django.
+---
+
+# Angular
+
+Angular errors carry an `NG` code and a template/DI location; the code names the mechanism, not the fix, and the right fix depends on the major (standalone vs NgModule, signals vs decorators, zoneless vs zone.js). Pin the major and the change-detection mode first, then match the code in the table before touching code.
+
+## 1. Pin the major and the mode (30 s, before any fix)
+
+```sh
+npx ng version | sed -n '/Angular CLI/,/^$/p;/@angular\/core/p'    # CLI, core, Node, TypeScript, RxJS
+node -p "require('./package.json').dependencies['zone.js'] || 'NO zone.js (zoneless)'"
+grep -rn "provideZonelessChangeDetection\|provideExperimentalZonelessChangeDetection\|bootstrapModule" src/ | head -5
+grep -n '"polyfills"' -A3 angular.json | grep -c zone.js            # 0 ⇒ zoneless build
+grep -n "strictTemplates\|strict\"" tsconfig.json                  # false ⇒ template errors become runtime errors
+npx ng config projects.*.architect.build.builder                    # @angular/build:application is the non-webpack builder
+```
+
+| Major (Sep 2026) | Support (6 mo active + 12 mo LTS) | Defaults that decide the fix |
+| --- | --- | --- |
+| 19 | LTS ended 2026‑05 | standalone is the default (`standalone: true` implied); signal `input()`/`output()`/`viewChild()` stable; `@let` in templates |
+| 20 | LTS until 2026‑11 | `effect`, `linkedSignal`, `toSignal` stable; `resource`/`httpResource` experimental; new file naming drops the `.component` suffix (`user.ts`, not `user.component.ts`) |
+| 21 | LTS until 2027‑05 | **zoneless is the default** for new projects (`provideZonelessChangeDetection()`); Vitest is the default unit‑test runner; signal forms experimental |
+| 22 | Active (released 2026‑06‑03); LTS until 2027‑12 | **OnPush is the default**; signal forms, `resource`, `httpResource`, Angular Aria stable; `@Service` replaces `@Injectable({providedIn:'root'})` for singletons; webpack builders (`@angular-devkit/build-angular`) deprecated; TypeScript 6 |
+
+Never propose a fix from another row (e.g. `@Service` on 21, zone‑based `NgZone.onStable` logic on a zoneless app, `provideExperimentalZonelessChangeDetection` on 20+, where it is renamed `provideZonelessChangeDetection`). Upgrade one major at a time: `npx ng update @angular/core@21 @angular/cli@21` then `@22`; never jump two majors.
+
+## 2. Symptom → cause → fix
+
+| Symptom (verbatim tell) | Cause | Fix (in this order) |
+| --- | --- | --- |
+| `NG0100: ExpressionChangedAfterItHasBeenCheckedError` (dev only) | a binding's value is changed during the same check — parent reads state a child set in `ngAfterViewInit`/`ngOnInit`, or a getter returns a new object each call | 1. move the write into a `signal` and read the signal in the template; 2. derive with `computed()` instead of a getter; never "fix" with `setTimeout` or `detectChanges()` in a lifecycle hook — that hides the ordering bug |
+| `NG0203: inject() must be called from an injection context` | `inject()` inside a callback (`subscribe`, `setTimeout`, a plain function) or inside a `static` method | call `inject()` in the field initializer or constructor; for later use capture `const injector = inject(Injector)` then `runInInjectionContext(injector, () => …)` |
+| `NG0201: No provider for X` | standalone component imports the component but not its provider; `providedIn: 'root'` missing; service only provided in a lazy route | `@Injectable({providedIn: 'root'})` (`@Service` on 22) for singletons; route‑scoped ⇒ `providers: [X]` on that `Route`. It is a runtime error, so `ng build` is clean: open the stack, the first `NodeInjector` frame names the consumer |
+| `NG8001: 'mat-form-field' is not a known element` / `NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'` | standalone component missing the `imports: [MatFormFieldModule]` / `FormsModule` entry (`CUSTOM_ELEMENTS_SCHEMA` only masks it) | add the module/component to `imports`; for a custom element use `schemas: [CUSTOM_ELEMENTS_SCHEMA]` only in that one component |
+| `NG0500: Hydration Node Mismatch` / `NG0502` / `NG0507: HTML content was altered after SSR` | DOM manipulated outside Angular (jQuery, `innerHTML`, a third‑party widget), invalid HTML nesting (`<p><div>`), or server/client rendering different content (dates, `Math.random`, `window` checks) | fix the nesting (`npx html-validate`), move the widget into `afterNextRender()`, or mark the subtree `ngSkipHydration`; reproduce with `ng build && node dist/<app>/server/server.mjs` — not `ng serve` |
+| `NG0600: Writing to signals is not allowed in a computed or an effect` | `set()`/`update()` inside `computed()` or a template expression | derive with `computed()`; in `effect()` on 19+ writes are allowed (the old `allowSignalWrites` is removed) — a 0600 inside an effect means the project is on ≤18 |
+| `NG0950: Input is required but no value is available yet` | `input.required<T>()` read in the constructor or a field initializer | read it in `ngOnInit`, a `computed()`, or the template; never give a required input a default |
+| `NG0955: Track expression resulted in duplicated keys` / `NG0956: tracking expression caused re-creation of the DOM structure` | `@for (x of xs; track $index)` with reorders, or `track x` on objects recreated per fetch | `track x.id` (a stable key); for primitives `track x`; `$index` only for truly static lists |
+| `NG01203: No value accessor for form control name: 'x'` | `formControlName` on a custom component with no `ControlValueAccessor`, or `FormsModule`/`ReactiveFormsModule` not imported | import the forms module; implement `ControlValueAccessor` + `NG_VALUE_ACCESSOR` provider, or on 22 use signal forms (`form()` + `[field]`) |
+| `NG05104: The selector "app-root" did not match any elements` | `index.html` tag ≠ bootstrapped component's selector, or SSR `index.server.html` out of date | compare `bootstrapApplication(App)` selector with `src/index.html`; `ng build` regenerates `index.server.html` |
+| View stops updating after a `setTimeout`, WebSocket, `addEventListener`, or third‑party callback (no error) | zoneless app mutating plain fields — nothing marks the view dirty | store the state in a `signal()`; for RxJS use `toSignal()` or `AsyncPipe`; last resort `inject(ChangeDetectorRef).markForCheck()`. Find all offenders: `provideCheckNoChangesConfig({exhaustive: true, interval: 1000})` in dev config throws NG0100 at each un‑notified binding |
+| `NG0506: Angular detected that this application remains unstable` (SSR hangs ~10 s) | long‑polling, `setInterval`, or an unresolved `PendingTasks` on the server | wrap the work in `afterNextRender()` or `isPlatformBrowser`; for real async use `inject(PendingTasks).run(() => …)` |
+| `Warning: … depends on 'moment'. CommonJS or AMD dependencies can cause optimization bailouts` | CJS package defeats tree‑shaking | replace (`date-fns`/`luxon` for moment); if impossible, `"allowedCommonJsDependencies": ["pkg"]` in `angular.json` build options and accept the size |
+| `Error: bundle initial exceeded maximum budget. Budget 500.00 kB was not met by 120.00 kB` | eager import of a heavy module/route | `npx ng build --stats-json && npx esbuild-visualizer --metadata dist/<app>/stats.json`; lazy‑load with `loadComponent: () => import('./x')` or `@defer (on viewport)`; raise `budgets` only after the lazy split |
+| Tests pass on 20, fail on 21 with stale DOM assertions or `tick()` doing nothing | zoneless `TestBed` (no `zone.js` in test polyfills) with leftover `fakeAsync`/`tick` and `detectChanges()`‑after‑mutation habits | on 21+: `await fixture.whenStable()` after inputs change, `fixture.autoDetectChanges()` once, drop `fakeAsync`; with Vitest use `vi.useFakeTimers()` instead of `tick()` |
+
+## 3. See what Angular actually does
+
+```sh
+npx ng build --configuration development 2>&1 | grep -E "NG[0-9]{4}|error TS"   # template type errors with file:line
+npx ng serve --open=false --hmr=false            # rule out HMR when state looks stale (NG0751)
+npx ng generate @angular/core:control-flow       # *ngIf/*ngFor → @if/@for (then re-run tests)
+npx ng generate @angular/core:signal-input-migration --path src/app   # @Input() → input(); also :output-migration, :signal-queries-migration, :inject
+npx ng generate @angular/core:cleanup-unused-imports
+npx ng test --watch=false --code-coverage        # Vitest on 21+ new projects; Karma on older (`ng test --browsers=ChromeHeadless`)
+```
+
+- Which provider wins: in DevTools → Angular tab → Injector Tree; or `inject(Injector).get(X, null, {self: true})` in a component to see if it resolves locally.
+- Which component owns a DOM node: `ng.getComponent($0)` in the browser console (dev builds only); `ng.applyChanges($0)` forces a check to confirm a missing‑notification bug.
+- Hydration: the server HTML must carry an `ngh` attribute on the root; the dev console prints `Angular hydrated N component(s) and M node(s)` — 0 components means hydration never ran (missing `provideClientHydration()`).
+
+## Example
+
+User: "Since upgrading to 21 our dashboard table stops refreshing after a minute. No errors in the console."
+
+1. `node -p "…zone.js"` → `NO zone.js`; `main.ts` has `provideZonelessChangeDetection()` ⇒ row "View stops updating … zoneless".
+2. Add `provideCheckNoChangesConfig({exhaustive: true, interval: 1000})` to `appConfig.providers` in dev → NG0100 thrown at `dashboard.ts:48` where `this.rows = data` runs inside `socket.onmessage`.
+3. Fix: `rows = signal<Row[]>([])` and `this.rows.set(data)`; template `@for (r of rows(); track r.id)`. Remove the interval probe.
+4. Verify: `await fixture.whenStable()` in the spec after emitting a fake socket message → the row count changes; in the browser the table updates with no `markForCheck()`.

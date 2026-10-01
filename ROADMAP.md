@@ -11,7 +11,7 @@ Ordered checklist of skills to add. The daily maintenance routine takes the firs
 - [x] java-spring-stack — Java / Java EE (Spring Boot, Spring, Hibernate & JPA, JAX-RS & JAX-WS) — idioms, conventions, and common pitfalls
 - [x] nodejs — Node.js — idioms, conventions, and common pitfalls
 - [x] python-django — Python (Django) — idioms, conventions, and common pitfalls
-- [ ] angular — Angular — idioms, conventions, and common pitfalls
+- [x] angular — Angular — idioms, conventions, and common pitfalls
 - [ ] flutter-dart — Flutter & Dart — idioms, conventions, and common pitfalls
 - [ ] react — React — idioms, conventions, and common pitfalls
 - [ ] react-native — React Native — idioms, conventions, and common pitfalls
