@@ -1,6 +1,6 @@
 ---
 name: error-triage
-description: Classify an error by failing layer (network, auth, config, code, data) and run one diagnostic to confirm it. Use when a user pastes an error, status code, or "it fails" report and the cause is unknown: timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value". Do not use once the layer is known: a stack skill (java-spring-stack, nodejs, python-django, angular) or debug-from-raw-logs owns it; a 200 with wrong content is structured-prompting's.
+description: Classify an error by failing layer (network, auth, config, code, data) and run one diagnostic to confirm it. Use when a user pastes an error, status code, or "it fails" report with unknown cause: timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value". Do not use once the layer is known: a stack skill (java-spring-stack, nodejs, python-django, angular, flutter-dart) or debug-from-raw-logs owns it; a 200 with wrong content is structured-prompting's.
 ---
 
 # Error Triage
@@ -60,6 +60,7 @@ When the diagnostic already shows the fix, apply it. Otherwise hand the confirme
 - Code or data layer with a `package.json` whose code runs in Node: Call the Skill tool with "nodejs".
 - Code or data layer with `manage.py`: Call the Skill tool with "python-django".
 - Code layer with `angular.json`: Call the Skill tool with "angular".
+- Code layer with a `pubspec.yaml` that lists a `flutter` sdk dependency: Call the Skill tool with "flutter-dart".
 - Any other layer or stack: Call the Skill tool with "debug-from-raw-logs".
 - An LLM call that returned 200 with the wrong shape or content: Call the Skill tool with "structured-prompting".
 

@@ -1,0 +1,55 @@
+{
+  "skill_name": "flutter-dart",
+  "evals": [
+    {
+      "id": 1,
+      "name": "unbounded-viewport-under-search-field",
+      "fixture": "fixtures/unbounded-viewport",
+      "prompt": "I added a search field above the hosts list in lib/search_page.dart and now the screen is yellow-and-black stripes on the phone. The run console is in console.log. Fix it; the Flutter SDK is not installed here, so reason from the files.",
+      "expected_output": "Pinned Flutter 3.47.5 / Dart ^3.13 (fvmrc, pubspec), riverpod + go_router, Android triad AGP 9.1.0 / Gradle 9.3.1 / Kotlin 2.4.0; row 'Vertical viewport was given unbounded height': ListView.builder wrapped in Expanded as the direct child of the Column; the RenderBox-not-laid-out block treated as a side effect; no shrinkWrap and no SingleChildScrollView for a 2,000-row list.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "flutter-dart"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "3\\.47|\\.fvmrc|\\^3\\.13|frameworkVersion",
+          "text": "The Flutter or Dart version was pinned from the files"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "unbounded height",
+          "text": "The verbatim tell was matched"
+        },
+        {
+          "type": "file_regex",
+          "path": "lib/search_page.dart",
+          "pattern": "Expanded\\(\\s*child:\\s*ListView\\.builder",
+          "text": "ListView.builder is wrapped in Expanded"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "lib/search_page.dart",
+          "pattern": "shrinkWrap",
+          "text": "shrinkWrap is not used for a 2,000-row list"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "lib/search_page.dart",
+          "pattern": "SingleChildScrollView",
+          "text": "The Column was not wrapped in a SingleChildScrollView"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^lib/search_page\\.dart$"],
+          "text": "Only the offending file changed"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the Flutter version (3.47.5 from .fvmrc) and Dart constraint (^3.13.0), the state and routing packages (flutter_riverpod, go_router), the renderer (Impeller, no opt-out) and the Android triad (AGP 9.1.0, Gradle 9.3.1, Kotlin 2.4.0) were written down before any fix, and the 3.47 row is named.",
+        "Phase 2 done: the 'Vertical viewport was given unbounded height' row was matched, the ListView.builder became the child of an Expanded placed directly inside the Column (not shrinkWrap, not a SingleChildScrollView), the second 'RenderBox was not laid out' block was identified as a side effect of the first, and the reply states how the tell is verified gone (no rendering-library block on re-run, or a widget test with takeException() isNull)."
+      ]
+    }
+  ]
+}

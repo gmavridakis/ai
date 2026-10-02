@@ -1,6 +1,6 @@
 # ai: reusable Claude skills
 
-A library of small, focused skills that are live in every Claude Code session on this machine. Each skill is a folder under `skills/` containing a `SKILL.md`: YAML frontmatter (`name`, `description`) followed by imperative phases Claude follows when the skill fires. The skills are diagnostic field manuals for a polyglot enterprise stack (Java/Spring, Node, Django, Angular): version pinning, symptom → cause → fix tables with verbatim tells, numeric thresholds, worked examples.
+A library of small, focused skills that are live in every Claude Code session on this machine. Each skill is a folder under `skills/` containing a `SKILL.md`: YAML frontmatter (`name`, `description`) followed by imperative phases Claude follows when the skill fires. The skills are diagnostic field manuals for a polyglot enterprise stack (Java/Spring, Node, Django, Angular, Flutter): version pinning, symptom → cause → fix tables with verbatim tells, numeric thresholds, worked examples.
 
 ## Layout
 
@@ -30,6 +30,7 @@ The trigger and boundary of each skill are in [`skills/INDEX.md`](skills/INDEX.m
 | [context-hygiene](skills/context-hygiene/SKILL.md) | Keep the context window lean: phase budgets, read strategy by file size, caps on every tool result, a snapshot before compaction |
 | [debug-from-raw-logs](skills/debug-from-raw-logs/SKILL.md) | Evidence-first debugging of a known-layer bug: unedited trace, a repro that goes red at a measured rate, bisect, falsifiable hypotheses, four-line report |
 | [error-triage](skills/error-triage/SKILL.md) | Pin the failing layer (network, auth, config, code, data) with one diagnostic, report a three-line verdict, hand off to the owning skill |
+| [flutter-dart](skills/flutter-dart/SKILL.md) | Flutter 3.38–3.47 field manual: pin SDK, state/routing stack, renderer and Android triad, then a symptom table (RenderFlex overflow, unbounded viewport, setState after dispose, context across async gaps, null check, version solving, MissingPluginException, Gradle/AGP, jank, hot reload) |
 | [java-spring-stack](skills/java-spring-stack/SKILL.md) | Spring Boot 2/3/4 field manual: pin Boot, Hibernate and namespace, then a symptom table (LazyInitializationException, N+1, @Transactional, javax→jakarta, Hikari, JAX-RS/JAX-WS) |
 | [nodejs](skills/nodejs/SKILL.md) | Node 20–26 field manual: pin runtime and module type, then a symptom table (ESM/CJS errors, unhandled rejections, listeners, heap, event loop, ERESOLVE, SIGTERM, streams) |
 | [python-django](skills/python-django/SKILL.md) | Django 4.2–6.x field manual: pin Django and Python, then a symptom table (settings, app registry, migrations, async, transactions, N+1, URLs, templates, static, CSRF, hosts) |

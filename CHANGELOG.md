@@ -2,6 +2,10 @@
 
 One line per change, newest first. The daily routine appends here; a manual session does the same.
 
+## 2026-10-02
+
+- Add flutter-dart skill: pin Flutter/Dart (3.38 to 3.47.5, Oct 2026 table with the 3.47 Android triad AGP 9.1.0 / Gradle 9.3.1 / Kotlin 2.4.0 / JDK 17), 18-row symptom table with verbatim framework tells, observation commands, worked example; error-triage and debug-from-raw-logs route to it (both directions). Eval case `evals/cases/flutter-dart/` written, to be run on the user's machine.
+
 ## 2026-10-01
 
 - Routine prompt: step 4 writes an eval case for each new skill; the stored scheduled task was updated to the new prompt.

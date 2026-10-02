@@ -1,0 +1,22 @@
+Launching lib/main.dart on Pixel 8 in debug mode...
+Running Gradle task 'assembleDebug'...                            41.2s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk
+Syncing files to device Pixel 8...                                 212ms
+
+════════ Exception caught by rendering library ═════════════════════════════════
+The following assertion was thrown during performResize():
+Vertical viewport was given unbounded height.
+Viewports expand in the scrolling direction to fill their container. In this case, a vertical viewport was given an unlimited amount of vertical space in which to expand. This situation typically happens when a scrollable widget is nested inside another scrollable widget.
+If this widget is always nested in a scrollable widget there is no need to use a viewport because there will always be enough vertical space for the children. In this case, consider using a Column or Wrap instead. Otherwise, consider using a CustomScrollView to concatenate arbitrary slivers into a single scrollable.
+
+The relevant error-causing widget was:
+  ListView ListView:file:///C:/src/hostsearch/lib/search_page.dart:35:13
+════════════════════════════════════════════════════════════════════════════════
+
+════════ Exception caught by rendering library ═════════════════════════════════
+RenderBox was not laid out: RenderViewport#f3a21 NEEDS-LAYOUT NEEDS-PAINT NEEDS-COMPOSITING-BITS-UPDATE
+'package:flutter/src/rendering/box.dart':
+Failed assertion: line 2251 pos 12: 'hasSize'
+The relevant error-causing widget was:
+  ListView ListView:file:///C:/src/hostsearch/lib/search_page.dart:35:13
+════════════════════════════════════════════════════════════════════════════════
