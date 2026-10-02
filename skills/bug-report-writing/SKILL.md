@@ -16,15 +16,16 @@ Entry: a failing case exists. If none does yet, the cause is still unknown: Call
   (GitLab: `glab issue list --repo <group>/<project> --all --search "<text>"`).
 - A hit that matches the version and stack trace: do not file; add a comment with the extra environment and repro (`gh issue comment <n> --body-file report.md`) and tell the user the issue number.
 - Check the release notes for the next version: `gh release view --repo <owner>/<repo>`. A bug fixed in an unreleased version needs a comment, not a new issue.
+- No public tracker (Jira, a vendor portal): run the same literal-text search there (`jira issue list -q 'text ~ "<exact error message>"' --plain` with jira-cli, or the portal's search box) and record the query and the hit count in the report's *Notes*.
 
-**Done when** the search with the literal error text has run against open and closed issues and either returned no match, or the match was commented on and its number reported.
+**Done when** the search with the literal error text has run against open and closed issues (or the internal tracker) and either returned 0 matches, or the match was commented on and its number reported.
 
 ## 2. Collect the seven fields (reject the report if any is missing)
 
 | # | Field | How to get it | Reject if |
 | --- | --- | --- | --- |
 | 1 | Exact version of the failing component | `npm ls <pkg> --depth=0` · `pip show <pkg> \| grep -i ^version` · `<tool> --version` · for a source checkout `git describe --tags --always --dirty` | "latest", "recent", or a range |
-| 2 | Environment | JS: `npx envinfo --system --binaries --npmPackages <pkg> --markdown` · Python: `python -c "import sys,platform;print(sys.version);print(platform.platform())"` · always `uname -srm` (or `ver` on Windows) | OS or runtime version absent |
+| 2 | Environment | JS: `npx envinfo --system --binaries --npmPackages <pkg> --markdown` · Python: `python -c "import sys,platform;print(sys.version);print(platform.platform())"` · Java: `java -version 2>&1 \| head -1; mvn -v \| head -1` (or `./gradlew -v`) · Flutter: `flutter --version --machine` · always `uname -srm` (or `ver` on Windows) | OS or runtime version absent |
 | 3 | Minimal repro | one file or one command, ≤ 30 lines, no private packages, no credentials, no network unless the bug is the network | needs the user's repo, DB, or account to run |
 | 4 | Steps | numbered, each one a literal command or click; the last step is the one that fails | prose ("then I ran the tests") |
 | 5 | Expected vs actual | *actual* is the verbatim first error line + exit code; *expected* cites the doc, type signature, or previous version that promised it | "it should work" |
@@ -77,7 +78,7 @@ Good: `csv-reader: UnicodeDecodeError on Latin-1 input when encoding is unset (v
 <one line: workaround if any; a suspected cause only if you tested it, phrased as a test result not a diagnosis>
 ```
 
-File it: `gh issue create --repo <owner>/<repo> --title "<title>" --body-file report.md --label bug`. If the repo has an issue template (`gh api repos/<owner>/<repo>/contents/.github/ISSUE_TEMPLATE`), map the fields into its headings instead of using the template above.
+File it: `gh issue create --repo <owner>/<repo> --title "<title>" --body-file report.md --label bug`. If the repo has an issue template (`gh api repos/<owner>/<repo>/contents/.github/ISSUE_TEMPLATE`), map the fields into its headings instead of using the template above. Jira: `jira issue create -t Bug -s "<title>" --template report.md`. A vendor portal: paste the same body; the *Version / environment* block goes first because support triage reads only the first screen.
 
 **Done when** the issue URL or ticket id is in the reply together with the title, and the user has the workaround line if one exists.
 

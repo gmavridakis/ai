@@ -4,6 +4,8 @@ One line per change, newest first. The daily routine appends here; a manual sess
 
 ## 2026-10-02
 
+- Conflict check: bug-report-writing handed off to error-triage and debug-from-raw-logs but neither handed back, so "crash X, write it up for the maintainers" fired both; error-triage (vendor/third-party layer, user wants it reported) and debug-from-raw-logs (§6, root cause inside a dependency) now Call the Skill tool with "bug-report-writing". No merge. Deferred: the four stack skills do not yet route a Flutter frontend to flutter-dart.
+- Refine bug-report-writing: phase 1 and phase 4 cover a Jira or vendor-portal tracker (jira-cli search and create commands, 0-match Done when); field 2 gains the Java (`java -version`, `mvn -v`/`./gradlew -v`) and Flutter (`flutter --version --machine`) environment commands.
 - Add flutter-dart skill: pin Flutter/Dart (3.38 to 3.47.5, Oct 2026 table with the 3.47 Android triad AGP 9.1.0 / Gradle 9.3.1 / Kotlin 2.4.0 / JDK 17), 18-row symptom table with verbatim framework tells, observation commands, worked example; error-triage and debug-from-raw-logs route to it (both directions). Eval case `evals/cases/flutter-dart/` written, to be run on the user's machine.
 
 ## 2026-10-01

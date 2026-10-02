@@ -65,6 +65,7 @@ Entry conditions, checked before phase 1:
 
 ## 6. Fix, verify, and close the loop
 
+- The surviving hypothesis places the root cause inside a third-party package or vendor component (the innermost own-code frame only calls into it): the fix is upstream. Call the Skill tool with "bug-report-writing" with the red command and its `n/10` rate; here, ship only a pinned version or a workaround and name it in *Change*.
 - Apply the smallest change that addresses the root cause, not the symptom.
 - Re-run the red command; it must now pass. Re-run the broader test suite to catch regressions.
 - Add a regression test that would have failed before the fix, wherever the codebase has tests.
