@@ -1,0 +1,28 @@
+   ▲ Next.js 16.1.4 (Turbopack)
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Ready in 612ms
+ GET /products/sku-1042 200 in 184ms (compile: 91ms, render: 93ms)
+
+[browser] Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  <main>
+    <h1>
+    <Price amountCents={1250} currency="EUR">
+      <div>
+        <span data-testid="price">
++         12,50 €
+-         0,00 €
+    at Price (app/products/[id]/price.tsx:7:21)
+    at ProductPage (app/products/[id]/page.tsx:14:7)

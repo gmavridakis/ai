@@ -19,7 +19,7 @@ Ordered checklist. The daily maintenance routine takes the first unchecked item 
 ## Skills to write (daily routine, in order)
 
 - [x] flutter-dart: Flutter & Dart idioms, conventions, and common pitfalls (2026-10-02)
-- [ ] react: React idioms, conventions, and common pitfalls
+- [x] react: React idioms, conventions, and common pitfalls (2026-10-06)
 - [ ] react-native: React Native idioms, conventions, and common pitfalls
 - [ ] api-debugging: curl reproduction, headers, status codes, request IDs
 - [ ] log-instrumentation: where and how to add useful logging without noise

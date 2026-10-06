@@ -1,13 +1,13 @@
 ---
 name: nodejs
-description: Write, review, or fix Node.js code, or interpret a Node tell: ERR_REQUIRE_ESM, ERR_MODULE_NOT_FOUND, ERR_PACKAGE_PATH_NOT_EXPORTED, "__dirname is not defined", UnhandledPromiseRejection, MaxListenersExceededWarning, ERESOLVE, heap out of memory, event-loop lag, SIGTERM ignored. Use when package.json, .nvmrc, or .node-version is present and the code runs in Node. Do not use while the failing layer is unknown (error-triage first); Angular code belongs to angular, Java to java-spring-stack, Django to python-django.
+description: Write, review, or fix Node.js code, or interpret a Node tell: ERR_REQUIRE_ESM, ERR_MODULE_NOT_FOUND, ERR_PACKAGE_PATH_NOT_EXPORTED, "__dirname is not defined", UnhandledPromiseRejection, MaxListenersExceededWarning, ERESOLVE, heap out of memory, event-loop lag, SIGTERM ignored. Use when package.json, .nvmrc, or .node-version is present and the code runs in Node. Do not use while the failing layer is unknown (error-triage first); Angular code belongs to angular, React to react, Java to java-spring-stack, Django to python-django.
 ---
 
 # Node.js
 
 Node failures are mostly module-system, version, and event-loop failures whose messages name the symptom, not the cause. *Pin* the runtime and module type first (the fix differs by major and by CJS/ESM), then match the *tell* against every row of the table before touching code. Writing or reviewing code: pin, then use the table's Fix column as the review checklist.
 
-Entry: the failing layer is known to be code or data. A timeout, 4xx/5xx, or "works on their machine" with no layer yet: Call the Skill tool with "error-triage" first. Angular components, templates, or `NG`-coded errors in the same workspace: Call the Skill tool with "angular". A Spring backend: Call the Skill tool with "java-spring-stack". A Django backend: Call the Skill tool with "python-django".
+Entry: the failing layer is known to be code or data. A timeout, 4xx/5xx, or "works on their machine" with no layer yet: Call the Skill tool with "error-triage" first. Angular components, templates, or `NG`-coded errors in the same workspace: Call the Skill tool with "angular". React components, hooks, hydration, or a Next.js route in the same package: Call the Skill tool with "react". A Spring backend: Call the Skill tool with "java-spring-stack". A Django backend: Call the Skill tool with "python-django".
 
 ## 1. Pin the runtime and module type (30 s, before any fix)
 

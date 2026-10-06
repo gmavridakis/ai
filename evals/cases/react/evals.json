@@ -1,0 +1,61 @@
+{
+  "skill_name": "react",
+  "evals": [
+    {
+      "id": 1,
+      "name": "hydration-mismatch-from-navigator-locale",
+      "fixture": "fixtures/hydration-locale",
+      "prompt": "Since the Next 16 upgrade the product page logs a hydration error and the price flickers from 0,00 € to 12,50 € on load. The dev console is in console.log. Fix it so the price is right on the first paint (no flicker) and the error is gone. Node and npm are not installed here, so reason from the files.",
+      "expected_output": "Pinned react 19.2.0 / next 16.1.4 with reactCompiler on and one client boundary; row 'Hydration failed because the server rendered HTML didn't match the client': price.tsx read navigator.language and branched on typeof navigator during render, so the server rendered 0,00 € and the client 12,50 €; the locale (and the amount) now come from the Server Component as props (accept-language from headers() or a fixed app locale), no navigator read in render, no suppressHydrationWarning, Strict Mode left on.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "react"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "19\\.2\\.0|16\\.1\\.4|reactCompiler",
+          "text": "The React or Next.js version, or the compiler flag, was pinned from the files"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "Hydration failed",
+          "text": "The verbatim tell was matched"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "app/products/[id]/price.tsx",
+          "pattern": "navigator",
+          "text": "No navigator read remains in the client component"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "app/products/[id]/price.tsx",
+          "pattern": "suppressHydrationWarning",
+          "text": "The mismatch was not masked with suppressHydrationWarning"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "next.config.ts",
+          "pattern": "reactStrictMode:\\s*false",
+          "text": "Strict Mode was not switched off"
+        },
+        {
+          "type": "file_regex",
+          "path": "app/products/[id]/price.tsx",
+          "pattern": "locale",
+          "text": "The locale enters the client component as data (a prop) instead of being read from the browser during render"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^app/products/\\[id\\]/(page|price)\\.tsx$"],
+          "text": "Only the page and the price component changed"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the react (19.2.0) and react-dom versions, the framework (Next.js 16.1.4, Turbopack), that the React Compiler is on (reactCompiler: true), the client-boundary count (one 'use client' file, price.tsx) and the absence of eslint findings were written down before any fix, and the 19.1 / 19.2 row is named.",
+        "Phase 2 done: the 'Hydration failed because the server rendered HTML didn't match the client' row was matched, the cause was identified as navigator.language and the typeof navigator branch read during render in price.tsx (server 0,00 €, client 12,50 €, the diff in console.log), the fix passes the locale from the Server Component as a prop (from headers() accept-language or a fixed locale) rather than a useEffect that would still flicker or suppressHydrationWarning, and the reply states how the tell is verified gone (no hydration diff on reload, or tests/price.spec.ts passing on first paint)."
+      ]
+    }
+  ]
+}

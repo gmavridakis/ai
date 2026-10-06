@@ -2,6 +2,10 @@
 
 One line per change, newest first. The daily routine appends here; a manual session does the same.
 
+## 2026-10-06
+
+- Add react skill: pin React 18.3 to 19.3 (Oct 2026 table: 19 removals and codemods, 19.2 `useEffectEvent`/`Activity`/React Compiler 1.0, Next.js 16 async request APIs, 19.3 `ViewTransition`/`use(browser())`, Vite 8 compiler wiring), 18-row symptom table with verbatim React, Next.js, eslint and test tells, observation commands (DevTools Profiler, react-scan), worked example; error-triage, debug-from-raw-logs and nodejs route to it (both directions). Eval case `evals/cases/react/` written, to be run on the user's machine.
+
 ## 2026-10-02
 
 - Conflict check: bug-report-writing handed off to error-triage and debug-from-raw-logs but neither handed back, so "crash X, write it up for the maintainers" fired both; error-triage (vendor/third-party layer, user wants it reported) and debug-from-raw-logs (§6, root cause inside a dependency) now Call the Skill tool with "bug-report-writing". No merge. Deferred: the four stack skills do not yet route a Flutter frontend to flutter-dart.
