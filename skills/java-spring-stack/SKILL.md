@@ -7,7 +7,7 @@ description: Write, review, or fix Java / Spring Boot / Hibernate-JPA / JAX-RS /
 
 Spring problems are rarely Java problems: they are proxy, session, and classpath problems whose stack traces name the symptom, not the cause. *Pin* the versions first (fixes differ by major), then match the *tell* against every row of the table before touching code. Writing or reviewing code: pin, then use the table's Fix column as the review checklist.
 
-Entry: the failing layer is known to be code or data. A timeout, 4xx/5xx, or "works on their machine" with no layer yet: Call the Skill tool with "error-triage" first. A Node service in the same system: Call the Skill tool with "nodejs". A Django service: Call the Skill tool with "python-django". The Angular front end: Call the Skill tool with "angular".
+Entry: the failing layer is known to be code or data. A timeout, 4xx/5xx, or "works on their machine" with no layer yet: Call the Skill tool with "error-triage" first. A Node service in the same system: Call the Skill tool with "nodejs". A Django service: Call the Skill tool with "python-django". The Angular front end: Call the Skill tool with "angular"; a React or Next.js front end: Call the Skill tool with "react"; a Flutter app: Call the Skill tool with "flutter-dart".
 
 ## 1. Pin the versions (30 s, before any fix)
 

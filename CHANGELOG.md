@@ -4,6 +4,8 @@ One line per change, newest first. The daily routine appends here; a manual sess
 
 ## 2026-10-06
 
+- Conflict check: react versus nodejs both fire on a Next.js package (`package.json` with `react-dom` that also runs in Node); resolved by boundary clauses and operative hand-offs in both directions (nodejs → react for components, hooks, hydration and routes; react → nodejs for ERESOLVE, ERR_REQUIRE_ESM, heap, Node version). java-spring-stack and python-django now hand a React or Flutter front end to react / flutter-dart (closes the overlap deferred on 2026-10-02). No merge. Deferred: none.
+- Refine angular: the backend hand-off is now one conditional `Call the Skill tool` line per stack (Spring, Node, Django) plus a React-monorepo hand-off, instead of three names in one sentence; two rows added to the symptom table, `NG0302` (pipe not found in a standalone component, the most common post-migration tell) and `NG0200` (circular DI); NG0302 added to the description's trigger list.
 - Add react skill: pin React 18.3 to 19.3 (Oct 2026 table: 19 removals and codemods, 19.2 `useEffectEvent`/`Activity`/React Compiler 1.0, Next.js 16 async request APIs, 19.3 `ViewTransition`/`use(browser())`, Vite 8 compiler wiring), 18-row symptom table with verbatim React, Next.js, eslint and test tells, observation commands (DevTools Profiler, react-scan), worked example; error-triage, debug-from-raw-logs and nodejs route to it (both directions). Eval case `evals/cases/react/` written, to be run on the user's machine.
 
 ## 2026-10-02
