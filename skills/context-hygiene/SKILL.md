@@ -11,7 +11,7 @@ The reply, not the window, is what is too long: Call the Skill tool with "token-
 
 ## 1. Measure before you start (and every ~20 turns)
 
-- Run `/context`. It lists what occupies the window (system prompt, tools, MCP, memory files, messages) and the current total against the auto-compact window.
+- Run `/context`; write down the total against the auto-compact window and the share taken by tools and MCP.
 - Defaults: 1M-window models compact at ~967K tokens; 200K models at the 200K boundary. `/autocompact 500k` (or `CLAUDE_CODE_AUTO_COMPACT_WINDOW=500000`, which overrides everything) lowers it; `/autocompact auto` restores the tuned value.
 - Phase budgets, as a share of the auto-compact window. Exceeding a budget means switch to grep, ranges, or subagents, not "read faster":
 
@@ -33,7 +33,7 @@ Check size first: `wc -l <file>` (or `ls -la` for a directory). Then:
 | ≤ 200 lines | read whole file once | read it again unless it changed |
 | 200–2,000 lines | `grep -n -E '<symbol\|error>' <file>` → `Read` with `offset`/`limit` ±40 lines around the hit | read whole |
 | > 2,000 lines | grep, then ranges; or delegate to a subagent that returns ≤ 30 lines | open in the main context |
-| Directory | `ls`, `git ls-files \| head -50`, `tree -L 2` | cat multiple files "to get a feel" |
+| Directory | `ls`, `git ls-files \| head -50`, `tree -L 2 -I 'node_modules\|.git\|dist\|build\|target\|.venv'` (without `-I` a JS or Java tree returns thousands of lines) | cat multiple files "to get a feel" |
 | Binary / generated / lockfile / minified | never open; `head -c 200` to identify, `file <path>` | read |
 
 - One symbol, one grep: `grep -rn --include='*.ts' 'fetchUser' src/` beats opening three candidate files.
@@ -54,7 +54,7 @@ Check size first: `wc -l <file>` (or `ls -la` for a directory). Then:
 
 ## 4. Snapshot before the window fills
 
-At 60% of the auto-compact window, or at the end of a task phase, write a snapshot to a file (`NOTES.md` in the working directory, or the task list) before compacting. Auto-compaction summarizes on its own, but it does not know what matters. The snapshot carries:
+At 60% of the auto-compact window, or at the end of a task phase, write a snapshot to a file (`NOTES.md` in the working directory, or the task list) before compacting. Auto-compaction summarizes on its own, but it does not know what matters. In a repo, keep the file out of the diff: `echo NOTES.md >> .git/info/exclude` (not `.gitignore`, which would be committed). The snapshot carries:
 
 1. Goal in one sentence and the acceptance check (the exact command that proves done).
 2. Decisions made and why (one line each); rejected options with the reason.
@@ -64,13 +64,13 @@ At 60% of the auto-compact window, or at the end of a task phase, write a snapsh
 
 Then compact with focus: `/compact focus on NOTES.md, the failing test, and the diff`. Between unrelated tasks use `/clear` (free); `/compact` itself is a large request because it reads the whole conversation. `/rename` first so `/resume` can find the session.
 
-**Done when** `NOTES.md` holds all five items and either `/compact` ran with a focus line or `/clear` ran between unrelated tasks.
+**Done when** `NOTES.md` holds all five items, `git status --short` does not list it, and either `/compact` ran with a focus line or `/clear` ran between unrelated tasks.
 
 ## Failure modes and their tells
 
 | Failure mode | Observable tell | Fix |
 | --- | --- | --- |
-| Context rot | you ask the user something already answered, or re-read a file read < 20 turns ago | grep the conversation state from the snapshot; stop re-reading |
+| Context rot | you ask the user something already answered, or re-read a file read < 20 turns ago | before any `Read`, check `NOTES.md` item 3 (files touched and read); a file listed there with no edit since is answered from the snapshot, not re-opened |
 | Log flood | one tool result scrolls > 200 lines; the next reply quotes it | redirect to file, `grep -m`, `tail -40` |
 | Compaction amnesia | first action after compaction is re-reading 3+ files | snapshot was missing or incomplete; write it now, compact again with focus |
 | Orientation spiral | > 10% of the window spent and no file has been edited | stop reading; state the plan from what is known; ask one question if needed |
