@@ -1,0 +1,25 @@
+$ npx expo-doctor@latest
+✔ Check package.json for common issues
+✔ Check Expo config for common issues
+✔ Check for app config fields that may not be synced in a non-CNG project
+✔ Check npm/ yarn versions
+✔ Check that native modules do not use incompatible support packages
+✔ Check for legacy global CLI installed locally
+✔ Check Expo config (app.json/ app.config.js) schema
+✔ Check for issues with Metro config
+✔ Check native tooling versions
+✔ Check that native modules use compatible support package versions for installed Expo SDK
+✔ Check that packages match versions required by installed Expo SDK
+✖ Check that the installed dev client matches the native dependencies
+
+Detailed check results:
+
+The following packages should be updated for best compatibility with the installed expo version:
+  react-native-screens@4.19.0 - expected version: ~4.20.0
+Your project may not work correctly until you install the expected versions of the packages.
+Fix with: npx expo install --check
+
+The installed development build on the connected Android device was built on 2026-09-29 and does not include react-native-screens, which was added on 2026-10-06. Rebuild the development build with: npx expo prebuild --clean && npx expo run:android
+
+11/12 checks passed. 1 checks failed. Possible issues detected:
+Use the --verbose flag to see more details about passed checks.

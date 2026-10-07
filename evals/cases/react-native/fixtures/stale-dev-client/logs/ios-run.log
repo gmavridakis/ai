@@ -1,0 +1,6 @@
+$ npx expo run:ios
+› Rebuilt iOS development build at 2026-10-07 08:41 (Xcode 26.0, iOS 26 simulator)
+› Installing /Users/gm/Library/Developer/Xcode/DerivedData/FieldOps-.../FieldOps.app
+› Opening on iPhone 17 (iOS 26.0)
+iOS Bundled 2104ms index.ts (1427 modules)
+ LOG  [expo-router] Loaded 3 routes

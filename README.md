@@ -1,6 +1,6 @@
 # ai: reusable Claude skills
 
-A library of small, focused skills that are live in every Claude Code session on this machine. Each skill is a folder under `skills/` containing a `SKILL.md`: YAML frontmatter (`name`, `description`) followed by imperative phases Claude follows when the skill fires. The skills are diagnostic field manuals for a polyglot enterprise stack (Java/Spring, Node, Django, Angular, Flutter): version pinning, symptom → cause → fix tables with verbatim tells, numeric thresholds, worked examples.
+A library of small, focused skills that are live in every Claude Code session on this machine. Each skill is a folder under `skills/` containing a `SKILL.md`: YAML frontmatter (`name`, `description`) followed by imperative phases Claude follows when the skill fires. The skills are diagnostic field manuals for a polyglot enterprise stack (Java/Spring, Node, Django, Angular, React, React Native, Flutter): version pinning, symptom → cause → fix tables with verbatim tells, numeric thresholds, worked examples.
 
 ## Layout
 
@@ -35,6 +35,7 @@ The trigger and boundary of each skill are in [`skills/INDEX.md`](skills/INDEX.m
 | [nodejs](skills/nodejs/SKILL.md) | Node 20–26 field manual: pin runtime and module type, then a symptom table (ESM/CJS errors, unhandled rejections, listeners, heap, event loop, ERESOLVE, SIGTERM, streams) |
 | [python-django](skills/python-django/SKILL.md) | Django 4.2–6.x field manual: pin Django and Python, then a symptom table (settings, app registry, migrations, async, transactions, N+1, URLs, templates, static, CSRF, hosts) |
 | [react](skills/react/SKILL.md) | React 18.3–19.3 field manual: pin React, bundler (Next.js 16, Vite 8), React Compiler and client-boundary count, then a symptom table (hook order, duplicate react, update depth, hydration diff, Server/Client boundary, async params, keys, act, 19 removals, compiler bailouts, fetch waterfalls, input lag) |
+| [react-native](skills/react-native/SKILL.md) | React Native 0.76–0.87 / Expo SDK 54–57 field manual: pin RN, Expo, New Architecture, Hermes and the native toolchain, then a symptom table (unresolved module, TurboModule or UIManager not found, Reanimated mismatch, gesture root, Text outside Text, nested lists, no bundle URL, Xcode node PATH, CocoaPods, Android SDK, Gradle triad, legacy-library events, Hermes Intl, Watchman, JS-thread jank, release-only crash) |
 | [response-self-review](skills/response-self-review/SKILL.md) | Check a draft's claims against evidence from this session and its coverage against the request before sending |
 | [structured-prompting](skills/structured-prompting/SKILL.md) | Write a prompt for another model: section order, checkable rules, a runnable test loop with a pass-rate bar, failure modes with their tells |
 | [token-optimizer](skills/token-optimizer/SKILL.md) | Pick the cheapest output form (diff, reference, full file) and report tool output in a fixed 3-line shape without dropping the literals |

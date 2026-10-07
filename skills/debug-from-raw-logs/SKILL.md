@@ -1,6 +1,6 @@
 ---
 name: debug-from-raw-logs
-description: Diagnose a reported bug from raw evidence: unedited trace, a repro that goes red, bisect, falsifiable hypotheses. Use for a crash, failing or flaky test, or "it doesn't work" in a known layer when the fix would otherwise be guessed. Do not use while the layer is unknown (error-triage first), when a stack table names the tell (java-spring-stack, nodejs, python-django, angular, flutter-dart, react), or the cause is unambiguous.
+description: Diagnose a reported bug from raw evidence: unedited trace, a repro that goes red, bisect, falsifiable hypotheses. Use for a crash, failing or flaky test, or "it doesn't work" in a known layer when the fix would otherwise be guessed. Do not use with the layer unknown (error-triage first), when a stack table names the tell (java-spring-stack, nodejs, python-django, angular, flutter-dart, react, react-native), or the cause is unambiguous.
 ---
 
 # Debug From Raw Logs
@@ -10,7 +10,7 @@ A fix proposed before the raw error is seen is a guess; most guesses are wrong a
 Entry conditions, checked before phase 1:
 
 - The layer is unknown (a `502`, `403`, or "works on their machine" report with no layer): Call the Skill tool with "error-triage" and return with its verdict.
-- The first error line may be a stack tell. Look it up in the stack's symptom table before bisecting: in a Spring project Call the Skill tool with "java-spring-stack"; in a Node project Call the Skill tool with "nodejs"; in a Django project Call the Skill tool with "python-django"; in an Angular workspace Call the Skill tool with "angular"; in a Flutter app Call the Skill tool with "flutter-dart"; in a React or Next.js app Call the Skill tool with "react". Only an unmatched tell continues here.
+- The first error line may be a stack tell. Look it up in the stack's symptom table before bisecting: in a Spring project Call the Skill tool with "java-spring-stack"; in a Node project Call the Skill tool with "nodejs"; in a Django project Call the Skill tool with "python-django"; in an Angular workspace Call the Skill tool with "angular"; in a Flutter app Call the Skill tool with "flutter-dart"; in a React or Next.js app Call the Skill tool with "react"; in a React Native or Expo app Call the Skill tool with "react-native". Only an unmatched tell continues here.
 
 ## 1. Get the raw evidence first
 

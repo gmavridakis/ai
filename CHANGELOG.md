@@ -2,6 +2,10 @@
 
 One line per change, newest first. The daily routine appends here; a manual session does the same.
 
+## 2026-10-07
+
+- Add react-native skill: pin React Native 0.76 to 0.87 with the Expo SDK 52 to 57 mapping (Oct 2026 table: 0.82 New Architecture only, Hermes V1 flags, 0.83 React 19.2 and DevTools panels, SDK 57 on 0.86 with Node 22.13+, Reanimated 4 worklets split), 18-row symptom table with verbatim Metro, TurboModule, Reanimated, Xcode, CocoaPods and Gradle tells, observation commands (expo-doctor, logcat, Perf Monitor), worked example; error-triage, debug-from-raw-logs, nodejs and react route to it (both directions). Eval case `evals/cases/react-native/` written, to be run on the user's machine.
+
 ## 2026-10-06
 
 - Conflict check: react versus nodejs both fire on a Next.js package (`package.json` with `react-dom` that also runs in Node); resolved by boundary clauses and operative hand-offs in both directions (nodejs → react for components, hooks, hydration and routes; react → nodejs for ERESOLVE, ERR_REQUIRE_ESM, heap, Node version). java-spring-stack and python-django now hand a React or Flutter front end to react / flutter-dart (closes the overlap deferred on 2026-10-02). No merge. Deferred: none.

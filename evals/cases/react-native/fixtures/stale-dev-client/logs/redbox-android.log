@@ -1,0 +1,29 @@
+Android Bundled 2318ms index.ts (1427 modules)
+ ERROR  Invariant Violation: requireNativeComponent: "RNSScreen" was not found in the UIManager.
+
+This error is located at:
+    in RNSScreen (created by Screen)
+    in Screen (created by InnerScreen)
+    in InnerScreen (created by Screen)
+    in Screen (created by SceneView)
+    in SceneView (created by NativeStackViewInner)
+    in NativeStackViewInner (created by NativeStackView)
+    in NativeStackView (created by NativeStackNavigator)
+    in NativeStackNavigator (created by Stack)
+    in Stack (created by RootLayout)
+    in RCTView (created by View)
+    in View (created by GestureHandlerRootView)
+    in GestureHandlerRootView (created by RootLayout)
+    in RootLayout
+    in ExpoRoot
+    in App (created by withDevTools(App))
+    in withDevTools(App)
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in RCTView (created by View)
+    in View (created by AppContainer)
+    in AppContainer
+    in main(RootComponent), js engine: hermes
+ ERROR  Invariant Violation: "main" has not been registered. This can happen if:
+* Metro (the local dev server) is run from the wrong folder. Check if Metro is running, stop it and restart it in the current project.
+* A module failed to load due to an error and `AppRegistry.registerComponent` wasn't called., js engine: hermes

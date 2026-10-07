@@ -1,13 +1,13 @@
 ---
 name: react
-description: Write, review, or fix React code (19.x hooks, Server Components, React Compiler, Next.js 16, Vite) or a React tell: "Rendered more hooks than during the previous render", "Maximum update depth exceeded", "Hydration failed because the server rendered HTML", "Invalid hook call", "not wrapped in act(...)". Use when package.json lists react-dom. Do not use while the failing layer is unknown (error-triage first); npm failures belong to nodejs, Angular to angular.
+description: Write, review, or fix React code (19.x hooks, Server Components, React Compiler, Next.js, Vite) or a tell: "Rendered more hooks than during the previous render", "Maximum update depth exceeded", "Hydration failed because the server rendered HTML", "Invalid hook call", "not wrapped in act(...)". Use when package.json lists react-dom. Do not use while the failing layer is unknown (error-triage first); npm failures belong to nodejs, Angular to angular, mobile to react-native.
 ---
 
 # React
 
 Most React failures are one of three things: a *render* that is not pure (state set, a ref read, or a side effect during render), a hook whose identity or dependency list drifts between renders (stale closure, missing dependency, conditional call), or a *boundary* crossed in the wrong direction (server code in a client component, browser API on the server, a second copy of `react` in the bundle). React prints a verbatim *tell* for each; the fix depends on the pinned row. *Pin* first, then match the tell against every *row* before touching code. Writing or reviewing code: pin, then use the Fix column as the review checklist.
 
-Entry: the failing layer is known to be code. A timeout, 4xx/5xx from the API, or "works on their machine" with no layer yet: Call the Skill tool with "error-triage" first. `ERESOLVE`, `ERR_REQUIRE_ESM`, heap out of memory during `next build` or `vite build`, or a wrong Node version: Call the Skill tool with "nodejs". `NG`-coded errors or an `angular.json` in the workspace: Call the Skill tool with "angular". The backend behind the app: a Spring API, Call the Skill tool with "java-spring-stack"; a Node API, Call the Skill tool with "nodejs"; a Django API, Call the Skill tool with "python-django".
+Entry: the failing layer is known to be code. A timeout, 4xx/5xx from the API, or "works on their machine" with no layer yet: Call the Skill tool with "error-triage" first. `ERESOLVE`, `ERR_REQUIRE_ESM`, heap out of memory during `next build` or `vite build`, or a wrong Node version: Call the Skill tool with "nodejs". `NG`-coded errors or an `angular.json` in the workspace: Call the Skill tool with "angular". `react-native` instead of `react-dom` in package.json, Metro, a red box, or a native module tell: Call the Skill tool with "react-native". The backend behind the app: a Spring API, Call the Skill tool with "java-spring-stack"; a Node API, Call the Skill tool with "nodejs"; a Django API, Call the Skill tool with "python-django".
 
 ## 1. Pin React, the toolchain, and the boundaries (30 s, before any fix)
 

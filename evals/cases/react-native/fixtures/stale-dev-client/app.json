@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Field Ops",
+    "slug": "field-ops-mobile",
+    "version": "2.4.0",
+    "scheme": "fieldops",
+    "newArchEnabled": true,
+    "jsEngine": "hermes",
+    "ios": { "bundleIdentifier": "com.eurodyn.fieldops", "supportsTablet": false },
+    "android": { "package": "com.eurodyn.fieldops", "edgeToEdgeEnabled": true },
+    "plugins": ["expo-router", "expo-dev-client"]
+  }
+}

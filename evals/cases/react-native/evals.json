@@ -1,0 +1,59 @@
+{
+  "skill_name": "react-native",
+  "evals": [
+    {
+      "id": 1,
+      "name": "stale-dev-client-rnsscreen-not-in-uimanager",
+      "fixture": "fixtures/stale-dev-client",
+      "prompt": "Our Expo app red-boxes on Android right after launch with Invariant Violation: requireNativeComponent: \"RNSScreen\" was not found in the UIManager, then 'main has not been registered'. iOS runs fine on the same branch. We added the stack navigator on Monday. Logs are under logs/ (redbox-android.log, expo-doctor.log, ios-run.log). Node, npm and the Android SDK are not installed here, so reason from the files and tell me exactly what to run. Someone suggested setting newArchEnabled to false; do that if it is the right fix.",
+      "expected_output": "Pinned react-native 0.86.3 / expo 57.0.17 / react-native-screens 4.19.0 with the New Architecture only (row 0.84 to 0.87), Expo with a dev client; matched the TurboModuleRegistry / requireNativeComponent row: the Android development build predates the react-native-screens dependency so the native side is stale (iOS passes because it was rebuilt today), the 'main has not been registered' line is a consequence; the fix aligns the package (npx expo install react-native-screens, to ~4.20.0) and rebuilds the Android dev client (npx expo prebuild --clean && npx expo run:android); newArchEnabled=false is refused because it is ignored on 0.82+; verification is the red box gone, expo-doctor printing no 'expected version' line, and no UIManager line in adb logcat.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "react-native"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "0\\.86\\.3|57\\.0\\.17|4\\.19\\.0",
+          "text": "The React Native, Expo or react-native-screens version was pinned from package.json"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "was not found in the UIManager",
+          "text": "The verbatim tell was matched"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "expo run:android|prebuild --clean|rebuil",
+          "text": "The fix rebuilds the Android development build"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "expo install( --check| react-native-screens)|4\\.20",
+          "text": "The react-native-screens version is aligned with the SDK's expected version"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "newArchEnabled\"?\\s*[:=]\\s*false",
+          "where": "final",
+          "text": "The reply does not propose newArchEnabled=false (ignored on 0.82+)"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "app.json",
+          "pattern": "\"newArchEnabled\":\\s*false",
+          "text": "app.json still has the New Architecture on"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^package\\.json$"],
+          "text": "At most package.json changed; the fix is a rebuild, not a code change"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the react-native (0.86.3), react (19.2.3) and expo (57.0.17) versions, that the project is Expo with expo-dev-client, that the New Architecture is the only runtime (newArchEnabled true and ignored if false on 0.82+), Hermes, and the toolchain facts available from the logs (Xcode 26, dev build dated 2026-09-29) were written down before any fix, and the 0.84 to 0.87 / SDK 57 row is named.",
+        "Phase 2 done: the 'TurboModuleRegistry.getEnforcing / requireNativeComponent was not found in the UIManager' row was matched, the cause is identified as a stale Android development build that predates react-native-screens (iOS passes because it was rebuilt the same morning), the second error 'main has not been registered' is explained as a consequence rather than a separate bug, the fix in order is npx expo install react-native-screens (to ~4.20.0) then npx expo prebuild --clean and npx expo run:android, newArchEnabled=false is explicitly refused as a no-op on 0.86, and the reply states how the tell is verified gone (no red box on launch, expo-doctor without an 'expected version' line, no UIManager line in adb logcat -s ReactNativeJS)."
+      ]
+    }
+  ]
+}
