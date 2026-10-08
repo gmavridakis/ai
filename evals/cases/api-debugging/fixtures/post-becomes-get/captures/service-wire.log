@@ -1,0 +1,6 @@
+# DEBUG=axios*,follow-redirects node src/index.js   (values of Authorization redacted, length kept)
+follow-redirects options {"method":"POST","protocol":"http:","hostname":"api.partner-pay.example","port":80,"path":"/v2/payments","headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json","Authorization":"Bearer <31 chars>","User-Agent":"axios/1.13.2","Content-Length":"58","Accept-Encoding":"gzip, compress, deflate, br"},"maxRedirects":5}
+follow-redirects response 301 {"location":"https://api.partner-pay.example/v2/payments","server":"nginx","content-length":"0"}
+follow-redirects redirecting to https://api.partner-pay.example/v2/payments
+follow-redirects options {"method":"GET","protocol":"https:","hostname":"api.partner-pay.example","port":443,"path":"/v2/payments","headers":{"Accept":"application/json, text/plain, */*","Authorization":"Bearer <31 chars>","User-Agent":"axios/1.13.2","Accept-Encoding":"gzip, compress, deflate, br"},"maxRedirects":4}
+follow-redirects response 405 {"allow":"POST","content-type":"application/problem+json","x-request-id":"c1a9e7f4-5d2b-4b0e-9a63-2f7c0d8e1b44","server":"nginx","date":"Thu, 08 Oct 2026 07:41:12 GMT"}

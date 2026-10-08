@@ -1,0 +1,67 @@
+{
+  "skill_name": "api-debugging",
+  "evals": [
+    {
+      "id": 1,
+      "name": "post-becomes-get-after-301",
+      "fixture": "fixtures/post-becomes-get",
+      "prompt": "Our Node service (axios) gets 405 from the partner's POST /v2/payments endpoint but the identical body and key return 201 from Postman. I captured what the service sends (captures/service-wire.log, DEBUG=axios*,follow-redirects), a curl rebuilt from it with its headers and body (captures/curl-from-service.txt) and the Postman curl (captures/postman-control.sh). There is no network from here, so reason from the captures. Tell me the cause, the request ID I should quote to the partner if it is their fault, and make the fix in the project if it is ours.",
+      "expected_output": "Reproduced from the captures (status 405 after one redirect, request IDs quoted), read the 405's allow: POST and the problem+json body, matched the '405 + allow header: method changed by a redirect' row: the service calls http://, the partner answers 301 to https://, and follow-redirects turns the POST into a GET; the Postman control uses https directly; the fix is PARTNER_BASE_URL=https://api.partner-pay.example/v2 in .env (not -L, not maxRedirects, not a partner ticket); the probe log shows scheme: 405 -> 201 and the reply names x-request-id 9b0f2c61-7a8e-4e3d-b1c5-6d4a2f9e0c17 (or c1a9e7f4...).",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "api-debugging"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "301|Moved Permanently",
+          "text": "The 301 redirect in the wire log was read"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "allow:?\\s*POST|GET is not supported",
+          "text": "The 405's allow header or problem body was read, not only the axios message"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "9b0f2c61-7a8e-4e3d-b1c5-6d4a2f9e0c17|c1a9e7f4-5d2b-4b0e-9a63-2f7c0d8e1b44",
+          "text": "A request ID from the captures is quoted verbatim in the reply"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "https://api\\.partner-pay\\.example",
+          "text": "The fix names the https base URL"
+        },
+        {
+          "type": "file_regex",
+          "path": ".env",
+          "pattern": "PARTNER_BASE_URL=https://api\\.partner-pay\\.example/v2",
+          "text": ".env now points at the https base URL"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^\\.env$", "^src/partner\\.js$"],
+          "text": "Only the base URL (in .env or partner.js) changed; no redirect workaround was added elsewhere"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "maxRedirects\\s*:\\s*0|beforeRedirect|--post301|-k\\b|--insecure",
+          "where": "final",
+          "text": "The reply does not propose a redirect or TLS workaround as the fix"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "(open|file|raise) (a |an )?(ticket|issue|case) with (the )?partner",
+          "where": "final",
+          "text": "The reply does not send the user to the partner's support for a client-side bug"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the failing request was taken from the captures as sent by the service (POST http://api.partner-pay.example/v2/payments with its header names and the 58-byte JSON body) and its result stated as the same status the service saw (405 after one redirect), with the Postman request named as the control.",
+        "Phase 2 done: five values are written down from the capture: status 405, content-type application/problem+json, request ID 9b0f2c61-7a8e-4e3d-b1c5-6d4a2f9e0c17 (or c1a9e7f4-5d2b-4b0e-9a63-2f7c0d8e1b44 from the wire log), the body's first line (GET is not supported on /v2/payments), and that the API itself (nginx, with an x-request-id) answered, not a WAF or CDN.",
+        "Phase 3 done: the diff against the Postman control isolates one variable, the URL scheme (http versus https), the 405 row (method changed by a redirect: follow-redirects turned POST into GET after the 301) is matched, and a probe log line of the form scheme: 405 -> 201 is in the reply; no second variable is changed in the same probe.",
+        "Phase 4 done: the report block names endpoint, request ID, status and hop, cause (http base URL -> https) and the one-line fix; the fix is applied in .env (or partner.js) and nowhere else, and the reply does not hand off to debug-from-raw-logs, bug-report-writing or error-triage because the cause is in the client."
+      ]
+    }
+  ]
+}

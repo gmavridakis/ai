@@ -2,6 +2,10 @@
 
 One line per change, newest first. The daily routine appends here; a manual session does the same.
 
+## 2026-10-08
+
+- Add api-debugging skill: capture the failing request verbatim per client (DevTools Copy as cURL, Postman snippet, undici/urllib3/jdk.httpclient wire logs, HAR), one curl template with `--fail-with-body`, `-D`, `--data-binary` and a `-w` timing line (dns, tcp, tls, ttfb, total), a request-ID header table (x-request-id, x-amzn-requestid, cf-ray, x-ms-request-id, vendor IDs, W3C traceparent), a 12-row status-to-probe table (invalid_token, signed-header charset mismatch, WAF on User-Agent, 405 after redirect, Expect 100-continue, 429 retry-after, CORS preflight, HTTP/2 and --resolve, TLS, 302 to login), probe log and report template, worked example; error-triage, debug-from-raw-logs and bug-report-writing route to it (both directions). Eval case `evals/cases/api-debugging/` written, to be run on the user's machine.
+
 ## 2026-10-07
 
 - Conflict check: react versus react-native (an Expo app pasting a hook tell fires react by tell and react-native by package.json); resolved by disjoint `Use when` clauses (react-dom versus react-native) and operative hand-offs in both directions (react → react-native for Metro, red box, native module; react-native → react for hook, render and state tells). flutter-dart versus react-native both fire on a Gradle/AGP or Xcode tell; flutter-dart now hands a `react-native` package.json without `pubspec.yaml` to react-native and react-native hands a `pubspec.yaml` with a flutter sdk to flutter-dart. No merge. Deferred: none.

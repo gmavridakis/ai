@@ -26,6 +26,7 @@ The trigger and boundary of each skill are in [`skills/INDEX.md`](skills/INDEX.m
 | Name | What it does |
 | --- | --- |
 | [angular](skills/angular/SKILL.md) | Angular 17–22 field manual: pin major and change-detection mode, then an NG-code symptom table (NG0100, NG0203, NG0201, NG8001/8002, hydration, signals, zoneless views that stop updating, budgets) |
+| [api-debugging](skills/api-debugging/SKILL.md) | Reproduce one failing HTTP call with curl (status, timing, headers, body), find the request-ID header, flip one variable per probe against a working control, report cause and fix |
 | [bug-report-writing](skills/bug-report-writing/SKILL.md) | File a bug someone else can run: duplicate check, seven mandatory fields with the commands that produce them, repro thresholds, title formula and body template |
 | [context-hygiene](skills/context-hygiene/SKILL.md) | Keep the context window lean: phase budgets, read strategy by file size, caps on every tool result, a snapshot before compaction |
 | [debug-from-raw-logs](skills/debug-from-raw-logs/SKILL.md) | Evidence-first debugging of a known-layer bug: unedited trace, a repro that goes red at a measured rate, bisect, falsifiable hypotheses, four-line report |

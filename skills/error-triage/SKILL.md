@@ -63,6 +63,7 @@ When the diagnostic already shows the fix, apply it. Otherwise hand the confirme
 - Code layer with a `pubspec.yaml` that lists a `flutter` sdk dependency: Call the Skill tool with "flutter-dart".
 - Code layer with a `package.json` that lists `react-dom` or `next` (hooks, components, hydration, Server Components): Call the Skill tool with "react".
 - Code layer with a `package.json` that lists `react-native` or `expo` (Metro, red box, native module, Xcode or Gradle build): Call the Skill tool with "react-native".
+- Network or auth layer on one HTTP endpoint the user can call, with the request in hand (a client, a Postman control, a curl): Call the Skill tool with "api-debugging".
 - Any other layer or stack: Call the Skill tool with "debug-from-raw-logs".
 - An LLM call that returned 200 with the wrong shape or content: Call the Skill tool with "structured-prompting".
 - The confirmed layer is inside a vendor service or a third-party package the team cannot change, and the user wants it reported: Call the Skill tool with "bug-report-writing" with the verdict as its *Actual* field.

@@ -1,0 +1,24 @@
+$ curl -sS -o resp.body -D resp.headers --fail-with-body -L \
+    -w 'status=%{http_code} redirects=%{num_redirects} url=%{url_effective} ttfb=%{time_starttransfer} total=%{time_total}\n' \
+    -X POST 'http://api.partner-pay.example/v2/payments' \
+    -H 'Authorization: Bearer <redacted>' -H 'Content-Type: application/json' \
+    --data-binary '{"amount":1250,"currency":"EUR","reference":"INV-2026-0931"}'
+curl: (22) The requested URL returned error: 405
+status=405 redirects=1 url=https://api.partner-pay.example/v2/payments ttfb=0.071 total=0.143
+
+$ cat resp.headers
+HTTP/1.1 301 Moved Permanently
+Server: nginx
+Date: Thu, 08 Oct 2026 07:43:02 GMT
+Content-Length: 0
+Location: https://api.partner-pay.example/v2/payments
+
+HTTP/2 405
+server: nginx
+date: Thu, 08 Oct 2026 07:43:02 GMT
+content-type: application/problem+json
+allow: POST
+x-request-id: 9b0f2c61-7a8e-4e3d-b1c5-6d4a2f9e0c17
+
+$ cat resp.body
+{"type":"https://api.partner-pay.example/errors/method-not-allowed","title":"Method Not Allowed","status":405,"detail":"GET is not supported on /v2/payments","instance":"/v2/payments"}

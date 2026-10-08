@@ -7,7 +7,7 @@ description: Write a bug report someone else will act on: a GitHub/GitLab issue 
 
 A bug report is a reproduction handed to a *stranger*. Maintainers close what they cannot run: reports without a version, without an exact command, or with a screenshot where text belongs. Assemble the seven fields with the commands given, minimize the repro to the thresholds, then fill the template.
 
-Entry: a failing case exists. If none does yet, the cause is still unknown: Call the Skill tool with "error-triage" for an unclassified error, or Call the Skill tool with "debug-from-raw-logs" for a known-layer bug, and return with its red command.
+Entry: a failing case exists. If none does yet, the cause is still unknown: Call the Skill tool with "error-triage" for an unclassified error, Call the Skill tool with "debug-from-raw-logs" for a known-layer bug, or Call the Skill tool with "api-debugging" for a wrong HTTP response from an endpoint the user can call, and return with its red command (for an API, the curl plus the request ID).
 
 ## 1. Check it is not already filed (1 minute)
 
