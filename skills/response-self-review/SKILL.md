@@ -18,7 +18,11 @@ Pick the depth from the draft, not from how confident you feel:
 | a code change or edited file | 1, 2 | `git diff --stat` must list only files the request named |
 | a new file, document, or plan | 1, 2 | map every explicit ask to a line in the draft |
 
-Budget: at most 3 tool calls per review and no re-drafting; fix in place. A check that needs more than that is reported as unverified, with the command the user can run to confirm it.
+Budget: at most 3 tool calls per review and no re-drafting; fix in place. A check that needs more than that is reported as unverified, with the command the user can run to confirm it. The label has one shape, placed on the line that makes the claim:
+
+```
+Unverified: <claim>. Confirm with `<command>`.
+```
 
 ## 1. Correctness
 
@@ -31,10 +35,12 @@ Classify each claim in the draft as verified (you ran, read, or searched it this
 | a flag, path, signature, or version | `--help`, the file, or `pkg --version` shown in this session | memory |
 | "I changed X" / "updated three tests" | `git diff --stat` and `git status --short` name exactly those files | your intent |
 | a quoted line or error | the line as it appears in the tool output | a paraphrase |
+| a number read from a tool result that was cut off (`...`, `[truncated]`, `+N lines`, a `head`/`tail` window) | `wc -l`, `grep -c`, or `jq length` on the file itself | the visible part of the capped output |
+| "pushed" / "CI is green" / "deployed" | `git status -sb` showing `ahead 0`, the pipeline URL or run id in tool output | the push command having returned |
 
 Then read the draft once end-to-end for internal contradictions: a summary sentence that disagrees with its own table or list is the most common tell.
 
-**Done when** every claim has a classification, every inferred or assumed claim is either backed by a check run this turn or carries an "unverified" label in the reply, and the end-to-end read found no sentence that contradicts another.
+**Done when** every claim has a classification, every inferred or assumed claim is either backed by a check run this turn or carries an `Unverified:` line in the reply, and the end-to-end read found no sentence that contradicts another.
 
 ## 2. Completeness
 
@@ -47,6 +53,8 @@ Then read the draft once end-to-end for internal contradictions: a summary sente
 **Done when** every explicit ask maps to a line in the draft or to a one-line "skipped because", part counts match, every constraint was checked by a command, and `git status --short` lists only requested files.
 
 ## Examples
+
+**Walked once.** Request: "Dedupe `contacts.csv` into `contacts-clean.csv` and tell me how many rows you removed." Draft: "Done: removed 1,284 duplicates, 9,716 rows remain." Depth: a number and a new file, so phases 1 and 2. Phase 1: the two counts came from a script whose output was capped at 40 lines, so they are inferred; `wc -l contacts.csv contacts-clean.csv` prints `11001` and `9717` (headers included): 11000 rows in, 9716 out, 1284 removed; the draft's numbers stand. Phase 2: asks are dedupe (file exists, `head -1` shows the header), the count (verified), the output name (`ls contacts-clean.csv`); `git status --short` lists only `contacts-clean.csv`. Send as is. Had the script's output been the only source, the line would read ``Unverified: 1,284 removed. Confirm with `wc -l contacts.csv contacts-clean.csv`.``
 
 **Request:** "Add a retry to the upload call and update the README."
 **Review finds:** retry added and tested; README untouched. → Gap in completeness. Update the README (or say explicitly it was skipped), then send.

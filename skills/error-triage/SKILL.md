@@ -1,6 +1,6 @@
 ---
 name: error-triage
-description: Classify an error by failing layer (network, auth, config, code, data) and run one diagnostic to confirm it. Use when a user pastes an error, status code, or "it fails" report with unknown cause: timeouts, 4xx/5xx, "connection refused", "permission denied", "invalid value". Do not use once the layer is known: a stack skill (java-spring-stack, nodejs, python-django, angular, flutter-dart, react, react-native) or debug-from-raw-logs owns it; a 200 with wrong content: structured-prompting.
+description: Classify an error by failing layer (network, auth, config, code, data) and run one diagnostic to confirm it. Use when an error, status code, or "it fails" report has unknown cause: timeouts, 4xx/5xx, "connection refused", "permission denied". Do not use once the layer is known: java-spring-stack, nodejs, python-django, angular, flutter-dart, react, react-native, api-debugging (request in hand) or debug-from-raw-logs owns it; wrong 200 content: structured-prompting.
 ---
 
 # Error Triage
