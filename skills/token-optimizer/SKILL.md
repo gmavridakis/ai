@@ -15,13 +15,13 @@ Measure first: `wc -l <file>` and the number of lines you will change. Then matc
 
 | Situation | Emit | Never |
 | --- | --- | --- |
-| File does not exist yet, or user must copy‑paste it whole | full file | a diff against nothing |
+| File does not exist yet, or user must copy-paste it whole | full file | a diff against nothing |
 | Change touches ≤ 30 % of lines **and** ≤ 40 lines | unified diff hunk(s), `// path:line` on the first line | the full file |
 | Change touches > 30 % of lines or > 40 lines, file ≤ 150 lines | full file | scattered hunks the user must apply by hand |
-| Change touches > 30 % of a file > 150 lines | apply it with an edit tool and report `path` + hunk count + one‑line summary | pasting either version into the reply |
-| Content already in context (a file you read, a function the user pasted) | reference by `path:symbol` or `path:L10-L24` | re‑quoting it |
+| Change touches > 30 % of a file > 150 lines | apply it with an edit tool and report `path` + hunk count + one-line summary | pasting either version into the reply |
+| Content already in context (a file you read, a function the user pasted) | reference by `path:symbol` or `path:L10-L24` | re-quoting it |
 | Same edit in N files | one diff plus the list of paths it was applied to | N diffs |
-| Multi‑hundred‑line implementation requested | interfaces/signatures first (≤ 40 lines), then ask which part to expand | the whole thing unprompted |
+| Multi-hundred-line implementation requested | interfaces/signatures first (≤ 40 lines), then ask which part to expand | the whole thing unprompted |
 
 **Done when** `wc -l` and the changed-line count are known and exactly one row's *Emit* column is what the reply contains.
 
@@ -35,9 +35,11 @@ first failure: <path:line>: <first line of the message>
 full output: <path or "not saved">
 ```
 
-Thresholds: a green run is one line (`npm test → exit 0; 212/212 passed, 4.1 s`). A red run is the shape above plus **at most 3** distinct failure lines; group identical messages (`×17 ECONNREFUSED 127.0.0.1:5432`). Save anything longer with `> /tmp/<name>.log 2>&1` and give the path.
+Thresholds: a green run is one line (`npm test → exit 0; 212/212 passed, 4.1 s`). A red run is the shape above plus **at most 3** distinct failure lines; group identical messages (`×17 ECONNREFUSED 127.0.0.1:5432`). Save anything longer with `> /tmp/<name>.log 2>&1` (PowerShell: `*> <name>.log`) and give the path.
 
-**Done when** every tool result mentioned in the reply is in the shape above, at most 20 lines, and anything longer has a saved path.
+Exception: the user asked for the output itself ("show me the diff", "paste the full log", "list the files"). Emit it verbatim up to 60 lines; beyond that, the first 20 lines, the saved path, and the range command for the rest (`sed -n '21,60p' /tmp/<name>.log`). The 3-line shape is for output the user did not ask to see.
+
+**Done when** every tool result mentioned in the reply is either in the 3-line shape (at most 20 lines) or was explicitly asked for (at most 60 lines verbatim), and anything longer has a saved path in the reply.
 
 ## What density must never cut
 
@@ -45,6 +47,12 @@ Thresholds: a green run is one line (`npm test → exit 0; 212/212 passed, 4.1 s
 - A file path (and line or enclosing function) on every snippet; a pathless diff costs the user a search.
 - One sentence for any caveat that changes what the user should do (data loss, irreversible step, security). One is enough; zero is not.
 - The stated assumption when you picked a form the user did not ask for ("applied directly, 3 hunks, no reply paste; say so if you want the diff").
+
+## Anti-patterns
+
+- A diff followed by a prose walk-through of the same diff ("I changed line 42 to use optional chaining"): the hunk is the explanation; keep at most one sentence of *why*.
+- A green run reported as more than one line, or a red run reported without `path:line` of the first failure.
+- Trimming a quoted error message to "something like `ECONNREFUSED`": the literal is the payload; paste it exactly or give its path and line.
 
 ## Examples
 
