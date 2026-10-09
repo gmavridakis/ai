@@ -2,6 +2,10 @@
 
 One line per change, newest first. The daily routine appends here; a manual session does the same.
 
+## 2026-10-09
+
+- Add log-instrumentation skill: per-stack pin table (Spring Boot 3.4+ `logging.structured.format.console=ecs`, logstash-logback-encoder for older Boot, pino/pino-http with `req.log`, python-json-logger 3.x / structlog / django-structlog, a `log.ts` wrapper for the front ends), boundary-to-event table with message, level and fields, a budget of at most 4 INFO lines per request and one summary line per loop over 100 items, the shaping rules (constant message plus fields, placeholders not concatenation, one exception one line, redaction by config for pino, Logback `MaskingJsonGeneratorDecorator` and a Python filter, a secret grep), four jq verification commands with thresholds, anti-pattern table, worked Spring example; debug-from-raw-logs (a probe line that should stay), error-triage (the diagnostic ran blind) and context-hygiene (a log with no ID to narrow by) route to it. Eval case `evals/cases/log-instrumentation/` written, to be run on the user's machine.
+
 ## 2026-10-08
 
 - Conflict check: error-triage versus api-debugging both fire on "endpoint X returns 403"; resolved by error-triage's boundary naming api-debugging (request in hand) and the operative hand-offs added with the new skill (error-triage → api-debugging for a network or auth layer on one callable endpoint; api-debugging → error-triage when no endpoint or client can be named). debug-from-raw-logs versus api-debugging on a wrong response from the user's own service: hand-offs in both directions (request ID and probe log as evidence). No merge. Deferred: none.

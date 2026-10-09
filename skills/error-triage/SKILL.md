@@ -67,6 +67,7 @@ When the diagnostic already shows the fix, apply it. Otherwise hand the confirme
 - Any other layer or stack: Call the Skill tool with "debug-from-raw-logs".
 - An LLM call that returned 200 with the wrong shape or content: Call the Skill tool with "structured-prompting".
 - The confirmed layer is inside a vendor service or a third-party package the team cannot change, and the user wants it reported: Call the Skill tool with "bug-report-writing" with the verdict as its *Actual* field.
+- Whichever layer: the service's own logs had no line for the failing request (no request ID, no boundary event), so the diagnostic ran blind. Add that gap to *Next* and, after the hand-off above, Call the Skill tool with "log-instrumentation".
 
 **Done when** the three-line verdict is in the reply and exactly one of the above has happened: the fix applied, or one skill called.
 

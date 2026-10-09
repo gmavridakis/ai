@@ -58,7 +58,7 @@ Entry conditions, checked before phase 1:
 ## 5. Form hypotheses from the evidence, then test them
 
 - State each hypothesis as a falsifiable sentence: "The request fails because `config.timeout` is read as the string `"30"` and compared to an int."
-- For each hypothesis, name the single observation that would confirm or kill it (add a log line, print the type, inspect the variable in a debugger, curl the endpoint directly). Run that check before writing a fix.
+- For each hypothesis, name the single observation that would confirm or kill it (add a log line, print the type, inspect the variable in a debugger, curl the endpoint directly). Run that check before writing a fix. A probe log line that should stay after the fix (a boundary with no event, or no request ID to search by): Call the Skill tool with "log-instrumentation" once the bug is closed.
 - Rank hypotheses by how much of the evidence they explain. Discard any that contradict even one log line.
 - The most recent change is a strong prior, not proof. Bisection (step 4) settles it.
 

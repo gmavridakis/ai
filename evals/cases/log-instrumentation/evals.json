@@ -1,0 +1,81 @@
+{
+  "skill_name": "log-instrumentation",
+  "evals": [
+    {
+      "id": 1,
+      "name": "noisy-shipping-service",
+      "fixture": "fixtures/noisy-shipping",
+      "prompt": "Our Node shipping service (src/) fails a few times a day in prod and support can never find the request in the logs; logs/prod-sample.log is what the platform shows for three requests. Add proper logging to this service: we want to find one request by its ID, see why the carrier call failed, and stop the per-item spam. pino and pino-http are already in package.json. There is no network from here, so do not try to install or run anything; just make the code changes and tell me how to verify them on one request.",
+      "expected_output": "The service logs JSON through pino with pino-http providing the access line and req.id (from x-request-id or genReqId), console.log calls in src/ are replaced by req.log / a child logger with constant messages and fields (orderId, carrier status, duration_ms), the per-item loop is folded into a summary field or DEBUG, the carrier API key and authorization header are redacted by pino's redact config and no longer interpolated into a message, the carrier failure is logged once as ERROR with err at the handler, and the reply lists the events with their level (at most 4 INFO per request), the secret grep, and a jq command that selects one request by its ID.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "log-instrumentation"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/server.js",
+          "pattern": "pino-http|pinoHttp",
+          "text": "pino-http provides the access line and the request ID"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/server.js",
+          "pattern": "redact",
+          "text": "Redaction is configured on the pino logger (authorization header, API key)"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/carrier.js",
+          "pattern": "API_KEY\\s*\\+|\\$\\{API_KEY\\}|key: API_KEY|apiKey: API_KEY",
+          "text": "The carrier API key is no longer written into a log message or field"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/ship.js",
+          "pattern": "console\\.log",
+          "text": "No console.log left in ship.js"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/carrier.js",
+          "pattern": "console\\.log",
+          "text": "No console.log left in carrier.js"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/ship.js",
+          "pattern": "for \\(const item of items\\) \\{\\s*(req\\.)?log(ger)?\\.info",
+          "text": "The per-item loop does not log at INFO"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^src/.*\\.js$", "^src/log(ger)?\\.js$", "^package\\.json$", "^\\.env(\\.example)?$", "^README\\.md$"],
+          "text": "Only the service's source, its logger module, package.json, env example or README changed"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "jq .*select\\(",
+          "text": "The reply gives a jq command that selects one request's events by its ID"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(x-request-id|reqId|req\\.id|request_id)",
+          "text": "The reply names the request ID field or header to search by"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "sk_live_9f2c7e1b4a8d3f6e",
+          "where": "final",
+          "text": "The live key from the sample log is not repeated in the reply"
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: pino is the one logger (ndjson to stdout, pino-pretty only in dev via transport, if at all), pino-http supplies the access line and req.id from x-request-id or genReqId, and this lives in one place (a logger module or server.js), not repeated at call sites; the reply states how one line is checked to parse (head -1 | jq .).",
+        "Phase 2 done: the reply lists every call site as a row (boundary, constant message, level, fields): the access line from pino-http, an order or shipment event at INFO, the carrier call at DEBUG (INFO when slow or failed), the carrier failure once at ERROR with err at the handler, the per-item loop folded into an items count or DEBUG; the INFO count per request is written down and is at most 4.",
+        "Phase 3 done: messages are constant strings with values in fields (no 'shipOrder ' + orderId, no JSON.stringify of the whole body in a message), field names use one casing, the authorization header and API key are redacted by pino's redact config and no longer interpolated, the error is logged once with the stack (err) and not also at the throw site, and the secret grep over src/ is reported as 0 lines.",
+        "Phase 4 done: the reply gives the verification for one run: a curl with an X-Request-Id, a jq select on that ID printing the request's events in order, per-level counts, a non-JSON line count expected to be 0, and that a healthy run shows 0 ERROR lines."
+      ]
+    }
+  ]
+}

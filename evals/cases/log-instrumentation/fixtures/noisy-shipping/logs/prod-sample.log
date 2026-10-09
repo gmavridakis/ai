@@ -1,0 +1,21 @@
+listening
+Processing...
+shipOrder 48811 {"items":[{"sku":"A-100","qty":2},{"sku":"B-7","qty":1}]}
+item A-100 qty 2
+item B-7 qty 1
+calling carrier with key sk_live_9f2c7e1b4a8d3f6e payload {"orderId":"48811","items":[{"sku":"A-100","qty":2},{"sku":"B-7","qty":1}]}
+carrier status 201
+shipment {"trackingNumber":"1Z999AA10123456784"}
+Done 48811
+Processing...
+shipOrder 48812 {"items":[{"sku":"C-3","qty":40}]}
+item C-3 qty 40
+calling carrier with key sk_live_9f2c7e1b4a8d3f6e payload {"orderId":"48812","items":[{"sku":"C-3","qty":40}]}
+carrier status 503
+error: carrier returned 503
+Processing...
+shipOrder 48813 {"items":[]}
+calling carrier with key sk_live_9f2c7e1b4a8d3f6e payload {"orderId":"48813","items":[]}
+carrier status 201
+shipment {"trackingNumber":"1Z999AA10123456791"}
+Done 48813
