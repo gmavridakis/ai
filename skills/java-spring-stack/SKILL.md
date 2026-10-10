@@ -47,7 +47,7 @@ Propose fixes only from the pinned row (`@MockitoBean` needs Boot 3.4+, `javax.p
 | JAX-WS `wsimport`/`jaxws-maven-plugin` fails on Java 11+ | JAX-WS removed from the JDK (JEP 320) | codegen with `org.apache.cxf:cxf-codegen-plugin` (`wsdl2java` goal) or `com.sun.xml.ws:jaxws-maven-plugin` 4.x; runtime `org.apache.cxf:cxf-spring-boot-starter-jaxws` (3.x = javax, 4.x = jakarta). Spring ships no JAX-WS starter |
 | SOAP client: `SOAPFaultException` vs `WebServiceException: Could not send Message` | first = server rejected the body (schema/auth), second = transport (URL, TLS, proxy) | log envelopes with `new LoggingFeature()` on the `JaxWsProxyFactoryBean`; a transport error is the network layer: Call the Skill tool with "error-triage" |
 
-No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned versions with you.
+No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned versions with you. The complaint is "slow" with no tell and no number yet (no p95, no profile, no query count): Call the Skill tool with "performance-profiling" and return with its top frame or statement count.
 
 **Done when** the tell matched one row, the row's fix was applied in its listed order, and the verbatim tell no longer appears when the failing request or test is re-run; or no row matched and debug-from-raw-logs was called.
 

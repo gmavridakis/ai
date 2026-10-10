@@ -2,6 +2,10 @@
 
 One line per change, newest first. The daily routine appends here; a manual session does the same.
 
+## 2026-10-10
+
+- Add performance-profiling skill: a p50/p95 baseline per surface (`autocannon -c 10 -d 20`, a 10-run `curl -w` ttfb loop, `hyperfine --warmup 3 --runs 10`, `lighthouse --only-categories=performance` read with jq, Flutter and React Native profile-build overlays) with the void-measurement list and a noise band; a CPU-or-wait check then a per-stack profiler table (`node --cpu-prof` and `--heap-prof` with the clean-exit gotcha, `py-spy record --idle --native` and its ptrace permission tell, `asprof -e cpu|wall|alloc|lock` with the `perf_event_paranoid` fix, `jcmd JFR.start` and `jfr print`, DevTools Bottom-Up, react-scan); a statement-count table per stack (Hibernate `generate_statistics`, Django `CaptureQueriesContext`, Prisma `log: ['query']`, jq over `<dependency> call completed`) with the 10-statement and 100-ms thresholds and `EXPLAIN ANALYZE` `Seq Scan`; a keep-or-revert re-measure table; Oct 2026 targets (Core Web Vitals, long task, frame, event-loop lag, GC pause); anti-patterns; worked Spring N+1 example. Both directions: error-triage (a slow 200 has no layer), debug-from-raw-logs (nothing goes red), api-debugging (`ttfb` near `total`), log-instrumentation (where the time goes) and the seven stack skills (slow with no tell and no number) route to it; it hands the fix to the stack row. Eval case `evals/cases/performance-profiling/` written, to be run on the user's machine.
+
 ## 2026-10-09
 
 - Conflict check: log-instrumentation versus the seven stack skills ("add logging to my Spring service" fires java-spring-stack by "write, review, or fix" and log-instrumentation by "add logging"); resolved by one operative hand-off in every stack skill's Entry line (log lines themselves go to log-instrumentation) and log-instrumentation handing a library or framework tell back to the stack skill by project. log-instrumentation versus error-triage, debug-from-raw-logs and context-hygiene: boundary clause plus hand-offs in both directions, shipped with the new skill. No merge. Deferred: none.

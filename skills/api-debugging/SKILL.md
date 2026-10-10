@@ -68,7 +68,7 @@ Diff the failing request against the control (the Postman request, yesterday's H
 | `415`, `422`, `400` with a field-level body | content type, body shape | Send the docs' example body as is; then your body with `Content-Type` copied from the control. |
 | `429` + `retry-after` or `ratelimit-remaining: 0` (IETF draft, vendor variants `x-ratelimit-*`) | request rate, shared key | Read `retry-after` (seconds or HTTP date); one key shared across workers exhausts the bucket. `curl --retry 3 --retry-delay 0` honours `retry-after` on 429 and 503. |
 | CORS error in the browser console, 200 in curl | preflight | `curl -i -X OPTIONS <url> -H 'Origin: https://app.example.com' -H 'Access-Control-Request-Method: POST' -H 'Access-Control-Request-Headers: authorization,content-type'`; the fix is server-side `access-control-allow-*`, never a curl flag. |
-| `curl: (28)` on one endpoint, others fast | server-side latency | `-m 60`; `ttfb` close to `total` is the handler. `--http1.1` rules out an HTTP/2 stream limit; `--resolve api.example.com:443:<ip>` pins one backend behind a load balancer. |
+| `curl: (28)` on one endpoint, others fast | server-side latency | `-m 60`; `ttfb` close to `total` is the handler: Call the Skill tool with "performance-profiling" with that `ttfb` as its baseline. `--http1.1` rules out an HTTP/2 stream limit; `--resolve api.example.com:443:<ip>` pins one backend behind a load balancer. |
 | `curl: (35)`/`(60)` TLS | SNI, CA, mTLS | `--cacert <bundle>` or `--cert client.pem --key client.key`; `-k` only to confirm the diagnosis, never as the fix. |
 | `302` to a login page from an API call | cookie or session auth expected | `-c jar -b jar` round trip; an API that redirects wants a session, not a bearer. |
 

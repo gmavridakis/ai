@@ -54,7 +54,7 @@ Propose fixes only from the pinned row (`useEffectEvent` needs 19.2+; `forwardRe
 | `fetch` waterfall: 3 sequential spinners, `useEffect` fetches per component | each component awaits its own data after mount | fetch in the Server Component or route loader and pass down, or `useQuery` with a shared key; `<Suspense>` with `use(promise)` on 19 |
 | Typing lags, every keystroke re-renders a 1,000-row list | the list and the input share one state and no memo boundary | `useDeferredValue(query)` for the list, `startTransition` for the filter; lists over 100 rows: `@tanstack/react-virtual`; confirm with the Profiler, not by adding `memo` everywhere |
 
-No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned row with you.
+No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned row with you. The complaint is "slow" with no tell and no number yet (no p95, no profile, no query count): Call the Skill tool with "performance-profiling" and return with its top frame or statement count.
 
 **Done when** the tell matched one row, the row's fix was applied in its listed order, and the verbatim tell no longer appears in the dev console, `npx eslint`, `next build` or `vite build`, or the failing test on re-run; or no row matched and debug-from-raw-logs was called.
 

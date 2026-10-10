@@ -1,0 +1,88 @@
+{
+  "skill_name": "performance-profiling",
+  "evals": [
+    {
+      "id": 1,
+      "name": "slow-monthly-report",
+      "fixture": "fixtures/slow-report",
+      "prompt": "python report.py 2026-09 used to be instant and now takes seconds on this month's dump (data/). Finance runs it for every month and every country, so it adds up. Find out where the time goes and make it fast, but I want to see the numbers before and after, not just a rewrite. Nothing can be installed here (no network); stdlib only.",
+      "expected_output": "A baseline (3+ timed runs of the exact command with p50/p95 or min/max, warm-up noted, 4,060 orders and 6,000 customers stated), a profile (cProfile or timing instrumentation) that names db.fetch_customer as the top self-time frame, the call count 4,060 per run quoted as an N+1 against the 10-statement threshold, one change (fetch_customers_by_ids or an id-keyed dict built once) re-measured with the same command, a keep-or-revert table with the p95 delta, and db.py's public functions still intact.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "performance-profiling"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "report\\.py",
+          "text": "The slow command was actually run"
+        },
+        {
+          "type": "order",
+          "first": "^\\[tool Bash\\].*(report\\.py|cProfile|hyperfine|perf_counter|timeit)",
+          "then": "^\\[tool (Edit|Write|MultiEdit)\\].*report\\.py",
+          "text": "A measurement ran before report.py was edited"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "cProfile|py-spy|hyperfine|perf_counter|timeit|tottime|cumtime",
+          "text": "A profiler or timing tool was used, not a guess from reading the code"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "4,?060|fetch_customer['\"]?: ?4",
+          "text": "The per-run call count from stderr (4060 fetch_customer calls) was read"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "report.py",
+          "pattern": "fetch_customer\\(order\\[",
+          "text": "report.py no longer fetches one customer per order inside the loop"
+        },
+        {
+          "type": "file_regex",
+          "path": "report.py",
+          "pattern": "fetch_customers_by_ids|\\{c\\[.id.\\]: c|dict\\(|\\.get\\(order\\[",
+          "text": "report.py batches the lookup (one call or one id-keyed dict)"
+        },
+        {
+          "type": "file_regex",
+          "path": "db.py",
+          "pattern": "def fetch_customer\\(",
+          "text": "db.py keeps its public API (fetch_customer still exists)"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^report\\.py$", "^db\\.py$", "^README\\.md$", "^NOTES\\.md$", "^prof.*", "^.*\\.prof$", "^.*\\.txt$"],
+          "text": "Only the report, the db module, notes or profile output changed; data/ is untouched"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(p95|p50|min|max|median).{0,40}\\d",
+          "text": "The reply reports a distribution (p50/p95 or min/max), not one run"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(kept|revert)",
+          "text": "The reply says whether the change was kept or reverted"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(before|baseline).{0,200}(after)",
+          "text": "The reply shows before and after numbers"
+        },
+        {
+          "type": "max_turns",
+          "max": 30
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: a baseline table in the reply gives p50 and p95 (or min/max over named runs) of `python report.py 2026-09` from at least 3 runs after a warm-up, with the dataset size (4,060 orders for the month, 6,000 customers), the interpreter and the machine named, and the number was taken before any edit.",
+        "Phase 2 done: the reply names the top frames by self time from one profile (cProfile tottime, a py-spy or perf_counter split) taken during the slow run, with db.fetch_customer (the list scan over customers) as the widest frame and a percentage or seconds for it, or states explicitly that the process was CPU-bound.",
+        "Phase 3 done: the reply quotes the call count per run (4,060 fetch_customer calls for 4,060 orders, from the stderr line or a counter), calls it an N+1 against the 10-statement threshold, and the fix uses the existing batch function fetch_customers_by_ids or one id-keyed dict built once, leaving db.py's functions in place.",
+        "Phase 4 done: exactly one change was re-measured with the same command and conditions as the baseline, a table with baseline p50/p95, after p50/p95, delta p95, the one-line change and kept/reverted is in the reply, and the call count after the change (1 batch call or 0 per-row calls) is stated."
+      ]
+    }
+  ]
+}

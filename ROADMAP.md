@@ -23,7 +23,7 @@ Ordered checklist. The daily maintenance routine takes the first unchecked item 
 - [x] react-native: React Native idioms, conventions, and common pitfalls (2026-10-07)
 - [x] api-debugging: curl reproduction, headers, status codes, request IDs (2026-10-08)
 - [x] log-instrumentation: where and how to add useful logging without noise (2026-10-09)
-- [ ] performance-profiling: measure before optimizing; timing, flame graphs, N+1 detection
+- [x] performance-profiling: measure before optimizing; timing, flame graphs, N+1 detection (2026-10-10)
 - [ ] dependency-troubleshooting: version conflicts, lockfiles, clean installs
 - [ ] safe-refactoring: small verifiable steps, behavior-preserving, diff discipline
 - [ ] documentation-writing: README/ADR/runbook structure people actually read

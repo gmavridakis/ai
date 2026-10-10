@@ -65,6 +65,7 @@ When the diagnostic already shows the fix, apply it. Otherwise hand the confirme
 - Code layer with a `package.json` that lists `react-native` or `expo` (Metro, red box, native module, Xcode or Gradle build): Call the Skill tool with "react-native".
 - Network or auth layer on one HTTP endpoint the user can call, with the request in hand (a client, a Postman control, a curl): Call the Skill tool with "api-debugging".
 - Any other layer or stack: Call the Skill tool with "debug-from-raw-logs".
+- No failure at all: the response is a 200, the job or build finishes, and the report is only "slow": there is no layer to classify. Call the Skill tool with "performance-profiling".
 - An LLM call that returned 200 with the wrong shape or content: Call the Skill tool with "structured-prompting".
 - The confirmed layer is inside a vendor service or a third-party package the team cannot change, and the user wants it reported: Call the Skill tool with "bug-report-writing" with the verdict as its *Actual* field.
 - Whichever layer: the service's own logs had no line for the failing request (no request ID, no boundary event), so the diagnostic ran blind. Add that gap to *Next* and, after the hand-off above, Call the Skill tool with "log-instrumentation".

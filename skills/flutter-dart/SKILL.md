@@ -54,7 +54,7 @@ Propose fixes only from the pinned row (an Impeller opt-out flag does nothing on
 | `Bad state: Stream has already been listened to.` | second `listen()` on a single-subscription stream | `.asBroadcastStream()` once at the source, or share one subscription through the state object |
 | Red screen (debug) or grey screen (release) with no tell | uncaught exception thrown during `build` | read the first `══╡ EXCEPTION CAUGHT BY WIDGETS LIBRARY ╞══` block (it names `The relevant error-causing widget was: Row Row:file:///lib/x.dart:42:11`); install `FlutterError.onError` and `PlatformDispatcher.instance.onError` so release builds report instead of greying |
 
-No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned row with you.
+No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned row with you. The complaint is "slow" with no tell and no number yet (no p95, no profile, no query count): Call the Skill tool with "performance-profiling" and return with its top frame or statement count.
 
 **Done when** the tell matched one row, the row's fix was applied in its listed order, and the verbatim tell no longer appears in `flutter analyze`, the run console, or the failing test on re-run; or no row matched and debug-from-raw-logs was called.
 

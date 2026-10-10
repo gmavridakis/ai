@@ -54,7 +54,7 @@ Propose fixes only from the pinned row or older (`fetch_mode` needs 6.1, `DB_CAS
 | `OperationalError: FATAL: sorry, too many clients already` / `connection already closed` under gunicorn/uvicorn | one connection per worker × workers × `CONN_MAX_AGE` > Postgres `max_connections`, or dead persistent connections | `CONN_MAX_AGE=60` + `CONN_HEALTH_CHECKS=True` (4.1+); on 5.1+ with psycopg 3 use `"OPTIONS": {"pool": {"min_size": 2, "max_size": 8}}`; beyond that PgBouncer in transaction mode with `DISABLE_SERVER_SIDE_CURSORS=True` |
 | `AppConfig.ready()` / signal handlers run twice, log lines duplicated in dev | `runserver` autoreloader forks a child process | confirm with `runserver --noreload`; register signals in `ready()` with `dispatch_uid=`; move work out of import time |
 
-No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned versions with you.
+No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned versions with you. The complaint is "slow" with no tell and no number yet (no p95, no profile, no query count): Call the Skill tool with "performance-profiling" and return with its top frame or statement count.
 
 **Done when** the tell matched one row, the row's fix was applied in its listed order, and the verbatim tell no longer appears when the failing command, request, or test is re-run; or no row matched and debug-from-raw-logs was called.
 

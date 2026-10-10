@@ -53,7 +53,7 @@ Propose fixes only from the pinned row (`@Service` needs 22; `NgZone.onStable` l
 | `Error: bundle initial exceeded maximum budget. Budget 500.00 kB was not met by 120.00 kB` | eager import of a heavy module/route | `npx ng build --stats-json && npx esbuild-visualizer --metadata dist/<app>/stats.json`; lazy‑load with `loadComponent: () => import('./x')` or `@defer (on viewport)`; raise `budgets` only after the lazy split |
 | Tests pass on 20, fail on 21 with stale DOM assertions or `tick()` doing nothing | zoneless `TestBed` (no `zone.js` in test polyfills) with leftover `fakeAsync`/`tick` and `detectChanges()`‑after‑mutation habits | on 21+: `await fixture.whenStable()` after inputs change, `fixture.autoDetectChanges()` once, drop `fakeAsync`; with Vitest use `vi.useFakeTimers()` instead of `tick()` |
 
-No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned major and mode with you.
+No row matches the tell: Call the Skill tool with "debug-from-raw-logs" and bring the pinned major and mode with you. The complaint is "slow" with no tell and no number yet (no p95, no profile, no query count): Call the Skill tool with "performance-profiling" and return with its top frame or statement count.
 
 **Done when** the tell matched one row, the row's fix was applied in its listed order, and the verbatim tell no longer appears in the dev console, the build output, or the failing test on re-run; or no row matched and debug-from-raw-logs was called.
 
