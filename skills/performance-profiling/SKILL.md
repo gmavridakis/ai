@@ -1,6 +1,6 @@
 ---
 name: performance-profiling
-description: Measure before optimizing: baseline p50/p95, profile to the frame or query, change one thing, re-measure. Use when a request, page, job, build, or test suite is "slow", "takes forever", "got slower", a CPU or memory graph climbs, or an N+1 is suspected. Do not use when it fails or times out (error-triage), for one curl timing (api-debugging), or to keep duration lines (log-instrumentation).
+description: Measure before optimizing: baseline p50/p95, profile to the frame or query, change one thing, re-measure. Use when a request, page, job, build, or test suite is "slow", "takes forever", "got slower", or a CPU or memory graph climbs, with no stack tell naming the cause. Do not use when it fails or times out (error-triage), for one curl timing (api-debugging), or to keep duration lines (log-instrumentation).
 ---
 
 # Performance Profiling
