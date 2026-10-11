@@ -1,0 +1,15 @@
+[project]
+name = "invoice-batch"
+version = "0.3.0"
+requires-python = ">=3.11"
+dependencies = [
+  "reportlib>=2.0",
+  "tabulate==0.9.0",
+  "python-dateutil>=2.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pip-tools]
+generate-hashes = false

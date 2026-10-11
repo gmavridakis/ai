@@ -24,7 +24,7 @@ Ordered checklist. The daily maintenance routine takes the first unchecked item 
 - [x] api-debugging: curl reproduction, headers, status codes, request IDs (2026-10-08)
 - [x] log-instrumentation: where and how to add useful logging without noise (2026-10-09)
 - [x] performance-profiling: measure before optimizing; timing, flame graphs, N+1 detection (2026-10-10)
-- [ ] dependency-troubleshooting: version conflicts, lockfiles, clean installs
+- [x] dependency-troubleshooting: version conflicts, lockfiles, clean installs (2026-10-11)
 - [ ] safe-refactoring: small verifiable steps, behavior-preserving, diff discipline
 - [ ] documentation-writing: README/ADR/runbook structure people actually read
 - [ ] estimation-and-scoping: break work down, identify unknowns, give ranges

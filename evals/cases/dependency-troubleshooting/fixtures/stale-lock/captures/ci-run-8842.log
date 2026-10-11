@@ -1,0 +1,27 @@
+2026-10-10T07:41:02.1130Z ##[group]Run python -m venv .venv && .venv/bin/pip install -r requirements.lock
+2026-10-10T07:41:09.4402Z Collecting python-dateutil==2.9.0.post0 (from -r requirements.lock (line 7))
+2026-10-10T07:41:09.6118Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-10-10T07:41:09.9020Z Collecting reportlib==1.4.2 (from -r requirements.lock (line 9))
+2026-10-10T07:41:10.0211Z   Downloading reportlib-1.4.2-py3-none-any.whl.metadata (2.1 kB)
+2026-10-10T07:41:10.3304Z Collecting six==1.16.0 (from -r requirements.lock (line 11))
+2026-10-10T07:41:10.5527Z Collecting tabulate==0.9.0 (from -r requirements.lock (line 13))
+2026-10-10T07:41:12.8015Z Installing collected packages: six, tabulate, reportlib, python-dateutil
+2026-10-10T07:41:13.2906Z Successfully installed python-dateutil-2.9.0.post0 reportlib-1.4.2 six-1.16.0 tabulate-0.9.0
+2026-10-10T07:41:13.3011Z ##[endgroup]
+2026-10-10T07:41:13.3120Z ##[group]Run .venv/bin/pip install -e .[dev] --no-deps
+2026-10-10T07:41:16.0902Z Successfully installed invoice-batch-0.3.0
+2026-10-10T07:41:16.1003Z ##[endgroup]
+2026-10-10T07:41:16.1104Z ##[group]Run .venv/bin/python -m pytest -q
+2026-10-10T07:41:17.4420Z ==================================== ERRORS ====================================
+2026-10-10T07:41:17.4421Z ____________________ ERROR collecting tests/test_main.py ____________________
+2026-10-10T07:41:17.4422Z ImportError while importing test module '/home/runner/work/invoice-batch/invoice-batch/tests/test_main.py'.
+2026-10-10T07:41:17.4423Z tests/test_main.py:1: in <module>
+2026-10-10T07:41:17.4424Z     from app.main import load
+2026-10-10T07:41:17.4425Z app/main.py:6: in <module>
+2026-10-10T07:41:17.4426Z     from reportlib import render_table  # render_table exists since reportlib 2.0
+2026-10-10T07:41:17.4427Z E   ImportError: cannot import name 'render_table' from 'reportlib' (/home/runner/work/invoice-batch/invoice-batch/.venv/lib/python3.12/site-packages/reportlib/__init__.py)
+2026-10-10T07:41:17.4500Z =========================== short test summary info ============================
+2026-10-10T07:41:17.4501Z ERROR tests/test_main.py
+2026-10-10T07:41:17.4502Z !!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+2026-10-10T07:41:17.4503Z 1 error in 0.41s
+2026-10-10T07:41:17.4610Z ##[error]Process completed with exit code 2.

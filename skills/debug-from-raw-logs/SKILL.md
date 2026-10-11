@@ -42,7 +42,7 @@ Entry conditions, checked before phase 1:
 | 10/10 | logic or data | bisect the input (step 4) |
 | 2–8/10 | race, ordering, shared state | run the test alone: `pytest tests/x.py::t -p no:randomly`; passes alone ⇒ test pollution, find the polluter with `pytest --lf -x` after `-p randomly --randomly-seed=<failing seed>` |
 | ≤ 1/10 | timing, network, resource limits | re-run under load (`stress-ng` / parallel `-n 4`) and with `--timeout` doubled; rate changes ⇒ timing |
-| 0/10 locally, fails in CI | environment | diff `env`, runtime version, and lockfile between the two; leave the code alone |
+| 0/10 locally, fails in CI | environment | diff `env`, runtime version, and lockfile between the two; leave the code alone; a lockfile or version difference: Call the Skill tool with "dependency-troubleshooting" |
 
 - Write down the exact repro command: it is the *red* command every later phase runs.
 

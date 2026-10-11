@@ -30,7 +30,7 @@ Match the error against every row. Pick the first layer whose signature fits; if
 Rules of thumb:
 
 - A `500` with no body is *their* code; a `500` with a stack trace naming your service is *your* code.
-- "Works locally, fails in CI/prod" is config or network until proven otherwise.
+- "Works locally, fails in CI/prod" is config or network until proven otherwise; when the difference is an install, a lockfile, or a runtime version: Call the Skill tool with "dependency-troubleshooting".
 - "Works for me, fails for them" is auth or data until proven otherwise.
 - The first error in a log is the cause; later errors are fallout. Triage the first one.
 

@@ -2,6 +2,10 @@
 
 One line per change, newest first. The daily routine appends here; a manual session does the same.
 
+## 2026-10-11
+
+- Add dependency-troubleshooting skill: a per-manager pin table (npm, pnpm, yarn, pip/uv, Maven, Gradle, pub) with the lockfile, the frozen CI install and the verbatim frozen-install tells (`ERR_PNPM_OUTDATED_LOCKFILE`, `YN0028`, uv `--locked`), the "which row differs between machines" list; a tree table (`npm explain`, `pnpm why`, `dependency:tree -Dverbose` with `omitted for conflict with`, `dependencyInsight` with `By conflict resolution`, `pip check`, `uv tree --invert`, `dart pub deps`) plus locate commands for the copy the runtime loads (`require.resolve`, `__file__`, the `unzip -l` loop over `build-classpath`); a tree-shape-to-change table (outlier bump, override, two copies, lockfile drift, merge markers with `--theirs`, `NODE_MODULE_VERSION`) and the Oct 2026 override syntax per manager; a clean-install table and a runtime-tells table (`NoSuchMethodError`, `cannot import name`, `Cannot find module` in prod only); anti-patterns; worked Spring shaded-Jackson example. Both directions: nodejs (ERESOLVE and lockfile-drift rows), flutter-dart (version solving row), react (duplicate react row), java-spring-stack, python-django, error-triage ("works locally") and debug-from-raw-logs (0/10 locally row) route to it; it hands a named tell back to the stack row. Eval case `evals/cases/dependency-troubleshooting/` written, to be run on the user's machine.
+
 ## 2026-10-10
 
 - Conflict check: performance-profiling versus java-spring-stack and python-django ("I think the orders endpoint has an N+1" fired the stack skill by its `N+1 query storms` / `hundreds of identical SELECTs` tell and performance-profiling by "an N+1 is suspected"); resolved by dropping that clause from performance-profiling's description (the stack skill owns a named tell and its count command; performance-profiling owns "slow" with no tell and no number) on top of the hand-offs shipped with the new skill. nodejs `event loop lag` and flutter-dart `jank` are tells and stay with their stack. No merge. Deferred: none.

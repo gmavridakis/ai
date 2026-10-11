@@ -1,0 +1,4 @@
+$ .venv/bin/pip check
+invoice-batch 0.3.0 has requirement reportlib>=2.0, but you have reportlib 1.4.2.
+$ .venv/bin/python -c "import reportlib,sys;print(reportlib.__file__, reportlib.__version__, sys.executable)"
+/home/runner/work/invoice-batch/invoice-batch/.venv/lib/python3.12/site-packages/reportlib/__init__.py 1.4.2 /home/runner/work/invoice-batch/invoice-batch/.venv/bin/python

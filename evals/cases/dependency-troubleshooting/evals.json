@@ -1,0 +1,100 @@
+{
+  "skill_name": "dependency-troubleshooting",
+  "evals": [
+    {
+      "id": 1,
+      "name": "lock-stale-after-pyproject-bump",
+      "fixture": "fixtures/stale-lock",
+      "git_init": true,
+      "prompt": "CI run 8842 of invoice-batch dies at test collection with an ImportError on reportlib, but the suite passes on my laptop and pip check is clean here. The CI log, the CI pip check output and a dump of my environment are in captures/. There is no network from this workspace and pip-compile is not installed, so reason from the files: tell me exactly why it differs between the two machines, make the smallest change in the repo that makes CI green, and give me the command I should normally run instead of that edit plus how to prove it before I push.",
+      "expected_output": "Pinned: pip with a pip-compile lock (requirements.lock), Python 3.12 on both machines, failing command `pip install -r requirements.lock` then pytest on CI; the differing row is the lock (reportlib==1.4.2, last regenerated before pyproject was bumped to reportlib>=2.0 in a41c9d2) while the laptop venv holds reportlib 2.0.1 installed outside the lock. Tree: pyproject requires reportlib>=2.0, the lock pins 1.4.2, CI's `pip check` line `invoice-batch 0.3.0 has requirement reportlib>=2.0, but you have reportlib 1.4.2.` quoted, the loaded copy paths on both machines quoted. Fix: requirements.lock reportlib==2.0.1 (one line), the regeneration command `pip-compile --output-file=requirements.lock pyproject.toml` named, no --no-deps / --force / override. Proof: the clean venv install from the lock, pip check, pytest, and a `pip check` step in ci.yml are given as the next commands; nothing in app/ changed.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "dependency-troubleshooting"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Read",
+          "pattern": "ci-run-8842\\.log",
+          "text": "The CI log was read"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Read",
+          "pattern": "local-env\\.txt",
+          "text": "The developer environment snapshot was read and compared"
+        },
+        {
+          "type": "order",
+          "first": "^\\[tool (Read|Bash|Grep)\\].*(ci-run-8842|ci-pip-check|local-env|requirements\\.lock)",
+          "then": "^\\[tool (Edit|Write|MultiEdit)\\].*requirements\\.lock",
+          "text": "The captures or the lock were read before the lock was edited"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "1\\.4\\.2",
+          "text": "The locked version 1.4.2 was read"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "2\\.0\\.1",
+          "text": "The version the laptop actually loads (2.0.1) was read"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "has requirement reportlib>=2\\.0, but you have reportlib 1\\.4\\.2",
+          "text": "The CI pip check line is quoted verbatim as the tree evidence"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "a41c9d2|pyproject.{0,80}(bump|changed|updated|raised).{0,80}lock|lock.{0,80}(stale|not regenerated|out of (sync|date)|behind)",
+          "text": "The reply names the cause: the lock was not regenerated after pyproject raised the constraint"
+        },
+        {
+          "type": "file_regex",
+          "path": "requirements.lock",
+          "pattern": "reportlib==2\\.0\\.1",
+          "text": "requirements.lock now pins reportlib 2.0.1"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "requirements.lock",
+          "pattern": "reportlib==1\\.4\\.2",
+          "text": "The stale pin is gone from requirements.lock"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^requirements\\.lock$", "^\\.github/workflows/ci\\.yml$", "^NOTES\\.md$"],
+          "text": "Only the lock (and optionally the CI workflow or notes) changed; app/, tests/ and pyproject.toml are untouched"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "pip-compile --output-file=requirements\\.lock pyproject\\.toml|pip-compile[^\\n]{0,60}pyproject\\.toml|uv pip compile",
+          "text": "The regeneration command is named as the normal way to make this change"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(pip check)",
+          "text": "pip check is part of the proof"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "--no-deps -r|--force-reinstall|--ignore-installed|--break-system-packages|override-dependencies|pip install reportlib(==2\\.0\\.1)? *$",
+          "where": "final",
+          "text": "The fix is the lock, not a force flag, an override or an ad-hoc install"
+        },
+        {
+          "type": "max_turns",
+          "max": 25
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the reply pins the manager (pip with a pip-compile lock at requirements.lock), the Python version on both machines (3.12), the install command that fails on CI (`pip install -r requirements.lock` followed by pytest), and names the row that differs between the machines: the laptop venv holds reportlib 2.0.1 that was installed outside the lock, while CI installs reportlib 1.4.2 from the lock that was last compiled before pyproject required >=2.0.",
+        "Phase 2 done: the reply lists every requirer of reportlib with its constraint (invoice-batch pyproject wants >=2.0, requirements.lock pins ==1.4.2), quotes the CI `pip check` line verbatim, and gives the path of the copy each machine loads (the CI .venv site-packages at 1.4.2 and the laptop .venv site-packages at 2.0.1).",
+        "Phase 3 done: exactly one manifest file changed (requirements.lock, reportlib==2.0.1 on its own line with its `# via` comment kept), the normal regeneration command `pip-compile --output-file=requirements.lock pyproject.toml` is named as what replaces the hand edit, and no force flag, override or `--no-deps` install is proposed as the fix.",
+        "Phase 4 done: the reply gives the proof as commands to run next (a cleared venv installed from the lock, `pip check` printing no broken requirements, pytest, and `git status --short requirements.lock` empty after the install) plus the CI run as the second-machine check, and states explicitly that it could not run them in this workspace because there is no network."
+      ]
+    }
+  ]
+}

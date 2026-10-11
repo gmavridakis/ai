@@ -1,0 +1,23 @@
+$ python --version
+Python 3.12.6
+$ pip --version
+pip 25.2 from /Users/dev/invoice-batch/.venv/lib/python3.12/site-packages/pip (python 3.12)
+$ python -c "import reportlib,sys;print(reportlib.__file__, reportlib.__version__, sys.executable)"
+/Users/dev/invoice-batch/.venv/lib/python3.12/site-packages/reportlib/__init__.py 2.0.1 /Users/dev/invoice-batch/.venv/bin/python
+$ pip freeze
+invoice-batch @ file:///Users/dev/invoice-batch
+iniconfig==2.0.0
+packaging==25.0
+pluggy==1.6.0
+pytest==8.4.1
+python-dateutil==2.9.0.post0
+reportlib==2.0.1
+six==1.16.0
+tabulate==0.9.0
+$ pip check
+No broken requirements found.
+$ python -m pytest -q
+1 passed in 0.12s
+$ git log --oneline -3 -- requirements.lock pyproject.toml
+a41c9d2 Require reportlib 2 for render_table (pyproject)
+7c03e1f Lock after pip-compile
