@@ -1,6 +1,6 @@
 ---
 name: dependency-troubleshooting
-description: Fix a dependency problem in any stack: an install that passes on one machine and fails on another, a lockfile out of sync or in merge conflict, two versions of one package in the tree, or a runtime tell naming a version mismatch (`NoSuchMethodError`, `cannot import name`, `NODE_MODULE_VERSION`). Do not use for a tell with its own stack row (ERESOLVE: nodejs; `version solving failed`: flutter-dart) or an unclassified error (error-triage).
+description: Fix a dependency problem in any stack: an install that passes on one machine and fails on another, a lockfile in merge conflict or drifting between machines, two versions of one package in the tree, or a runtime tell naming a version mismatch (`NoSuchMethodError`, `cannot import name`, `NODE_MODULE_VERSION`). Do not use for a tell with its own stack row (ERESOLVE: nodejs; `version solving failed`: flutter-dart) or an unclassified error (error-triage).
 ---
 
 # Dependency Troubleshooting
