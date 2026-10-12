@@ -25,7 +25,7 @@ Ordered checklist. The daily maintenance routine takes the first unchecked item 
 - [x] log-instrumentation: where and how to add useful logging without noise (2026-10-09)
 - [x] performance-profiling: measure before optimizing; timing, flame graphs, N+1 detection (2026-10-10)
 - [x] dependency-troubleshooting: version conflicts, lockfiles, clean installs (2026-10-11)
-- [ ] safe-refactoring: small verifiable steps, behavior-preserving, diff discipline
+- [x] safe-refactoring: small verifiable steps, behavior-preserving, diff discipline (2026-10-12)
 - [ ] documentation-writing: README/ADR/runbook structure people actually read
 - [ ] estimation-and-scoping: break work down, identify unknowns, give ranges
 - [ ] incident-response: triage, communicate, mitigate, root-cause, postmortem

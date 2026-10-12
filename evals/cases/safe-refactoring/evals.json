@@ -1,0 +1,102 @@
+{
+  "skill_name": "safe-refactoring",
+  "evals": [
+    {
+      "id": 1,
+      "name": "extract-compute-totals-byte-identical",
+      "fixture": "fixtures/extract-totals",
+      "git_init": true,
+      "prompt": "Please refactor billing/export.py: export_csv does the filter validation, the totals and the CSV writing in one 80-line function, and I want the totals part pulled out into its own function compute_totals so we can unit-test it next sprint. The CSV output has to stay byte-identical, finance diffs these files month over month. The suite is `python -m unittest discover -s tests` (stdlib only, nothing to install). Don't edit the existing tests, work in small commits on this branch, and tell me how you proved nothing changed.",
+      "expected_output": "Fence: the refactoring named as extract function, the oracle `python -m unittest discover -s tests` run before any edit with its `Ran 6 tests` / `OK` line written down, the credit-note and country branches noted as reached or a golden characterization test added in a new test file and committed on its own. Step: compute_totals extracted from export_csv in billing/export.py with the per-customer entries and the grand totals unchanged (every `round(..., 2)` kept, the sort key and the issued-includes-paid rule untouched), the oracle re-run with the same count. Diff read with `git diff --stat` plus `--color-moved` or `-w`, every bright line classified. One commit per step with a `refactor(...)` message carrying the oracle count; `git log --oneline` shows the step commits; tests/test_export.py untouched.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "safe-refactoring"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "python3? -m unittest",
+          "text": "The oracle (the unittest suite) was run"
+        },
+        {
+          "type": "order",
+          "first": "^\\[tool Bash\\].*python3? -m unittest",
+          "then": "^\\[tool (Edit|Write|MultiEdit)\\].*billing/export\\.py",
+          "text": "The oracle ran once before export.py was edited (the baseline count)"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "Ran 6 tests",
+          "text": "The baseline count of 6 tests was seen"
+        },
+        {
+          "type": "file_regex",
+          "path": "billing/export.py",
+          "pattern": "def compute_totals\\(",
+          "text": "compute_totals exists as its own function"
+        },
+        {
+          "type": "file_regex",
+          "path": "billing/export.py",
+          "pattern": "round\\(entry\\[\"net\"\\] \\+ net, 2\\)",
+          "text": "The per-customer rounding to 2 decimals survived the extract"
+        },
+        {
+          "type": "file_regex",
+          "path": "billing/export.py",
+          "pattern": "selected\\.sort\\(key=lambda r: \\(r\\[\"date\"\\], r\\[\"number\"\\]\\)\\)",
+          "text": "The sort order (date, then number) is unchanged"
+        },
+        {
+          "type": "file_regex",
+          "path": "billing/export.py",
+          "pattern": "status == \"issued\" and row\\[\"status\"\\] == \"paid\"",
+          "text": "The issued-includes-paid rule is unchanged"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^billing/export\\.py$", "^tests/golden/", "^tests/test_(golden|characteri[sz]ation|export_golden)[a-z_]*\\.py$", "^NOTES\\.md$", "^\\.gitignore$"],
+          "text": "Only export.py changed (plus optionally a new golden test file and its data); tests/test_export.py is untouched"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "git diff.*(--stat|--color-moved|-w\\b|--ignore-blank-lines|-M)",
+          "text": "The diff was read with a stat, moved-block or whitespace-insensitive view before committing"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "git commit",
+          "text": "The step was committed"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "refactor\\(",
+          "text": "A commit message in the refactor(<scope>) shape was written"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Ran \\d+ tests|\\d+ (tests )?(passed|OK)|unittest",
+          "text": "The reply names the oracle and its count as the proof"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "sed -i[^\\n]*export\\.py",
+          "text": "No sed rewrite of the source file"
+        },
+        {
+          "type": "max_turns",
+          "max": 30
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: before any edit, the reply or transcript names the refactoring by catalog name (extract function), the files it touches (billing/export.py only), and the oracle `python -m unittest discover -s tests` run with its `Ran 6 tests` and `OK` lines written down; the credit-note and per-country branches of the totals are either shown to be reached by the existing tests or covered by a new golden/characterization test committed on its own before the extract.",
+        "Phase 2 done: the diff holds exactly one refactoring (compute_totals extracted; no rename, reorder or formatting mixed in), a compile or syntax gate (`python -m compileall`, `python -c 'import billing.export'` or equivalent) exits 0, the oracle is re-run after the edit with the same pass count as the baseline, and tests/test_export.py is not modified.",
+        "Phase 3 done: the diff was read with `git diff --stat` plus a moved-block (`--color-moved`) or whitespace-insensitive (`-w`) view, and every non-moved line is accounted for as the new signature, the call site or an import; no literal (the `round(..., 2)` calls, the `issued` includes `paid` rule, the sort key, the `%.2f` formats) changed.",
+        "Phase 4 done: the work is committed as one commit per step with a `refactor(billing): extract compute_totals ...` style message that carries the oracle count, `git log --oneline` shows those commits on the branch, the working tree is clean, and the reply states the proof as the before and after oracle lines rather than as \"tests pass\"."
+      ]
+    }
+  ]
+}

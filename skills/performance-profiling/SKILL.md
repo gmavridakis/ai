@@ -7,7 +7,7 @@ description: Measure before optimizing: baseline p50/p95, profile to the frame o
 
 Slow code is fixed by guess far more often than by measurement: a cache is added to a handler whose time is in one unindexed query, a loop is micro-optimized while 90% of the wall time is a lock wait. This skill forces a number before any change and a profile before any hypothesis. The leading word is **baseline**: the measured number, with its conditions, that every later number is compared against.
 
-Entry condition: the thing completes, only slowly. It fails, times out or returns an error: Call the Skill tool with "error-triage" first. One HTTP call whose split between DNS, TLS and server time is the question: Call the Skill tool with "api-debugging" (its `-w` timing line), then return with `ttfb` as the baseline. The `duration_ms` fields and timing lines added here that should stay in the code: Call the Skill tool with "log-instrumentation" once the fix is in.
+Entry condition: the thing completes, only slowly. A structural change with no timing goal (extract, rename, split): Call the Skill tool with "safe-refactoring"; a fix found here that needs restructuring first takes its steps there, then the one measured change returns to phase 4. It fails, times out or returns an error: Call the Skill tool with "error-triage" first. One HTTP call whose split between DNS, TLS and server time is the question: Call the Skill tool with "api-debugging" (its `-w` timing line), then return with `ttfb` as the baseline. The `duration_ms` fields and timing lines added here that should stay in the code: Call the Skill tool with "log-instrumentation" once the fix is in.
 
 ## 1. Baseline: one metric, measured 3 times, before any change
 

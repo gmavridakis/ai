@@ -1,0 +1,10 @@
+[
+  {"number": "INV-1001", "date": "2026-09-02", "customer": "acme", "country": "EL", "status": "issued", "net": 1200.0},
+  {"number": "INV-1002", "date": "2026-09-02", "customer": "globex", "country": "DE", "status": "paid", "net": 310.5},
+  {"number": "INV-1003", "date": "2026-09-05", "customer": "acme", "country": "EL", "status": "paid", "net": 99.99},
+  {"number": "CN-0007", "date": "2026-09-09", "customer": "acme", "country": "EL", "status": "credit", "net": 200.0},
+  {"number": "INV-1004", "date": "2026-09-11", "customer": "initech", "country": "FR", "status": "issued", "net": 4500.0},
+  {"number": "INV-1005", "date": "2026-10-01", "customer": "acme", "country": "EL", "status": "issued", "net": 75.0},
+  {"number": "INV-0998", "date": "2026-08-30", "customer": "globex", "country": "DE", "status": "paid", "net": 18.4},
+  {"number": "INV-1006", "date": "2026-09-11", "customer": "umbrella", "country": "IT", "status": "issued", "net": 0.01}
+]
