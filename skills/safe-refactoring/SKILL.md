@@ -7,7 +7,7 @@ description: Change code structure while behaviour stays identical: rename, extr
 
 A refactor goes wrong in one of two ways: the change is too big to read, so a behaviour change rides along unseen, or the proof is "tests pass" with no record of what passed before. This skill cuts the work into steps, each proven by the same oracle before and after, read line by line for behaviour, and committed alone. The leading word is **step**: one named refactoring, applied once, green on both sides, in its own commit.
 
-Entry condition: the target shape is agreed and the code works today. The idiom the code should end in (what a service, hook, view or widget looks like in this stack) comes from the stack skill: in a Spring project Call the Skill tool with "java-spring-stack"; in a Node service Call the Skill tool with "nodejs"; in a Django project Call the Skill tool with "python-django"; in an Angular workspace Call the Skill tool with "angular"; in a React or Next.js app Call the Skill tool with "react"; in a React Native or Expo app Call the Skill tool with "react-native"; in a Flutter app Call the Skill tool with "flutter-dart". A change whose goal is a different output, a new feature, or a faster path is not a refactor: the stack skill owns the first two, Call the Skill tool with "performance-profiling" for the third, and keep the structural part as its own steps before it. A step that goes red and stays red after one revert-and-retry: Call the Skill tool with "debug-from-raw-logs" with the red command. A step that bumps a dependency major and the install fails: Call the Skill tool with "dependency-troubleshooting". Before any step on more than 5 files: Call the Skill tool with "context-hygiene".
+Entry condition: the target shape is agreed and the code works today. The idiom the code should end in (what a service, hook, view or widget looks like in this stack) comes from the stack skill: in a Spring project Call the Skill tool with "java-spring-stack"; in a Node service Call the Skill tool with "nodejs"; in a Django project Call the Skill tool with "python-django"; in an Angular workspace Call the Skill tool with "angular"; in a React or Next.js app Call the Skill tool with "react"; in a React Native or Expo app Call the Skill tool with "react-native"; in a Flutter app Call the Skill tool with "flutter-dart". A change whose goal is a different output, a new feature, or a faster path is not a refactor: the stack skill owns the first two, Call the Skill tool with "performance-profiling" for the third, and keep the structural part as its own steps before it. A step that goes red and stays red after one revert-and-retry: Call the Skill tool with "debug-from-raw-logs" with the red command. A step that bumps a dependency major and the install fails: Call the Skill tool with "dependency-troubleshooting". "Clean up the logging", "too noisy", or any step whose only subject is which log lines exist and what they print: Call the Skill tool with "log-instrumentation"; a move or extract of logging code with identical output stays here. Before any step on more than 5 files: Call the Skill tool with "context-hygiene".
 
 ## 1. Fence: name the refactoring, fix the oracle, cover the touched lines
 
@@ -67,7 +67,7 @@ Run the three commands and classify every bright line; a line you cannot classif
 | Exception type or message changed | `raise`/`throw` or a message string on a bright line | callers and alerts match on it; restore |
 | Iteration order changed | `Set`, `dict`, `HashMap` replaced one another, or a `sort` dropped | output order is behaviour when it reaches a user or a file |
 | Null path dropped | an `if (x == null)` or `?.` that disappeared | restore; the golden test did not cover it |
-| Log line changed or removed | a logger call on a bright line | keep message and fields (log-instrumentation owns the format) |
+| Log line changed or removed | a logger call on a bright line | keep message and fields; a wanted change to them is its own commit: Call the Skill tool with "log-instrumentation" |
 
 **Done when** every bright line is classified as signature, call-site, import, or move, no row of the leak table matches, and `git diff -w --ignore-blank-lines --stat` and `git diff --stat` list the same files.
 
@@ -81,7 +81,7 @@ refactor(<scope>): <catalog row> <old> -> <new>
 Behaviour unchanged: <oracle command> <n> passed, <k> skipped before and after.
 ```
 
-Then the next step starts from phase 2. Before the branch is handed over: `git rebase -x '<oracle>' main` (non-interactive) runs the oracle on every commit; a red commit is bisectable to one step. A commit whose message needs "and" holds two steps: `git reset -p HEAD~1`, split, recommit.
+Then the next step starts from phase 2. The reply's proof line ("behaviour unchanged" with the counts) is an evidence row in response-self-review: Call the Skill tool with "response-self-review" before sending. Before the branch is handed over: `git rebase -x '<oracle>' main` (non-interactive) runs the oracle on every commit; a red commit is bisectable to one step. A commit whose message needs "and" holds two steps: `git reset -p HEAD~1`, split, recommit.
 
 **Done when** `git log --oneline main..HEAD` lists one line per step, each message carries the oracle count, `git rebase -x '<oracle>' main` exits 0, and `git status --short` is empty.
 

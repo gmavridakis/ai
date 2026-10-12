@@ -37,6 +37,7 @@ Classify each claim in the draft as verified (you ran, read, or searched it this
 | a quoted line or error | the line as it appears in the tool output | a paraphrase |
 | a number read from a tool result that was cut off (`...`, `[truncated]`, `+N lines`, a `head`/`tail` window) | `wc -l`, `grep -c`, or `jq length` on the file itself | the visible part of the capped output |
 | "pushed" / "CI is green" / "deployed" | `git status -sb` showing `ahead 0`, the pipeline URL or run id in tool output | the push command having returned |
+| "behaviour unchanged" / "pure refactor" / "no functional change" | the same test command run before and after the edit this session, with equal pass and skip counts quoted (safe-refactoring phase 1 records them; none recorded: Call the Skill tool with "safe-refactoring" and run its oracle on `git stash` then `git stash pop`) | the diff looked mechanical; `--color-moved` showed only dim lines |
 
 Then read the draft once end-to-end for internal contradictions: a summary sentence that disagrees with its own table or list is the most common tell.
 
@@ -66,4 +67,4 @@ Then read the draft once end-to-end for internal contradictions: a summary sente
 **Draft says:** "Fixed; tests pass." **Review finds:** no test run in this session. → Run `pytest tests/test_dates.py -q`; report the exit code and the pass/fail counts it printed, or say the tests were not run.
 
 **Request:** "Rename `getUser` to `fetchUser`."
-**Review finds:** the diff also reformats two unrelated files because the editor ran a formatter. → Unrequested change. Revert the formatting, keep the rename, then send.
+**Review finds:** `git diff --stat` lists 3 files, `git diff -w --ignore-blank-lines --stat` lists 1: two files changed in whitespace only because the editor ran a formatter. → Unrequested change. `git checkout -- <the two files>`, keep the rename, then send.
