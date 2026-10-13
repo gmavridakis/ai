@@ -47,6 +47,7 @@ Check size first: `wc -l <file>` (or `ls -la` for a directory). Then:
 - PowerShell (Windows outside Git Bash, where `head`/`tail`/`grep` do not exist): `cmd *> out.log; Select-String -Path out.log -Pattern 'ERROR|FATAL|Exception' | Select-Object -First 20`; `Get-Content out.log -Tail 30`; `Get-Content x.csv -TotalCount 20`; `(Get-ChildItem -Recurse -Filter *.py).Count`.
 - Data files: `head -20 x.csv; wc -l x.csv`, `jq -c '.[0]' x.json`, `sqlite3 db 'SELECT ... LIMIT 5'`.
 - Directory listings: `find . -name '*.py' | wc -l` before `find . -name '*.py'`.
+- Diffs and history: `git diff --stat` first, then `git diff -- <file>` for one file at a time; `git log --oneline -n 20`, `git show --stat <sha>`. A bare `git diff` or `git log` on a change over 5 files is the most common flood after test output.
 - Anything that would return > 100 lines: run it in a subagent (`Agent` tool) with "return only failures, ≤ 30 lines" in the brief. The verbose output stays in the subagent's window.
 - Hard cap: no single tool result over 200 lines in the main context. If one lands, summarize it in ≤ 5 lines and move on; the reply never quotes it.
 
@@ -64,7 +65,7 @@ At 60% of the auto-compact window, or at the end of a task phase, write a snapsh
 
 Then compact with focus: `/compact focus on NOTES.md, the failing test, and the diff`. Between unrelated tasks use `/clear` (free); `/compact` itself is a large request because it reads the whole conversation. `/rename` first so `/resume` can find the session.
 
-**Done when** `NOTES.md` holds all five items, `git status --short` does not list it, and either `/compact` ran with a focus line or `/clear` ran between unrelated tasks.
+**Done when** `NOTES.md` holds all five items, `git status --short` does not list it, and the window action matches the state: past 60%, `/compact` ran with a focus line; a new unrelated task, `/clear` ran; below 60% and same task, neither ran and the `/context` total is written beside the snapshot.
 
 ## Failure modes and their tells
 
@@ -84,6 +85,6 @@ Task: "Fix the flaky `test_import_latin1` in a 40k-line Django repo."
 2. `grep -rn 'test_import_latin1' tests/` → one hit. `Read tests/test_import.py` offset 210 limit 60 (file is 1,400 lines). `grep -n 'def import_csv' -r importer/` → `importer/parse.py:71`; read 60–130.
 3. `pytest tests/test_import.py::test_import_latin1 -q --tb=short -x 2>&1 | tail -30` → 18 lines, `UnicodeDecodeError` at `parse.py:88`.
 4. Edit `parse.py:88`; re-run the same command (not the whole suite). Passes. `parse.py` is not re-read.
-5. `/context` → 61K. Below budget; no compaction. Write the two-line snapshot in `NOTES.md` anyway (fix + command), then run the full suite in a subagent: "run `pytest -q`, return failures only, ≤ 30 lines."
+5. `/context` → 61K. Below 60%, same task: no `/compact`, no `/clear`. Write the two-line snapshot in `NOTES.md` anyway (fix + command, `61K` beside it), then run the full suite in a subagent: "run `pytest -q`, return failures only, ≤ 30 lines."
 
 Total main-context reads: 2 ranges, 1 grep, 2 test tails. The 1,400-line test file was never opened whole.
