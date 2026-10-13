@@ -7,7 +7,7 @@ description: Author or fix a prompt another model will run: a system prompt, tem
 
 A prompt is code that runs on a model: collect real inputs, put the parts in the order the model reads best, make every rule checkable, then run it and report a *pass rate* against the *bar* (§3).
 
-The model call itself fails (HTTP 4xx/5xx, timeout, 400 on prefill): Call the Skill tool with "error-triage". Your own reply is too long or dense: Call the Skill tool with "token-optimizer". The question is what the session should read or when to compact: Call the Skill tool with "context-hygiene".
+The model call itself fails (HTTP 4xx/5xx, timeout, 400 on prefill): Call the Skill tool with "error-triage". Your own reply is too long or dense: Call the Skill tool with "token-optimizer". The question is what the session should read or when to compact: Call the Skill tool with "context-hygiene". The text is for human readers (a README, runbook, ADR or onboarding page), not a model: Call the Skill tool with "documentation-writing".
 
 ## 0. Collect before writing
 

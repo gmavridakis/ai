@@ -7,7 +7,7 @@ description: Choose the cheapest output form and how to report tool output, keep
 
 This skill governs what you *emit*. Density never overrides correctness: shorten the prose around literals, never the literals; the literal is the *payload*.
 
-The window, not the reply, is the problem: Call the Skill tool with "context-hygiene". The reply must stand alone for someone outside this conversation (an upstream issue, a vendor ticket): Call the Skill tool with "bug-report-writing".
+The window, not the reply, is the problem: Call the Skill tool with "context-hygiene". The reply must stand alone for someone outside this conversation (an upstream issue, a vendor ticket): Call the Skill tool with "bug-report-writing". The reply is a document the repo keeps (README, runbook, ADR, config reference): Call the Skill tool with "documentation-writing".
 
 ## 1. Pick the output form
 

@@ -1,0 +1,123 @@
+{
+  "skill_name": "documentation-writing",
+  "evals": [
+    {
+      "id": 1,
+      "name": "readme-quickstart-for-ledger",
+      "fixture": "fixtures/ledger-readme",
+      "git_init": true,
+      "prompt": "New people on the team keep asking me how to run ledger locally and the only doc we have is docs/setup-old.md, which is from 2023 and wrong. Please write a README.md for this repo so a developer on their first day can run it and see one summary without asking anyone. It is plain Python 3, nothing to install; the suite is `python -m unittest discover -s tests`. Deal with the old doc however makes sense.",
+      "expected_output": "Reader line written (first-day developer, \"how do I run ledger locally\"), type README quickstart, docs/setup-old.md found by the grep and retired. README.md laid out with Quickstart, Configuration, Develop and Where-things-are headings; the run command `python -m ledger summarise sample.csv` pasted with its real output line `3 entries, total 120.50 EUR` after running it in the session; a configuration table with the three keys the code reads (LEDGER_DATA_DIR, LEDGER_CURRENCY, LEDGER_API_KEY) and LEDGER_API_KEY marked required, with the export above the run command; the unittest command with its `Ran 2 tests` line; no TODO, TBD, latest or simply; docs/setup-old.md deleted or reduced to a pointer in the same change; first 30 lines show install, run and expected output.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "documentation-writing"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "git (ls-files|grep)[^\"]*(setup|ledger|\\*\\.md|md)",
+          "text": "The repo was searched for an existing doc on the topic before writing"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "python3? -m ledger summarise",
+          "text": "The run command was executed in the session, not typed from memory"
+        },
+        {
+          "type": "order",
+          "first": "^\\[tool Bash\\].*python3? -m ledger summarise",
+          "then": "^\\[tool (Write|Edit|MultiEdit)\\].*README\\.md",
+          "text": "The command ran before the README that quotes it was written"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "python3? -m unittest",
+          "text": "The test command was executed so its count line could be pasted"
+        },
+        {
+          "type": "file_exists",
+          "path": "README.md"
+        },
+        {
+          "type": "file_regex",
+          "path": "README.md",
+          "pattern": "(?m)^## Quickstart",
+          "text": "README has the Quickstart heading of the template"
+        },
+        {
+          "type": "file_regex",
+          "path": "README.md",
+          "pattern": "python3? -m ledger summarise",
+          "text": "README carries the exact run command"
+        },
+        {
+          "type": "file_regex",
+          "path": "README.md",
+          "pattern": "3 entries, total 120\\.50 EUR",
+          "text": "README carries the real output line of the run command"
+        },
+        {
+          "type": "file_regex",
+          "path": "README.md",
+          "pattern": "LEDGER_API_KEY[^\\n]*(required|Required)|(required|Required)[^\\n]*LEDGER_API_KEY",
+          "text": "LEDGER_API_KEY is documented as required"
+        },
+        {
+          "type": "file_regex",
+          "path": "README.md",
+          "pattern": "LEDGER_DATA_DIR[\\s\\S]*LEDGER_CURRENCY|LEDGER_CURRENCY[\\s\\S]*LEDGER_DATA_DIR",
+          "text": "Both optional keys the code reads are documented"
+        },
+        {
+          "type": "file_regex",
+          "path": "README.md",
+          "pattern": "Ran 2 tests",
+          "text": "The test command's count line is quoted"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "README.md",
+          "pattern": "(?i)\\bTODO\\b|\\bTBD\\b|\\blatest\\b|\\bsimply\\b|just run",
+          "text": "No placeholder or filler word survived the phase 3 grep"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "README.md",
+          "pattern": "(?i)^## Introduction",
+          "text": "No Introduction section restating the name"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "docs/setup-old.md",
+          "pattern": "python2",
+          "text": "The stale doc is gone or no longer carries the wrong instruction (deleted or reduced to a pointer)"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": ["^README\\.md$", "^docs/setup-old\\.md$", "^docs/README\\.md$", "^NOTES\\.md$", "^\\.gitignore$"],
+          "text": "Only the README and the old doc changed; no source or test edits"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "pip install",
+          "where": "final",
+          "text": "The reply does not invent an install step for a stdlib-only project"
+        },
+        {
+          "type": "max_turns",
+          "max": 30
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the transcript or reply states the reader line in the shape `Reader: <role>, arrives with \"<question>\", leaves able to <action>` (a first-day developer who wants to run ledger locally), names the type as README quickstart, and records the grep result as `edit README.md` with docs/setup-old.md identified as the existing hit to retire.",
+        "Phase 2 done: README.md holds the template headings (Quickstart, Configuration, Develop, Where things are) in that order; no heading was renamed or dropped without a stated reason.",
+        "Phase 3 done: every fenced command in README.md (`python -m ledger summarise sample.csv`, `python -m unittest discover -s tests`) was run in the session and is followed by its first real output line (`3 entries, total 120.50 EUR`, `Ran 2 tests`); the configuration table lists exactly the three keys the code reads, obtained by grepping for os.environ rather than recalled, with LEDGER_API_KEY marked required and the export placed above the run command; the grep for TODO, TBD, latest, simply and just run prints nothing.",
+        "Phase 4 done: the quickstart was re-run from a clean location (a fresh clone, copy or container, or at minimum a fresh shell with no LEDGER_API_KEY set so the missing-key failure is seen and the export added), and `head -30 README.md` shows the run command and its expected output; where lychee or markdownlint are unavailable the reply says so instead of claiming they passed.",
+        "Phase 5 done: docs/setup-old.md is deleted or reduced to a single pointer to README.md in the same change, the README is the only file matching a grep for the topic, and the reply's claim that the docs are updated is stated against the diff rather than assumed."
+      ]
+    }
+  ]
+}
