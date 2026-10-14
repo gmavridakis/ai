@@ -1,0 +1,119 @@
+{
+  "skill_name": "estimation-and-scoping",
+  "evals": [
+    {
+      "id": 1,
+      "name": "tag-filter-fits-the-sprint",
+      "fixture": "fixtures/notes-tag-filter",
+      "git_init": true,
+      "prompt": "The lead asked me for a realistic estimate for NOTES-142 (TICKET.md in this repo): tag filtering on notes search, both the CLI and the web endpoint. It should be quick, right? She needs to know today whether it fits in the 5-day sprint that starts tomorrow. Please look at the code and give me a number I can take to her.",
+      "expected_output": "An estimate block with a low–high range and a likely value in one unit, never a single number; the ask, the Done-means line and at least one explicit exclusion; the maturity row named as `defined` (acceptance criteria exist) and its 0.5×/2× multipliers applied as the minimum width; scope numbers from git grep / git ls-files (search has 3 call sites: cli.py, web.py, test_store.py; one test file); `Reference: none` because the fresh repo has no merged history and gh is not usable, with the row widened; vertical slices of at most 2 days with O/M/P each and a checkable Done-when; the undecided AND-versus-OR semantics listed as an unknown resolved by one question with a recommended answer (timebox 0, both branches estimated); the user's 'should be quick' recorded under Assumptions and not used as an input; a sentence on whether the high end fits 5 days.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "estimation-and-scoping"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Read",
+          "pattern": "TICKET\\.md",
+          "text": "The ticket with the acceptance criteria was read"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "git (grep|ls-files|log)",
+          "text": "Scope was measured with a git command, not described"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Ask:",
+          "text": "The ask line of the template is present"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)Done means:",
+          "text": "The observable Done-means line is present"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)Out:\\s*\\S",
+          "text": "At least one exclusion is named"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Range:\\s*\\d[\\d.]*\\s*[–-]\\s*\\d[\\d.]*\\s*(hours?|days?|h|d)\\b",
+          "text": "A low–high range in one unit is reported"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)likely\\s*\\d",
+          "text": "A likely value accompanies the range"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(Reference: none|median)",
+          "text": "The reference class is reported, or its absence is stated"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Slices",
+          "text": "The work is sliced"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "\\d[\\d.]*/\\d[\\d.]*/\\d[\\d.]*",
+          "text": "At least one slice carries O/M/P"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)Unknowns?:[\\s\\S]*(AND|OR|several|multiple)",
+          "text": "The undecided multi-tag semantics is listed as an unknown"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Assumptions:",
+          "text": "The Assumptions line is present"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(sprint|5 (working )?days|fits)",
+          "text": "The reply answers the sprint question"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "(?im)^\\s*Range:\\s*\\d[\\d.]*\\s*(hours?|days?)\\s*$",
+          "where": "final",
+          "text": "The range is not a single number"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": [
+            "^ref\\.tsv$",
+            "^spikes/.*",
+            "^NOTES\\.md$",
+            "^ESTIMATE\\.md$"
+          ],
+          "text": "No source or test file was changed; estimating is not implementing"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Edit",
+          "pattern": "notes/(store|cli|web)\\.py",
+          "text": "The feature was not implemented instead of estimated"
+        },
+        {
+          "type": "max_turns",
+          "max": 30
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the reply states `Ask:`, `Done means:` (an observable such as the CLI and the endpoint returning only tagged matches with a passing test) and `Out:` with at least one exclusion, and names the maturity row as `defined` with its multipliers 0.5 and 2, since TICKET.md holds agreed acceptance criteria but the touch points were not yet counted when the row was picked.",
+        "Phase 2 done: the scope numbers come from commands run in the session (git grep for `search(` or `NoteStore` showing the call sites in cli.py, web.py and tests; git ls-files or wc for the size; the test count), each pasted or quoted, and every hidden-scope item (tests, migration, review wait, docs, flag, monitoring) is marked slice or out rather than left implicit.",
+        "Phase 3 done: a reference class was attempted (gh pr list or git log --merges) and, finding fewer than 3 comparable merged changes in this fresh repo, the reply writes `Reference: none` and widens the maturity row one step rather than inventing historical lead times.",
+        "Phase 4 done: the slices are vertical (for example CLI flag, endpoint parameter, AND-semantics test) with O/M/P in one unit each, none above 2 days, each with a Done-when the lead could check; the undecided several-tags AND-versus-OR question appears as an unknown resolved by one question with a recommended answer at timebox 0, with both branches estimated or the assumed branch stated.",
+        "Phase 5 done: low equals the sum of O, high the sum of P, likely the PERT sum, widened to the row multipliers where narrower; the user's 'should be quick' sits under Assumptions and did not shrink the range; the reply says whether the high end fits the 5-day sprint; and the numbers were checked against the command outputs (response-self-review invoked or its check visibly applied) before sending."
+      ]
+    }
+  ]
+}
