@@ -17,7 +17,7 @@ Get the request exactly as the failing client sends it, not as the docs describe
 | --- | --- |
 | Browser | DevTools, Network, right-click the request, Copy as cURL (bash). Includes cookies, `Origin`, `Sec-Fetch-*`. |
 | Postman, Insomnia, Bruno | Code snippet, cURL. The "works in Postman" request is the control; keep it. |
-| Your own code | Log method, final URL, every header name (values redacted) and the raw body bytes at the HTTP layer: `DEBUG=*` (Node `undici`/`axios`), `logging.getLogger("urllib3").setLevel(logging.DEBUG)` (Python), `-Djdk.httpclient.HttpClient.log=requests,headers` (Java), `curl -v` equivalent in Dart `HttpClient` via `HttpOverrides`. |
+| Your own code | Log method, final URL, every header name (values redacted) and the raw body bytes at the HTTP layer: `NODE_DEBUG=http,undici,fetch` (Node, built-in `http`, `fetch` and `undici`; axios on Node rides on `http`), `logging.getLogger("urllib3").setLevel(logging.DEBUG)` (Python), `-Djdk.httpclient.HttpClient.log=requests,headers` (Java), `HttpClient.enableTimelineLogging = true` then DevTools Network (Dart `dart:io`), `LogInterceptor(requestHeader: true, requestBody: true)` (dio). |
 | Mobile or server-to-server | A HAR or proxy capture (`mitmproxy`, Charles); export the single entry. |
 
 Redact credential *values*, keep header *names* and value lengths: an `Authorization` header of 31 characters when a JWT is 800 is a finding.
@@ -64,7 +64,7 @@ Diff the failing request against the control (the Postman request, yesterday's H
 | `403`/`503` with HTML body and `cf-ray` or `server: awselb` | WAF or bot rule on `User-Agent`, missing `Accept` | Add `-A 'Mozilla/5.0'` and `-H 'Accept: */*'`; a flip means a WAF rule, not the API. |
 | `404` in code, 200 in Postman | URL encoding, trailing slash, `Host`/base URL per environment | `-w '%{url_effective}\n'`; percent-encode reserved characters in path segments (`jq -rn '"<v>" \| @uri'`). |
 | `405` + `allow:` header | method changed by a redirect or proxy | `-L` turns `POST` into `GET` after `301`/`302`; use `--post301 --post302` or the final URL directly. |
-| `411`, `413`, `417` | body framing | `417`: add `-H 'Expect:'` (curl adds `Expect: 100-continue` above 1 KiB, some proxies reject it). `413`: `-w '%{size_upload}'` against the documented limit. |
+| `411`, `413`, `417` | body framing | `411`: the client streamed the body (`transfer-encoding: chunked` from Node `fetch` with a stream or `--data-binary @-`); send it with a `Content-Length` (`--data-binary @req.json` sets one). `417`: add `-H 'Expect:'` (curl adds `Expect: 100-continue` above 1 KiB, some proxies reject it). `413`: `-w '%{size_upload}'` against the documented limit. |
 | `415`, `422`, `400` with a field-level body | content type, body shape | Send the docs' example body as is; then your body with `Content-Type` copied from the control. |
 | `429` + `retry-after` or `ratelimit-remaining: 0` (IETF draft, vendor variants `x-ratelimit-*`) | request rate, shared key | Read `retry-after` (seconds or HTTP date); one key shared across workers exhausts the bucket. `curl --retry 3 --retry-delay 0` honours `retry-after` on 429 and 503. |
 | CORS error in the browser console, 200 in curl | preflight | `curl -i -X OPTIONS <url> -H 'Origin: https://app.example.com' -H 'Access-Control-Request-Method: POST' -H 'Access-Control-Request-Headers: authorization,content-type'`; the fix is server-side `access-control-allow-*`, never a curl flag. |
@@ -72,7 +72,7 @@ Diff the failing request against the control (the Postman request, yesterday's H
 | `curl: (35)`/`(60)` TLS | SNI, CA, mTLS | `--cacert <bundle>` or `--cert client.pem --key client.key`; `-k` only to confirm the diagnosis, never as the fix. |
 | `302` to a login page from an API call | cookie or session auth expected | `-c jar -b jar` round trip; an API that redirects wants a session, not a bearer. |
 
-Keep a two-column log of probes (`<variable>: <status before> -> <status after>`); three probes with no flip means the variable is not in the request: go to the server side with the request ID.
+Keep a two-column log of probes (`<variable>: <status before> -> <status after>`); three probes with no flip means the variable is not in the request: `grep -r '<request-id>' <log dir>` on your own service (or the vendor's status page and changelog for that day) and take the phase 4 branch that matches.
 
 **Done when** one variable flips the status (or the log shows every table row for that status tried) and the log is in the reply.
 

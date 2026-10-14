@@ -67,6 +67,7 @@ When the diagnostic already shows the fix, apply it. Otherwise hand the confirme
 - Any other layer or stack: Call the Skill tool with "debug-from-raw-logs".
 - No failure at all: the response is a 200, the job or build finishes, and the report is only "slow": there is no layer to classify. Call the Skill tool with "performance-profiling".
 - An LLM call that returned 200 with the wrong shape or content: Call the Skill tool with "structured-prompting".
+- The user asked how long the fix will take or whether it fits the sprint: after the hand-off above has named the cause, Call the Skill tool with "estimation-and-scoping" with the verdict as its `Ask:` line.
 - The confirmed layer is inside a vendor service or a third-party package the team cannot change, and the user wants it reported: Call the Skill tool with "bug-report-writing" with the verdict as its *Actual* field.
 - Whichever layer: the service's own logs had no line for the failing request (no request ID, no boundary event), so the diagnostic ran blind. Add that gap to *Next* and, after the hand-off above, Call the Skill tool with "log-instrumentation".
 
