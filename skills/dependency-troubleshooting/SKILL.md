@@ -23,7 +23,7 @@ Run the row for the project and write the four answers down before any install. 
 | Gradle (`build.gradle(.kts)`) | `gradle.lockfile` only with `dependencyLocking` | `./gradlew build --refresh-dependencies` once, then plain | `./gradlew -v` (wrapper); `java -version` vs toolchain |
 | pub (`pubspec.yaml`) | `pubspec.lock` (commit for apps, not packages) | `flutter pub get --enforce-lockfile` | `flutter --version` vs `environment.sdk` |
 
-Rows that differ between the passing and the failing machine, in order of frequency: runtime major, manager major, lockfile not committed (`git ls-files <lockfile>` prints nothing) or ignored, install flag not frozen in CI (`npm install` where `npm ci` belongs), a stale cache. Fix the differing row and re-run before reading any code.
+Rows that differ between the passing and the failing machine, in order of frequency: runtime major, manager major, lockfile not committed (`git ls-files <lockfile>` prints nothing) or ignored, install flag not frozen in CI (`npm install` where `npm ci` belongs), OS or CPU (`node -p process.platform+'-'+process.arch`, `python -c "import sysconfig;print(sysconfig.get_platform())"`: a lockfile written on `darwin-arm64` and installed on `linux-x64`), a stale cache (the failing machine passes after the phase 4 clean install with nothing else changed). Fix the differing row and re-run before reading any code.
 
 **Done when** manager, lockfile path, runtime version on both machines, and the install command that fails are four lines in the reply, and every row that differs between machines is named.
 
@@ -56,6 +56,7 @@ Pick the first matching row. One change, then the frozen install of phase 1 must
 | Lockfile with `<<<<<<<` markers after a merge | never edit by hand: `git checkout --theirs <lockfile>` (or `--ours`), then the manager's plain install regenerates it from the merged manifest; commit |
 | Native module: `was compiled against a different Node.js version using NODE_MODULE_VERSION <n>. This version of Node.js requires NODE_MODULE_VERSION <m>` | `node -v` differs from the install's; `npm rebuild <pkg>` after switching, or pin Node in `engines` and `.nvmrc` |
 | `pip check` conflict with no manifest change | the environment was reused across branches: phase 4's clean install, then the row above that matches |
+| `Error: Cannot find module '@rollup/rollup-linux-x64-gnu'` (also `@esbuild/linux-x64`, `@swc/core-linux-x64-gnu`, `Could not load the "sharp" module using the linux-x64 runtime`) only on the other OS | npm wrote the lockfile without that platform's optional dependency (npm/cli issue 4828): on any machine `npm install --os=linux --cpu=x64` (npm 10.4+) adds the entry, commit the lockfile, `npm ci` on the failing machine; `rm -rf node_modules package-lock.json && npm install` is the fallback for older npm |
 
 Override syntax (Oct 2026):
 
@@ -98,6 +99,7 @@ After it: `git status --short <lockfile>` prints nothing (the install did not re
 | `ImportError: cannot import name '<x>' from '<pkg>'` / `AttributeError: module '<pkg>' has no attribute '<x>'` | an older copy outside the venv shadows the installed one, or a local file named like the package | `python -c "import <pkg>;print(<pkg>.__file__)"` |
 | `Error: Cannot find module '<pkg>'` only in production | the package sits in `devDependencies` and the image ran `npm ci --omit=dev` | `npm explain <pkg>` shows `dev` |
 | Two `Reasons this module exists` entries at different versions | nested copies; a singleton (react, a logger, a DI container) breaks | `npm ls <pkg> --all` |
+| `ERROR: No matching distribution found for <pkg>==<v>` on one machine only | the pinned release ships no wheel or sdist for that machine's Python or platform tags | `pip index versions <pkg>` lists what resolves there; `pip debug --verbose \| grep -c cp3` shows the tags; the phase 1 runtime or OS row differs |
 
 ## Anti-patterns
 
