@@ -7,7 +7,7 @@ description: Reproduce one failing HTTP call with curl and read its status, head
 
 An API bug argued from the client's error message is argued from a paraphrase: the SDK swallowed the body, the browser hid the preflight, the retry layer changed the method. Reproduce the one call outside the application, read everything the server sent, then change one variable per call. A *probe* is one curl invocation that differs from the failing request in exactly one variable.
 
-Entry condition: the user can name the endpoint and the client that calls it. Without that (a `502` from "somewhere", "the app is down"): Call the Skill tool with "error-triage" and return with its layer.
+Entry condition: the user can name the endpoint and the client that calls it. Without that (a `502` from "somewhere"): Call the Skill tool with "error-triage" and return with its layer. "The app is down" for users right now: Call the Skill tool with "incident-response"; one vendor endpoint from its timeline returns here with its request ID.
 
 ## 1. Capture the request as a curl command
 

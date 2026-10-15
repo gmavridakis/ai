@@ -1,0 +1,6 @@
+# kubectl rollout history deployment/checkout-api  (captured 14:07:40 UTC)
+REVISION  CHANGE-CAUSE                                   DEPLOYED (UTC)        BY
+45        checkout-api:2.14.0  cart totals rounding       2026-10-13T09:12:04Z  ci (pr #812, m.kos)
+46        checkout-api:2.14.1  retry on PSP timeout       2026-10-14T11:40:51Z  ci (pr #815, a.rinne)
+47        checkout-api:2.14.2  bump spring-boot 3.5.6     2026-10-14T16:05:22Z  ci (pr #818, m.kos)
+48        checkout-api:2.15.0  pool tuning for prod       2026-10-15T14:01:13Z  ci (pr #821, m.kos)

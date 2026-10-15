@@ -1,0 +1,157 @@
+{
+  "skill_name": "incident-response",
+  "evals": [
+    {
+      "id": 1,
+      "name": "checkout-502-after-deploy",
+      "fixture": "fixtures/checkout-502",
+      "git_init": true,
+      "prompt": "I'm on-call and checkout is failing. Support has had tickets since about 14:06 UTC saying 'payment failed, try again later'; we deployed checkout-api rev 48 (pool tuning, PR #821) at 14:01. I can't run kubectl or psql from this session, so I dumped what we have into this folder: access.log (edge log, last 22 minutes), deploys.log (rollout history), pod-logs-tail.txt, CHANGES/rev48-pr821.diff, k8s/deployment.yaml, config/, and INCIDENT.md with the channel so far. Tell me, in order: what severity this is and the first message to post, the exact commands to run to get customers checking out again and how we know it worked, the updates to post and when, and then, assuming the mitigation holds, the root cause from the evidence here. Finally draft the postmortem at docs/postmortems/2026-10-15-checkout-502.md with what we know. Do not change the service config or the k8s manifest here; the permanent fix goes through a normal PR later.",
+      "expected_output": "SEV1 (checkout is a payment path and the 5xx ratio since 14:05 is about 34%, over the 20% bar) with a first update in the skill's shape; the mitigation is the rollback of rev 48 to revision 47 (`kubectl rollout undo deployment/checkout-api --to-revision=47`) posted as a `Trying:` line with its proof (`rollout status` printing `successfully rolled out`, 5xx ratio under 5% for 10 minutes), before any code or config change; updates on the 30-minute SEV1 cadence with a `Status: resolved` shape; root cause from pod-logs-tail.txt and the PR diff (Hikari `maximum-pool-size` changed from 20 to `${DB_POOL_SIZE:5}` with the variable unset, so 5 connections per pod with 37–41 requests waiting and 30 s timeouts surfacing as 502 at the edge), stated as a config change with its evidence; a postmortem file with Severity, TTD/TTM/TTR, a timeline, a root cause paragraph, contributing factors (no 5xx alert, no runbook), and an action-item table with prevent and detect rows each carrying an owner and a date, naming no person as the cause.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "incident-response"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "access\\.log",
+          "text": "The impact was measured from the access log with a command, not estimated from the tickets"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Read",
+          "pattern": "(deploys\\.log|pod-logs-tail\\.txt|rev48-pr821\\.diff)",
+          "text": "The deploy history or the pod logs were read as evidence"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "\\[SEV1\\]",
+          "text": "Severity 1 is declared in the update shape (payment path, 5xx over 20%)"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Status:\\s*(investigating|mitigating|monitoring|resolved)",
+          "text": "The update carries the Status line of the template"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Next update:",
+          "text": "Each update names the time of the next one"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "kubectl rollout undo deployment/checkout-api(\\s+-n\\s*shop|\\s+--namespace[= ]shop)?\\s+--to-revision[= ]47",
+          "text": "The mitigation is the rollback to revision 47 with the exact command"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "kubectl rollout status deployment/checkout-api",
+          "text": "The proof command for the rollback is given"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)Trying:",
+          "text": "The mitigation is announced with the Trying: line before it runs"
+        },
+        {
+          "type": "order",
+          "first": "\\[SEV1\\]",
+          "then": "rollout undo",
+          "text": "The severity and first update come before the mitigation"
+        },
+        {
+          "type": "order",
+          "first": "rollout undo",
+          "then": "(?i)root cause",
+          "text": "The mitigation is given before the root cause is discussed"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)Status:\\s*resolved",
+          "text": "A resolved update is drafted"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(maximum-pool-size|DB_POOL_SIZE)",
+          "text": "The root cause names the pool-size change from the PR diff"
+        },
+        {
+          "type": "file_exists",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md"
+        },
+        {
+          "type": "file_regex",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md",
+          "pattern": "Severity:\\s*SEV1",
+          "text": "The postmortem carries the severity line"
+        },
+        {
+          "type": "file_regex",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md",
+          "pattern": "TTD\\s*\\d+\\s*min",
+          "text": "Time to detect is computed from the timeline"
+        },
+        {
+          "type": "file_regex",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md",
+          "pattern": "## Timeline",
+          "text": "The postmortem has the timeline section"
+        },
+        {
+          "type": "file_regex",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md",
+          "pattern": "## Root cause",
+          "text": "The postmortem has the root cause section"
+        },
+        {
+          "type": "file_regex",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md",
+          "pattern": "(?m)^\\|[^|\\n]*\\|\\s*(prevent|detect|mitigate faster)\\s*\\|[^|\\n]*\\S[^|\\n]*\\|[^|\\n]*\\d{4}-\\d{2}-\\d{2}[^|\\n]*\\|",
+          "text": "At least one action item row has a type, an owner and a dated due column"
+        },
+        {
+          "type": "file_regex",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md",
+          "pattern": "(?m)^\\|[^|\\n]*\\|\\s*detect\\s*\\|",
+          "text": "A detect item exists (the page came from support, TTD above 10 minutes without an alert)"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "docs/postmortems/2026-10-15-checkout-502.md",
+          "pattern": "(?i)m\\.kos|a\\.rinne",
+          "text": "The postmortem is blameless: the author of PR #821 from deploys.log is not named"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Edit",
+          "pattern": "(config/application-prod\\.yml|k8s/deployment\\.yaml)",
+          "text": "No fix-forward was applied to the service config during the incident"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": [
+            "^docs/postmortems/.*",
+            "^docs/runbooks/.*",
+            "^INCIDENT\\.md$",
+            "^NOTES\\.md$",
+            "^timeline\\.md$"
+          ],
+          "text": "Only the postmortem, a runbook, the channel log or notes were written"
+        },
+        {
+          "type": "max_turns",
+          "max": 30
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: an incident channel or thread is named, one incident commander is named, and the first update is in the skill's shape with `[SEV1]` justified by a measured number from access.log (about 34% 5xx on non-health requests since 14:05, over the 20% SEV1 bar, on the checkout payment path) rather than from the ticket count, within the 5-minute first-update window.",
+        "Phase 2 done: the newest change (rev 48 at 14:01, matching the 14:04:30 start of 502s) is reversed first with `kubectl rollout undo deployment/checkout-api --to-revision=47` announced as one `Trying: <command>; expect: <observable>` line, proven by `kubectl rollout status` printing `successfully rolled out` and the 5xx ratio staying under the SEV2 bar for 10 minutes, with no config edit or fix-forward attempted while the error rate was high.",
+        "Phase 3 done: the updates are on the 30-minute SEV1 cadence with the full shape each time (Status, Impact, Cause, Action, Next update), the external or status-page line carries only the first line and the next-update time without the suspected cause, and a `Status: resolved` update names the mitigation and the recovery time.",
+        "Phase 4 done: a timestamped timeline is built from the evidence (14:01 deploy, 14:04:41 first Hikari timeout, 14:06 tickets, the rollback and recovery), and the root cause is one sentence with evidence from the files: the PR #821 diff changed Hikari `maximum-pool-size` from 20 to `${DB_POOL_SIZE:5}` with the variable not set in k8s/deployment.yaml, so each pod had 5 connections with 37 to 41 requests waiting and 30-second timeouts surfaced as 502 at the edge; the permanent fix is described as its own PR, not applied here.",
+        "Phase 5 done: `docs/postmortems/2026-10-15-checkout-502.md` exists with Severity, Duration, Impact, TTD, TTM and TTR computed from the timeline, the Timeline, Root cause, Contributing factors and Action items headings filled, every action item row with a type (prevent, detect or mitigate faster), an owner and a due date, at least one `detect` item (a 5xx-rate alert, since detection came from support), the runbook named as a documentation-writing follow-up, and no engineer named as the cause."
+      ]
+    }
+  ]
+}

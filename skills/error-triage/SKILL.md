@@ -33,6 +33,7 @@ Rules of thumb:
 - "Works locally, fails in CI/prod" is config or network until proven otherwise; when the difference is an install, a lockfile, or a runtime version: Call the Skill tool with "dependency-troubleshooting".
 - "Works for me, fails for them" is auth or data until proven otherwise.
 - The first error in a log is the cause; later errors are fallout. Triage the first one.
+- Users are failing right now (a page fired, support tickets, an error-rate or latency graph above its line in production): the layer can wait for the mitigation. Call the Skill tool with "incident-response" and return here from its phase 4 with the timeline as the *when it started* line.
 
 **Done when** one layer is named and its diagnostic is written out as a runnable command with the real host, URL, credential placeholder, or record filled in.
 

@@ -1,0 +1,12 @@
+# kubectl logs deployment/checkout-api --since=10m | grep -v healthz | tail -n 12   (captured 14:07:55 UTC)
+2026-10-15T14:04:41.902Z WARN  [http-nio-8080-exec-7] c.z.h.p.HikariPool : HikariPool-1 - Connection is not available, request timed out after 30000ms.
+2026-10-15T14:04:41.903Z ERROR [http-nio-8080-exec-7] o.a.c.c.C.[.[.[.[dispatcherServlet] : Servlet.service() for servlet [dispatcherServlet] threw exception
+java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30000ms.
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:686)
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:179)
+	at shop.checkout.OrderService.place(OrderService.java:71)
+2026-10-15T14:04:52.118Z WARN  [http-nio-8080-exec-3] c.z.h.p.HikariPool : HikariPool-1 - Connection is not available, request timed out after 30000ms.
+2026-10-15T14:05:03.440Z WARN  [http-nio-8080-exec-9] c.z.h.p.HikariPool : HikariPool-1 - Connection is not available, request timed out after 30000ms.
+2026-10-15T14:05:14.007Z WARN  [http-nio-8080-exec-2] c.z.h.p.HikariPool : HikariPool-1 - Connection is not available, request timed out after 30000ms.
+2026-10-15T14:06:30.551Z INFO  [HikariPool-1 housekeeper] c.z.h.p.HikariPool : HikariPool-1 - Pool stats (total=5, active=5, idle=0, waiting=37)
+2026-10-15T14:07:30.560Z INFO  [HikariPool-1 housekeeper] c.z.h.p.HikariPool : HikariPool-1 - Pool stats (total=5, active=5, idle=0, waiting=41)

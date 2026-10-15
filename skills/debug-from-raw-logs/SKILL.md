@@ -10,6 +10,7 @@ A fix proposed before the raw error is seen is a guess; most guesses are wrong a
 Entry conditions, checked before phase 1:
 
 - The layer is unknown (a `502`, `403`, or "works on their machine" report with no layer): Call the Skill tool with "error-triage" and return with its verdict.
+- Users are failing in production now: Call the Skill tool with "incident-response"; its phase 4 returns here with the red command from the incident window once the status is monitoring.
 - Nothing goes red: the code completes with the right output and the only symptom is time or memory ("slow", "takes 4 s", "RSS climbs"). A repro cannot fail on that; Call the Skill tool with "performance-profiling" and return only if its profile names a frame that misbehaves.
 - The red test appeared after a refactor step and the user wants the structure change kept: bisect here to the one step (phase 3), then Call the Skill tool with "safe-refactoring" to redo that step smaller; a fix that first needs an extract or rename also takes those steps there, in their own commits.
 - The failure is a wrong HTTP response from a service the user calls (status, body, or headers) and the request is in hand: Call the Skill tool with "api-debugging" and return with its probe log and request ID.
