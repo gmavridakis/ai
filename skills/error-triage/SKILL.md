@@ -70,6 +70,7 @@ When the diagnostic already shows the fix, apply it. Otherwise hand the confirme
 - An LLM call that returned 200 with the wrong shape or content: Call the Skill tool with "structured-prompting".
 - The user asked how long the fix will take or whether it fits the sprint: after the hand-off above has named the cause, Call the Skill tool with "estimation-and-scoping" with the verdict as its `Ask:` line.
 - The confirmed layer is inside a vendor service or a third-party package the team cannot change, and the user wants it reported: Call the Skill tool with "bug-report-writing" with the verdict as its *Actual* field.
+- Auth layer whose evidence is a credential that should not exist (a key in a commit, a token with every scope, a database role with `rolsuper t`), or the ask is "is this safe" rather than "why does it fail": Call the Skill tool with "security-basics" with the verdict as its first finding row.
 - Whichever layer: the service's own logs had no line for the failing request (no request ID, no boundary event), so the diagnostic ran blind. Add that gap to *Next* and, after the hand-off above, Call the Skill tool with "log-instrumentation".
 
 **Done when** the three-line verdict is in the reply and exactly one of the above has happened: the fix applied, or one skill called.

@@ -1,0 +1,4 @@
+$ git log --oneline --follow -- config/dev.env
+7c1d9ab (HEAD -> main, origin/main) chore: bump jsonwebtoken pin note
+a91c2e0 feat: stripe payouts for partner orders
+3b0e114 chore: add dev env for onboarding

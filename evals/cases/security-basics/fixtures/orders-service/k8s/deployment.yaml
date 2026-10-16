@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-service
+  namespace: shop
+spec:
+  replicas: 3
+  selector:
+    matchLabels: { app: orders-service }
+  template:
+    metadata:
+      labels: { app: orders-service }
+    spec:
+      containers:
+        - name: orders-service
+          image: registry.internal/shop/orders-service:1.4.2
+          ports: [{ containerPort: 3000 }]
+          envFrom:
+            - secretRef: { name: orders-service-env }
+          resources:
+            limits: { memory: 512Mi, cpu: 500m }

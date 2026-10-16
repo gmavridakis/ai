@@ -1,0 +1,169 @@
+{
+  "skill_name": "security-basics",
+  "evals": [
+    {
+      "id": 1,
+      "name": "orders-service-partner-opening",
+      "fixture": "fixtures/orders-service",
+      "git_init": true,
+      "prompt": "Before we open the orders service to partner origins next sprint I want a security pass over this repo (Node 22, Express 4, Postgres, deployed to k8s from the Dockerfile and k8s/deployment.yaml, CI in .github/workflows). gitleaks, trufflehog, semgrep and trivy are not installed here and there is no network, so work from the tree, git and the saved outputs in scans/ (npm-audit.txt is this morning's `npm audit --audit-level=high`, git-log-dev-env.txt is the history of config/dev.env). Fix what can be fixed in the source files directly (queries, validation, Dockerfile, deployment, workflow, CORS, .gitignore, package.json pins) and tell me the exact commands for anything that has to happen outside this repo. Do not rewrite git history or force-push from here, and do not run npm. End with your findings table.",
+      "expected_output": "A report table with a Verified by column whose rows include: the Stripe key in config/dev.env (committed since 3b0e114, rotate in the Stripe dashboard first, then purge with git filter-repo --replace-text in a fresh clone and force-push, add .env* to .gitignore with a names-only .env.example) as critical; the SQL string interpolation in listByStatus replaced by a $1 placeholder with a values array and the child_process.exec shell interpolation in exportCsv replaced by execFile or spawn with an args array or removed, both high; the POST /orders body spread into insert with no schema, fixed with a zod safeParse allow-list; the container running as root (no USER line) and the deployment with no securityContext (runAsNonRoot, allowPrivilegeEscalation false added); the workflow with no permissions block (contents: read added); cors origin true with credentials replaced by an explicit partner origin list; jsonwebtoken 8.5.1 bumped to 9.0.2 per GHSA-8cf7-32gw-wr33 as the one pin change rather than npm audit fix --force; a Rotated line and an Ignored: none line.",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "security-basics"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Read",
+          "pattern": "(config/dev\\.env|scans/npm-audit\\.txt|src/orders/repo\\.js)",
+          "text": "The committed env file, the audit output or the repository code was read as evidence"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)rotat",
+          "text": "The leaked Stripe key is rotated, not only removed"
+        },
+        {
+          "type": "order",
+          "first": "(?i)rotat",
+          "then": "filter-repo",
+          "text": "Rotation is stated before the history purge"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "git filter-repo --replace-text",
+          "text": "The purge uses git filter-repo with a replacements file"
+        },
+        {
+          "type": "tool_not_called",
+          "tool": "Bash",
+          "pattern": "(filter-repo|push\\s+(-f|--force)|npm (audit|install|ci))",
+          "text": "No history rewrite, force-push or npm run happened in the workspace"
+        },
+        {
+          "type": "file_regex",
+          "path": ".gitignore",
+          "pattern": "(?m)^\\.env",
+          "text": ".env files are ignored from now on"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/orders/repo.js",
+          "pattern": "\\$\\{status\\}'",
+          "text": "The SQL query no longer interpolates the status value"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/orders/repo.js",
+          "pattern": "status = \\$1",
+          "text": "listByStatus uses a $1 placeholder with a values array"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/orders/repo.js",
+          "pattern": "exec\\(`",
+          "text": "exportCsv no longer builds a shell command from the status value"
+        },
+        {
+          "type": "file_regex",
+          "path": "src/routes/orders.js",
+          "pattern": "(safeParse|\\.parse\\()",
+          "text": "The POST body is parsed against a schema before insert"
+        },
+        {
+          "type": "file_regex",
+          "path": "Dockerfile",
+          "pattern": "(?m)^USER\\s+\\S+",
+          "text": "The image runs as a named non-root user"
+        },
+        {
+          "type": "file_regex",
+          "path": "k8s/deployment.yaml",
+          "pattern": "runAsNonRoot:\\s*true",
+          "text": "The pod securityContext forbids root"
+        },
+        {
+          "type": "file_regex",
+          "path": "k8s/deployment.yaml",
+          "pattern": "allowPrivilegeEscalation:\\s*false",
+          "text": "The container securityContext forbids privilege escalation"
+        },
+        {
+          "type": "file_regex",
+          "path": ".github/workflows/ci.yml",
+          "pattern": "(?m)^permissions:\\s*\\n\\s+contents:\\s*read",
+          "text": "The workflow token is read-only at the top level"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "src/server.js",
+          "pattern": "origin:\\s*true",
+          "text": "CORS no longer reflects any origin with credentials"
+        },
+        {
+          "type": "file_regex",
+          "path": "package.json",
+          "pattern": "\"jsonwebtoken\":\\s*\"\\^?9\\.0\\.[0-9]+\"",
+          "text": "jsonwebtoken is pinned to the fixed 9.0.x line named by the advisory"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "GHSA-8cf7-32gw-wr33|GHSA-qwph-4952-7xr6|GHSA-hjrf-2m68-5959",
+          "text": "The dependency finding cites the advisory ID from the audit output"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "npm audit fix --force(?![^\\n]*(never|not|avoid|instead))",
+          "where": "final",
+          "text": "npm audit fix --force is not recommended as the fix"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "Verified by",
+          "text": "The findings table carries the Verified by column"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Rotated:",
+          "text": "The report has the Rotated line"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?m)^\\s*Ignored:",
+          "text": "The report has the Ignored line"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": [
+            "^\\.gitignore$",
+            "^\\.env\\.example$",
+            "^config/.*",
+            "^src/.*",
+            "^Dockerfile$",
+            "^k8s/.*",
+            "^\\.github/.*",
+            "^package\\.json$",
+            "^package-lock\\.json$",
+            "^README\\.md$",
+            "^replacements\\.txt$",
+            "^docs/.*",
+            "^SECURITY.*"
+          ],
+          "text": "Only source, config, deploy, workflow, manifest and report files were changed"
+        },
+        {
+          "type": "max_turns",
+          "max": 35
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: the Stripe key in config/dev.env is identified as tracked by git since 3b0e114 (from git ls-files and the saved log), the reply says it must be rotated in the Stripe dashboard before any purge, gives `git filter-repo --replace-text` in a fresh clone followed by a force-push of all branches and tags and a re-clone notice as the commands to run outside this workspace, moves the key to an environment variable, ignores `.env*` in .gitignore, and writes a `.env.example` holding variable names only; the report carries a `rotated stripe <date>` line or an explicit instruction to add it after rotation.",
+        "Phase 2 done: the two sinks in src/orders/repo.js are each a finding with a fix applied (listByStatus uses a `$1` placeholder with a values array; exportCsv no longer passes the status value through a shell string, using execFile or spawn with an args array, a parameterized query, or removal), the mass assignment of `...req.body` in POST /orders is replaced by a zod schema parsed before insert with an explicit field list, and the export route's `/tmp/${status}.csv` path from a query value is named as a path exposure; semgrep and bandit are named as the pass to run once the tools are available rather than skipped silently.",
+        "Phase 3 done: every surface in the skill's least-privilege table has a verdict: the Dockerfile gains a `USER` line after `npm ci`, k8s/deployment.yaml gains `runAsNonRoot: true` and `allowPrivilegeEscalation: false`, the workflow gains a top-level `permissions:` block with `contents: read`, the CORS `origin: true` with credentials is replaced by an explicit partner origin list, the Postgres role check (`pg_roles` flags and `role_table_grants`) is given as a command to run against the real database, and IAM is marked not checked because the repo has no infra directory.",
+        "Phase 4 done: the saved audit output is read as the audit at the high threshold, `jsonwebtoken` is bumped to 9.0.2 in package.json as the one pin change with the advisory ID cited, `npm audit fix --force` is rejected or not used because it is a major bump, the rerun command `npm audit --audit-level=high` with its `found 0 vulnerabilities` pass line and `trivy fs --scanners vuln,secret,misconfig --severity HIGH,CRITICAL --exit-code 1 .` are given as the proof to run, and no ignore entry is created since every finding has a fixed version.",
+        "Report done: the reply ends with the skill's report table (columns #, Exposure, Where, Severity, Fix, Verified by) with the Stripe key as critical, the SQL and shell sinks and the root container as high, the remaining rows at medium or low, followed by `Rotated:`, `Ignored: none` and a `Not checked:` line naming the surfaces that need the database or the scanners."
+      ]
+    }
+  ]
+}
