@@ -90,7 +90,7 @@ File it: `gh issue create --repo <owner>/<repo> --title "<title>" --body-file re
 | Narrative report | steps are a paragraph; the failing step is not the last line | rewrite as numbered literal commands |
 | Fix disguised as report | body proposes a patch and no repro; title names the cause ("mutex not released") not the symptom | move the theory to *Notes*, phrase as a tested result; title = symptom |
 | Kitchen-sink repro | repro needs the user's monorepo, `.env`, or DB dump | §3 until ≤ 1 file / ≤ 30 lines |
-| Leaked secret | `grep -inE 'bearer\|token\|secret\|passw'` on the body returns a hit | redact with the §2 `sed`; if already posted, rotate the secret first, then edit |
+| Leaked secret | `grep -inE 'bearer\|token\|secret\|passw'` on the body returns a hit | redact with the §2 `sed`; if already posted, rotate the secret first, then edit; the same value in the repo or its history: Call the Skill tool with "security-basics" for the purge and the ignore rule |
 | Duplicate | `gh issue list --search` shows the same first error line | comment on the existing issue instead |
 
 ## Example
