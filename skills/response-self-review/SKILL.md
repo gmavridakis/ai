@@ -35,6 +35,7 @@ Classify each claim in the draft as verified (you ran, read, or searched it this
 | a flag, path, signature, or version | `--help`, the file, or `pkg --version` shown in this session | memory |
 | "I changed X" / "updated three tests" | `git diff --stat` and `git status --short` name exactly those files | your intent |
 | a quoted line or error | the line as it appears in the tool output | a paraphrase |
+| "the function returns X" / "this config disables Y" / "the handler never checks Z" | the lines that say so, read this session (a `Read` of that range or a `grep -n` hit quoted with its line number) | the name of the function or key; what a similar codebase did |
 | a number read from a tool result that was cut off (`...`, `[truncated]`, `+N lines`, a `head`/`tail` window) | `wc -l`, `grep -c`, or `jq length` on the file itself | the visible part of the capped output |
 | "pushed" / "CI is green" / "deployed" | `git status -sb` showing `ahead 0`, the pipeline URL or run id in tool output | the push command having returned |
 | "behaviour unchanged" / "pure refactor" / "no functional change" | the same test command run before and after the edit this session, with equal pass and skip counts quoted (safe-refactoring phase 1 records them; none recorded: Call the Skill tool with "safe-refactoring" and run its oracle on `git stash` then `git stash pop`) | the diff looked mechanical; `--color-moved` showed only dim lines |
@@ -47,11 +48,11 @@ Then read the draft once end-to-end for internal contradictions: a summary sente
 
 - Map every explicit ask (verbs, deliverables, formats, counts, constraints such as "under 150 lines", "as a table", "don't touch X") to the line in the draft that answers it. An unmapped ask is a gap: answer it, or state in one line that it was skipped and why.
 - Multi-part requests: count the parts ("and", numbered items, "for each") and count the answers; the numbers must match.
-- Length and format constraints are checked with a command, not by eye: `wc -l file`, `head -c 300 file` for the required opening, `python -c "import json;json.load(open('x.json'))"` for a JSON deliverable.
+- Length and format constraints are checked with a command, not by eye: `wc -l file`, `head -c 300 file` for the required opening, `python -c "import json;json.load(open('x.json'))"` for a JSON deliverable. A constraint on the reply itself ("under 200 words", "no bullet points", "one paragraph") has no file to measure: write the draft to a scratch path outside the repo, then `wc -w /tmp/draft.md` or `grep -c '^[-*] ' /tmp/draft.md`, and quote the number in the review, not in the reply.
 - Actions (commit, push, save, send): the success line comes from tool output this turn (`git log -1 --oneline`, an HTTP 2xx, the returned id), not from having issued the command.
 - Unrequested changes: `git status --short` and `git diff --stat` list only the files the request covers. A formatter, an IDE import sort, or a renamed symbol elsewhere is the usual tell (`git diff --stat` showing 40+ changed lines in a file you did not mean to edit). Revert them (`git checkout -- <file>`) or name them explicitly.
 
-**Done when** every explicit ask maps to a line in the draft or to a one-line "skipped because", part counts match, every constraint was checked by a command, and `git status --short` lists only requested files.
+**Done when** every explicit ask maps to a line in the draft or to a one-line "skipped because", part counts match, every length or format constraint has a measured number beside it from a command run this turn, and `git status --short` lists only requested files.
 
 ## Examples
 
