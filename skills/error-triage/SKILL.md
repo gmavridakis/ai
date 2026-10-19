@@ -60,6 +60,7 @@ When the diagnostic already shows the fix, apply it. Otherwise hand the confirme
 - Code or data layer in a Spring project (`pom.xml` or `build.gradle` names `org.springframework.boot`): Call the Skill tool with "java-spring-stack".
 - Code or data layer with a `package.json` whose code runs in Node: Call the Skill tool with "nodejs".
 - Code or data layer with `manage.py`: Call the Skill tool with "python-django".
+- Data layer where the isolated record fails alone and no rule names why (a `ValidationError` on a value the contract never covered, an empty or `null` field, an accent or emoji that stores differently from how it was typed): Call the Skill tool with "data-validation" with the record as its first matrix case; the stack skill then owns the idiom of the schema.
 - Code layer with `angular.json`: Call the Skill tool with "angular".
 - Code layer with a `pubspec.yaml` that lists a `flutter` sdk dependency: Call the Skill tool with "flutter-dart".
 - Code layer with a `package.json` that lists `react-dom` or `next` (hooks, components, hydration, Server Components): Call the Skill tool with "react".

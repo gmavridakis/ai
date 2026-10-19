@@ -1,0 +1,147 @@
+{
+  "skill_name": "data-validation",
+  "evals": [
+    {
+      "id": 1,
+      "name": "customer-csv-import-edge-cases",
+      "fixture": "fixtures/customer-import",
+      "git_init": true,
+      "prompt": "Our customer CSV importer (importer/validate.py, sample file in samples/customers.csv, README has the column types) keeps letting bad rows through and crashing on others: accented names show up twice in search, an emoji name broke the profile page, a file with 2023-02-29 was imported, and it stops at the first bad row. Write down the rules each column must satisfy (absent vs null vs empty, length and in what unit, format, unknown columns), fix validate.py to enforce them with normalization, make the import report every bad row at once with the row, the column and a code, and add tests for the edge cases including a property-based one. hypothesis, pandas and pytest are not installed and there is no network: keep the deterministic tests runnable with python -m unittest discover -s tests -t . and skip the property test when hypothesis cannot be imported. Do not change the database schema.",
+      "expected_output": "A contract table for name, email, birth_date and credit_limit (absent, null and empty each given a verdict; name limited to 80 graphemes or bytes with the unit named; birth_date ISO date rejected when not a real calendar day; credit_limit integer in a range with absent meaning 0 and 1e309 rejected; unknown column notes rejected or stripped by rule), validate.py normalizing NFC and trimming before the checks, rejecting zero-width and control characters, collecting every error instead of returning on the first, tests named per matrix cell (NFD, ZWJ emoji, whitespace name, leap day, float overflow, empty credit, zero-width space) plus a hypothesis round-trip or idempotence property skipped when hypothesis is absent, and a final reply that shows the rejection shape with path and code and the full-file result (3 or more error entries).",
+      "checks": [
+        {
+          "type": "skill_fired",
+          "skill": "data-validation"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Read",
+          "pattern": "(importer/validate\\.py|samples/customers\\.csv)",
+          "text": "The validator or the sample file was read before changes"
+        },
+        {
+          "type": "file_regex",
+          "path": "importer/validate.py",
+          "pattern": "unicodedata\\.normalize\\(\\s*[\"']NFC[\"']",
+          "text": "Names are normalized to NFC before validation"
+        },
+        {
+          "type": "file_regex",
+          "path": "importer/validate.py",
+          "pattern": "\\.strip\\(\\)",
+          "text": "Whitespace is trimmed before the required check"
+        },
+        {
+          "type": "file_regex",
+          "path": "importer/validate.py",
+          "pattern": "(\\\\u200b|\\\\x00|\\\\x1f|\\\\u202e|unicodedata\\.category)",
+          "text": "Zero-width or control characters are rejected by rule"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "importer/validate.py",
+          "pattern": "(?m)^\\s*if not row\\.get\\(\"name\"\\):",
+          "text": "The truthiness required check is replaced by explicit absent, null and empty branches"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "importer/validate.py",
+          "pattern": "except Exception:\\s*\\n\\s*birth = None",
+          "text": "An unparseable birth date is no longer swallowed as None"
+        },
+        {
+          "type": "file_not_regex",
+          "path": "importer/validate.py",
+          "pattern": "(?m)^\\s+return 1\\s*$",
+          "text": "validate_file no longer stops at the first bad row"
+        },
+        {
+          "type": "file_regex",
+          "path": "tests/test_validate.py",
+          "pattern": "(?i)def test_\\w*(nfd|combining|normaliz)\\w*",
+          "text": "A test is named for the NFD versus NFC cell"
+        },
+        {
+          "type": "file_regex",
+          "path": "tests/test_validate.py",
+          "pattern": "(?i)def test_\\w*(leap|02_29|feb)\\w*",
+          "text": "A test is named for the invalid leap day cell"
+        },
+        {
+          "type": "file_regex",
+          "path": "tests/test_validate.py",
+          "pattern": "(?i)def test_\\w*(emoji|grapheme|zwj)\\w*",
+          "text": "A test is named for the ZWJ emoji cell"
+        },
+        {
+          "type": "file_regex",
+          "path": "tests/",
+          "pattern": "(importorskip\\(\\s*[\"']hypothesis[\"']|skipIf\\(|skipUnless\\(|except ImportError)",
+          "text": "The property test is skipped when hypothesis is absent"
+        },
+        {
+          "type": "file_regex",
+          "path": "tests/",
+          "pattern": "@given\\(",
+          "text": "A hypothesis property test exists"
+        },
+        {
+          "type": "tool_called",
+          "tool": "Bash",
+          "pattern": "(unittest|pytest)",
+          "text": "The deterministic tests were run"
+        },
+        {
+          "type": "transcript_regex",
+          "pattern": "(?m)(^Ran \\d+ tests?\\b[\\s\\S]{0,200}^OK|^\\s*\\d+ passed)",
+          "text": "The test run reported every test passing"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)\\|\\s*(absent|null|empty)\\s*\\|",
+          "text": "The reply carries the contract table with absent, null and empty columns"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)(grapheme|byte)s?\\b",
+          "text": "The length limit names its unit"
+        },
+        {
+          "type": "final_regex",
+          "pattern": "(?i)\\b(path|column)\\b.*\\bcode\\b|\\bcode\\b.*\\b(path|column)\\b",
+          "text": "The rejection shape names a path and a code"
+        },
+        {
+          "type": "must_not_regex",
+          "pattern": "(?i)\\bsimply\\b|\\bjust (add|use)\\b",
+          "where": "final",
+          "text": "No hand-waving in the reply"
+        },
+        {
+          "type": "files_changed_only",
+          "patterns": [
+            "^importer/.*",
+            "^tests/.*",
+            "^README\\.md$",
+            "^docs/.*",
+            "^CONTRACT\\.md$",
+            "^samples/.*",
+            "^pyproject\\.toml$",
+            "^requirements.*"
+          ],
+          "text": "Only the importer, tests, docs and samples were changed"
+        },
+        {
+          "type": "max_turns",
+          "max": 35
+        }
+      ],
+      "expectations": [
+        "Phase 1 done: every column in the CSV (name, email, birth_date, credit_limit) has a contract row with a verdict for absent, null and empty, a range or length with its unit named (graphemes or bytes for name, with VARCHAR(80) counting characters in Postgres), a format (ISO date, email), and the unknown column `notes` has a stated rule (rejected or stripped); the rewritten validator enforces each row with coercion off (a `1e309` or `1.5` credit limit is rejected, not truncated).",
+        "Phase 2 done: the edge-case matrix is applied to the file's columns and each cell is a named test: NFD versus NFC name, the ZWJ emoji counted as graphemes, the whitespace-only name rejected as empty, `2023-02-29` rejected as not a calendar day, `1e309` rejected, empty credit_limit mapped to the contract's verdict, the zero-width space rejected, and the tests pass with `python -m unittest discover -s tests -t .`.",
+        "Phase 3 done: a property-based test (hypothesis `@given(st.text(...))`) states round-trip or idempotent normalization for the name column, is skipped cleanly when hypothesis cannot be imported (importorskip, skipIf or an ImportError guard) because hypothesis is absent here, and the reply names it as the proof to run once hypothesis is installed with a counterexample pinned as a named case if one was known.",
+        "Phase 4 done: validate.py normalizes in order (NFC, trim, reject control and zero-width characters) before the checks, `validate_file` collects every error instead of returning on the first, and the reply shows the rejection shape with a path (row and column), a code and a message, plus the sample file's result with one entry per bad row (at least three)."
+      ]
+    }
+  ]
+}

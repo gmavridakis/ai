@@ -30,7 +30,7 @@ Ordered checklist. The daily maintenance routine takes the first unchecked item 
 - [x] estimation-and-scoping: break work down, identify unknowns, give ranges (2026-10-14)
 - [x] incident-response: triage, communicate, mitigate, root-cause, postmortem (2026-10-15)
 - [x] security-basics: secrets handling, input validation, least privilege, dependency audit (2026-10-16)
-- [ ] data-validation: schema checks, edge cases, null/empty/unicode handling
+- [x] data-validation: schema checks, edge cases, null/empty/unicode handling (2026-10-19)
 
 ## Migration from mattpocock/skills (phase 2, by hand)
 

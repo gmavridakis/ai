@@ -26,7 +26,7 @@ Rotate before you purge: a secret that was ever pushed is burned even after the 
 
 ## 2. Input validation and injection at the boundary
 
-Every handler parses its input against a schema before the first use; a front-end check is a convenience, never the control. Pin the stack's validator, then grep for the sinks:
+Every handler parses its input against a schema before the first use; a front-end check is a convenience, never the control. This phase proves a validator exists at each boundary; what its rules say per field (ranges, length units, null versus empty, unicode) and the edge-case tests for them: Call the Skill tool with "data-validation" once the finding rows are written. Pin the stack's validator, then grep for the sinks:
 
 | Stack | Validator at the boundary | Silent-failure tell |
 | --- | --- | --- |
