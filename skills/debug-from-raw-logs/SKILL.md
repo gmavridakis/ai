@@ -22,9 +22,9 @@ Entry conditions, checked before phase 1:
 - Ask for, or fetch yourself, the **unedited** output: the full stack trace, at least 20 log lines before the error, the exit code, and the exact command that produced it. Paraphrases ("it throws a null error") are not evidence.
 - Turn verbosity up before re-running: `--verbose`, `--debug`, `DEBUG=*`, `LOG_LEVEL=debug`, `set -x` for shell, `pytest -vv --tb=long`, `npm run ... --loglevel verbose`. Capture stderr as well as stdout (`2>&1 | tee run.log`).
 - Record the environment alongside the log: OS, runtime version, package versions, branch/commit, config flags, local or CI. Many bugs are "works on my machine" bugs.
-- A huge log is searched, not skimmed: `grep -n -m1 -E 'ERROR|Traceback|Exception|panic|FATAL' run.log` finds the first error; `sed -n '<line-20>,<line+40>p' run.log` gives its context. The first error is usually the cause and later ones are fallout.
+- A huge log is searched, not skimmed: `grep -n -m1 -E 'ERROR|Traceback|Exception|panic|FATAL' run.log` finds the first error; `sed -n '<line-20>,<line+40>p' run.log` gives its context. The first error is usually the cause and later ones are fallout. A run whose output exceeds 200 lines, or a whole suite instead of one test: Call the Skill tool with "context-hygiene" for the redirect-to-file and range commands; the first-error range from that file, not the whole file, is what this phase pastes.
 
-**Done when** the unedited trace, its 20 lines of context, the exit code, the exact command, and the environment are in front of you, pasted rather than described.
+**Done when** the unedited trace, its 20 lines of context, the exit code, the exact command, and the environment are in front of you, pasted rather than described (for output over 200 lines: the first-error range plus the file path, never the whole file).
 
 ## 2. Read the stack trace properly
 

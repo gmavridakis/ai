@@ -12,7 +12,7 @@ The reply, not the window, is what is too long: Call the Skill tool with "token-
 ## 1. Measure before you start (and every ~20 turns)
 
 - Run `/context`; write down the total against the auto-compact window and the share taken by tools and MCP.
-- Defaults: 1M-window models compact at ~967K tokens; 200K models at the 200K boundary. `/autocompact 500k` (or `CLAUDE_CODE_AUTO_COMPACT_WINDOW=500000`, which overrides everything) lowers it; `/autocompact auto` restores the tuned value.
+- Defaults (Oct 2026): 1M-window models compact at ~967K tokens; 200K models at the 200K boundary. `/autocompact 500k` (100k to 1M, saved per model; `--autocompact 500k` for one launch; `CLAUDE_CODE_AUTO_COMPACT_WINDOW=500000` overrides all three) lowers it; `/autocompact auto` restores the tuned value.
 - Phase budgets, as a share of the auto-compact window. Exceeding a budget means switch to grep, ranges, or subagents, not "read faster":
 
 | Phase | Budget | Typical overspend |
@@ -43,11 +43,12 @@ Check size first: `wc -l <file>` (or `ls -la` for a directory). Then:
 ## 3. Cap every tool result at the source
 
 - Tests: `pytest -q 2>&1 | tail -40` or `pytest -q --tb=short -x`; `npm test 2>&1 | grep -E 'FAIL|✕|Error' -A5 | head -60`; `go test ./... 2>&1 | grep -v '^ok' | head -60`.
-- Logs and builds: `cmd > /tmp/out.log 2>&1; grep -n -m 20 -E 'ERROR|FATAL|Traceback|panic' /tmp/out.log` then `tail -30 /tmp/out.log`. Keep the path; read ranges on demand. A log that cannot be narrowed by request ID or parsed with `jq` (text lines, no ID field) is an instrumentation gap: Call the Skill tool with "log-instrumentation" after the current task.
+- Logs and builds: `cmd > /tmp/out.log 2>&1; grep -n -m 20 -E 'ERROR|FATAL|Traceback|panic' /tmp/out.log` then `tail -30 /tmp/out.log`. Keep the path; read ranges on demand. The cap is on the window, not on the evidence: the file keeps the unedited run, and the first-error range (`sed -n '<line-20>,<line+40>p'`) is what a diagnosis pastes. When that range shows a crash or a failing test in a known layer and the cause is not in the tell itself: Call the Skill tool with "debug-from-raw-logs" with the file path and the range. A log that cannot be narrowed by request ID or parsed with `jq` (text lines, no ID field) is an instrumentation gap: Call the Skill tool with "log-instrumentation" after the current task.
 - PowerShell (Windows outside Git Bash, where `head`/`tail`/`grep` do not exist): `cmd *> out.log; Select-String -Path out.log -Pattern 'ERROR|FATAL|Exception' | Select-Object -First 20`; `Get-Content out.log -Tail 30`; `Get-Content x.csv -TotalCount 20`; `(Get-ChildItem -Recurse -Filter *.py).Count`.
 - Data files: `head -20 x.csv; wc -l x.csv`, `jq -c '.[0]' x.json`, `sqlite3 db 'SELECT ... LIMIT 5'`.
 - Directory listings: `find . -name '*.py' | wc -l` before `find . -name '*.py'`.
 - Diffs and history: `git diff --stat` first, then `git diff -- <file>` for one file at a time; `git log --oneline -n 20`, `git show --stat <sha>`. A bare `git diff` or `git log` on a change over 5 files is the most common flood after test output.
+- Results with no pipe (built-in and MCP tools): use the tool's own bound before calling. `Read` with `offset`/`limit` (never a bare `Read` on a file over 200 lines), `Grep` with `head_limit` and `-C` instead of `-A 50`, a browser page with `find` or `get_page_text` on one section instead of a full `read_page`, a connector list with its `limit`/`page_size` argument at 20. A tool with no bound (a page dump, a list endpoint with no paging) is called from a subagent, never from the main context.
 - Anything that would return > 100 lines: run it in a subagent (`Agent` tool) with "return only failures, ≤ 30 lines" in the brief. The verbose output stays in the subagent's window.
 - Hard cap: no single tool result over 200 lines in the main context. If one lands, summarize it in ≤ 5 lines and move on; the reply never quotes it.
 
@@ -73,6 +74,7 @@ Then compact with focus: `/compact focus on NOTES.md, the failing test, and the 
 | --- | --- | --- |
 | Context rot | you ask the user something already answered, or re-read a file read < 20 turns ago | before any `Read`, check `NOTES.md` item 3 (files touched and read); a file listed there with no edit since is answered from the snapshot, not re-opened |
 | Log flood | one tool result scrolls > 200 lines; the next reply quotes it | redirect to file, `grep -m`, `tail -40` |
+| Unbounded tool call | a `Read`, `read_page`, or connector list lands at > 200 lines with no `limit`, `head_limit`, or `find` in the call | re-issue the call with its bound (phase 3); if the tool has none, move the call to a subagent |
 | Compaction amnesia | first action after compaction is re-reading 3+ files | snapshot was missing or incomplete; write it now, compact again with focus |
 | Orientation spiral | > 10% of the window spent and no file has been edited | stop reading; state the plan from what is known; ask one question if needed |
 | MCP bloat | `/context` shows tools/MCP > 15% of the window | `/mcp` to disable unused servers; prefer CLIs (`gh`, `aws`) |
