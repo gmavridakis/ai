@@ -1,0 +1,36 @@
+name: Daily News Email
+
+on:
+  push:
+    paths:
+      - 'daily-news/latest.md'
+      - 'daily-news/subject.txt'
+  workflow_dispatch:
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read subject
+        id: meta
+        run: |
+          if [ -f daily-news/subject.txt ]; then
+            echo "subject=$(cat daily-news/subject.txt)" >> "$GITHUB_OUTPUT"
+          else
+            echo "subject=Daily Brief" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: ${{ steps.meta.outputs.subject }}
+          to: greg.mavridakhs@gmail.com
+          from: Daily Brief <${{ secrets.GMAIL_USER }}>
+          body: file://daily-news/latest.md
+          convert_markdown: true
