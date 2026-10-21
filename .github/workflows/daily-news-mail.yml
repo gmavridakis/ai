@@ -13,6 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install renderer dependencies
+        run: pip install --quiet markdown beautifulsoup4
+
+      - name: Render styled HTML email
+        run: python3 scripts/render_daily_brief.py daily-news/latest.md daily-news/latest.html
+
       - name: Read subject
         id: meta
         run: |
@@ -33,4 +44,4 @@ jobs:
           to: greg.mavridakhs@gmail.com
           from: Daily Brief <${{ secrets.GMAIL_USER }}>
           body: file://daily-news/latest.md
-          convert_markdown: true
+          html_body: file://daily-news/latest.html
