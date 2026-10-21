@@ -84,7 +84,7 @@ Blameless: name actions and systems, not people ("the deploy at 14:02 removed th
  | <fix or guard> | prevent · detect · mitigate faster | <name> | <date> | <id> |
  ```
 
-Each action item has one owner and a date; "be more careful" is not an item. At least one `detect` item exists when TTD exceeds 10 minutes; a missing log line or request ID is that item: Call the Skill tool with "log-instrumentation". A runbook update or a new runbook for the alert: Call the Skill tool with "documentation-writing" with the `Reader:` line `on-call engineer, arrives with "<alert>", leaves able to <the phase 2 action>`.
+Each action item has one owner and a date; "be more careful" is not an item. An item that will take more than a day gets its date from a range, not from the meeting: Call the Skill tool with "estimation-and-scoping" and put its low and high in the row. At least one `detect` item exists when TTD exceeds 10 minutes; a missing log line or request ID is that item: Call the Skill tool with "log-instrumentation". A runbook update or a new runbook for the alert: Call the Skill tool with "documentation-writing" with the `Reader:` line `on-call engineer, arrives with "<alert>", leaves able to <the phase 2 action>`.
 
 **Done when** the file exists at that path with every heading filled, TTD, TTM and TTR computed from the timeline, and every action item row has an owner, a date and a ticket.
 
