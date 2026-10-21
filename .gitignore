@@ -6,3 +6,7 @@ evals/results/**/stderr.txt
 evals/results/_*/
 __pycache__/
 *.pyc
+
+# personal-reading: τοπικό εργαλείο ανάγνωσης, προσωπική χρήση -- το script
+# tracked, αλλά όχι το output του (μπορεί να περιέχει scraped περιεχόμενο)
+personal-reading/fetched/
