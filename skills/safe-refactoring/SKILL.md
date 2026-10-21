@@ -21,6 +21,8 @@ Write three lines before editing: the refactoring by catalog name (table below),
 | Flutter | `flutter test --reporter=compact` (`+<n>: All tests passed!`) | `flutter test --coverage && lcov --list coverage/lcov.info` |
 | Angular | `ng test --watch=false --browsers=ChromeHeadless` (`TOTAL: <n> SUCCESS`) | `ng test --watch=false --code-coverage` |
 
+Run the oracle twice before the first edit. A pass count that differs between the runs, or a test red in one run only, is a flaky test: it cannot prove a step, so skip it with a reason (`@pytest.mark.skip(reason="flaky: <issue>")`, `it.skip(...)`, `@Disabled("flaky: <issue>")`, `skip: 'flaky: <issue>'` in `test(...)`) in its own commit before step 1 and take the counts from the next two runs. Diagnosing the flake is not a step: a skipped test that reaches a touched line goes first, Call the Skill tool with "debug-from-raw-logs" with the test name; one that does not goes there after phase 4.
+
 A touched function with no test that reaches it gets a **characterization test** first: call it with 5 to 20 recorded inputs, write the outputs to `<test dir>/golden/<fn>.json` once, assert equality from then on. Commit that test alone before step 1. Shape of the test (Python; the same three lines in any stack):
 
 ```python
@@ -29,15 +31,15 @@ CASES = json.load(open(GOLDEN))            # [{"in": {...}, "out": ...}, ...] re
 def test_<fn>_golden(case): assert <fn>(**case["in"]) == case["out"]
 ```
 
-**Done when** the three lines are in the reply, the oracle exits 0 with its pass count and skip count written down, and every function the refactoring touches is reached by at least one test (coverage row at 100% on touched lines, or the golden test committed).
+**Done when** the three lines are in the reply, the oracle exits 0 with the same pass count and skip count on two consecutive runs, both written down, and every function the refactoring touches is reached by at least one test (coverage row at 100% on touched lines, or the golden test committed).
 
 ## 2. Step: apply one refactoring, mechanically where a tool exists
 
-One step is one catalog row, at most 200 changed lines (`git diff --stat | tail -1`), and never two rows at once (a rename inside an extract is two steps). Prefer the tool that rewrites the AST over hand edits: it cannot drop a call site.
+One step is one catalog row, at most 200 changed lines (`git diff --numstat | awk '{s+=$1+$2} END {print s+0}'`: insertions plus deletions), and never two rows at once (a rename inside an extract is two steps). Prefer the tool that rewrites the AST over hand edits: it cannot drop a call site.
 
 | Refactoring | Tool (Oct 2026) | Check right after |
 | --- | --- | --- |
-| Rename symbol | IDE/LSP rename; TS without an LSP: `ast-grep run -p '$X.<old>($$$A)' -r '$X.<new>($$$A)' -l ts -U`; Python: `python -m libcst.tool codemod rename.RenameCommand --old_name <pkg>.<old> --new_name <pkg>.<new> <src>`; Java: `./mvnw -U org.openrewrite.maven:rewrite-maven-plugin:dryRun -Drewrite.activeRecipes=org.openrewrite.java.ChangeMethodName -Drewrite.recipeArtifactCoordinates=...` then `:run` | `git grep -n '\b<old>\b'` prints nothing (strings and docs included) |
+| Rename symbol | IDE/LSP rename; TS without an LSP: `ast-grep run -p '$X.<old>($$$A)' -r '$X.<new>($$$A)' -l ts -U`; Python: `python -m libcst.tool codemod rename.RenameCommand --old_name <pkg>.<old> --new_name <pkg>.<new> <src>`; Java: a `rewrite.yml` at the repo root (shape below), `./mvnw -U org.openrewrite.maven:rewrite-maven-plugin:dryRun -Drewrite.activeRecipes=<org>.Rename<Fn>` (reads the patch at `target/rewrite/rewrite.patch`), then the same goal as `:run` | `git grep -n '\b<old>\b'` prints nothing (strings and docs included) |
 | Extract function / class | hand edit from the IDE's Extract; keep parameter order equal to the first call site | `git diff --color-moved=dimmed-zebra`: the body is dim (moved), only the call and signature are bright |
 | Inline | the reverse; delete the definition in the same step | `git grep -n '<fn>'` prints nothing |
 | Move file / module | `git mv <old> <new>`, then the rename tool on imports | `git diff -M50% --stat` shows `<old> => <new>` with a similarity over 50% |
@@ -46,9 +48,21 @@ One step is one catalog row, at most 200 changed lines (`git diff --stat | tail 
 | Modernise syntax | `ruff check --select UP --fix --diff <src>` (`--diff` prints, drop it to write), `dart fix --dry-run` then `dart fix --apply`, OpenRewrite `org.openrewrite.java.migrate.UpgradeToJava21`, `npx jscodeshift -t <transform>.ts --parser tsx --dry --print <src>` then without `--dry` | compile gate below, then the oracle |
 | Migrate call sites of a public API | **parallel change**: step A add the new API beside the old; step B move callers one package per step; step C delete the old. Never A and C together when `git grep -c '<old>'` exceeds 20 or another repo calls it | step C only when `git grep -n '<old>'` prints nothing |
 
+`rewrite.yml` for the Java rename row (`ChangeMethodName` ships in the plugin; `methodPattern` is `<fqcn> <method>(..)`, so no artifact coordinates):
+
+```yaml
+type: specs.openrewrite.org/v1beta/recipe
+name: <org>.Rename<Fn>
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: <pkg>.<Class> <old>(..)
+      newMethodName: <new>
+      matchOverrides: true
+```
+
 Compile gate before the oracle: `npx tsc --noEmit -p .`; `mypy <pkg>` or `pyright`; `./mvnw -q compile`; `dart analyze`; `ng build --configuration=development`.
 
-**Done when** the diff holds one catalog row, `git diff --stat` ends under 200 changed lines, the compile gate exits 0, the oracle exits 0 with the same pass and skip counts as phase 1, and `git diff --stat -- '*test*' '*spec*'` lists nothing but the golden test.
+**Done when** the diff holds one catalog row, the `--numstat` sum is at most 200, the compile gate exits 0, the oracle exits 0 with the same pass and skip counts as phase 1, and `git diff --stat -- '*test*' '*spec*'` lists nothing but the golden test.
 
 ## 3. Read the diff for behaviour, not for style
 
@@ -100,7 +114,7 @@ Then the next step starts from phase 2. The reply's proof line ("behaviour uncha
 
 **Ask:** "Break up `invoices/views.py` (640 lines); the `export_csv` view does validation, totals and the CSV in one function. Keep the output byte-identical, the finance team diffs these files."
 
-1. Fence: refactoring = extract function (three: `validate_filters`, `compute_totals`, `write_rows`), files = 1 plus tests; oracle `pytest -q -p no:cacheprovider tests/invoices` prints `57 passed, 2 skipped`. `diff-cover` on touched lines: 61%, the totals branch for credit notes is unreached. Golden test: 12 recorded filter sets written to `tests/invoices/golden/export_csv.json` from the current view, `test_export_csv_golden` added and committed alone: `58 passed, 2 skipped`.
-2. Step 1: extract `compute_totals` (IDE Extract, parameters in call-site order). `git diff --stat` ends `2 files changed, 41 insertions(+), 33 deletions(-)`. `mypy invoices` exits 0; oracle `58 passed, 2 skipped`.
+1. Fence: refactoring = extract function (three: `validate_filters`, `compute_totals`, `write_rows`), files = 1 plus tests; oracle `pytest -q -p no:cacheprovider tests/invoices` prints `57 passed, 2 skipped` on both runs. `diff-cover` on touched lines: 61%, the totals branch for credit notes is unreached. Golden test: 12 recorded filter sets written to `tests/invoices/golden/export_csv.json` from the current view, `test_export_csv_golden` added and committed alone: `58 passed, 2 skipped`.
+2. Step 1: extract `compute_totals` (IDE Extract, parameters in call-site order). `git diff --numstat` sums to 74 (41 insertions, 33 deletions). `mypy invoices` exits 0; oracle `58 passed, 2 skipped`.
 3. Read: `--color-moved=dimmed-zebra` shows the body dim, two bright lines: the signature and the call. One more bright line: `round(total, 2)` became `round(total)`; leak row "default argument changed". Restored. `git diff -w --stat` and `git diff --stat` both list the same 2 files.
 4. Commit `refactor(invoices): extract compute_totals from export_csv` with `Behaviour unchanged: pytest -q tests/invoices 58 passed, 2 skipped before and after.` Steps 2 and 3 repeat phases 2 to 4; `git rebase -x 'pytest -q tests/invoices' main` exits 0 on 4 commits; `git log --oneline main..HEAD` shows 4 lines, the golden test first.
