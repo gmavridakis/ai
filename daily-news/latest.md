@@ -2,25 +2,37 @@
 
 ## 🇬🇷 Ελλάδα — Πολιτική & Οικονομία
 
-[Μητσοτάκης: προτεραιότητα η προστασία ΚΑΠ και Πολιτικής Συνοχής στον επόμενο ευρωπαϊκό προϋπολογισμό](https://primeminister.gr/2026/10/16/39540) — Σε συνέντευξη Τύπου μετά τη Σύνοδο Κορυφής στις Βρυξέλλες (15-16/10), ο πρωθυπουργός ανακοίνωσε επιστροφή ενοικίου έως 800 ευρώ από τέλη Νοεμβρίου για την ενεργειακή κρίση, ελληνική πρόταση για ευρωπαϊκό μηχανισμό αντιμετώπισης έκτακτων μεταναστευτικών ροών, και επιδίωξη παράτασης του ETS2 έως το 2028. (Πηγή: primeminister.gr)
+[Eurostat: νέα πτώση του δημοσίου χρέους στο 140,8% του ΑΕΠ το β' τρίμηνο 2026](https://www.naftemporiki.gr/finance/economy/2177994/elstat-sto-2-toy-aep-to-pleonasma-tis-genikis-kyvernisis-to-2025-sto-1454-to-dimosio-chreos/) — Το ελληνικό χρέος υποχώρησε κατά 8,1 ποσοστιαίες μονάδες το 2025 (στο 145,4% από 153,5%) και περαιτέρω στο 140,8% το β' τρίμηνο του 2026, με πλεόνασμα 2% του ΑΕΠ το 2025. (Naftemporiki, βάσει στοιχείων Eurostat)
+
+[Εξάμηνα έντοκα: Αντλήθηκαν 500 εκατ. ευρώ με αυξημένο επιτόκιο 2,64%](https://www.naftemporiki.gr/finance/economy/2178029/examina-entoka-antlithikan-500-ekat-me-ayximeno-epitokio-264/) — Ο ΟΔΔΗΧ άντλησε 500 εκατ. ευρώ σε εξάμηνα έντοκα γραμμάτια με τις προσφορές να υπερκαλύπτουν κατά 2,58 φορές τον στόχο, ένδειξη συνεχιζόμενης ζήτησης για ελληνικό χρέος. (Naftemporiki)
+
+⚠️ [Στο 4,39%-4,42% η απόδοση του ελληνικού 10ετούς ομολόγου](https://www.capital.gr/agores/4024886/sto-439-442-i-apodosi-tou-ellinikou-10etous-omologou/) — Το spread έναντι του γερμανικού Bund παραμένει γύρω στις 100 μονάδες βάσης, χαμηλότερο από Ιταλία και Γαλλία αλλά υψηλότερο από Ισπανία και Πορτογαλία. (Capital.gr — δεν επιβεβαιώνεται ακόμη από επίσημη πηγή)
+
+⚠️ [Ξεφεύγει ξανά η τιμή του ηλεκτρισμού](https://www.capital.gr/oikonomia/4024492/xefeugei-xana-i-timi-tou-ilektrismou-anisuxitika-simadia-gia-ton-noembrio/) — Η χονδρεμπορική τιμή ρεύματος ανέβηκε σε περίπου 247 €/MWh, με τον μέσο όρο Οκτωβρίου στα 172,94 €/MWh (+10,64% από τον Σεπτέμβριο), εξέλιξη που προοιωνίζεται αυξήσεις στους λογαριασμούς Νοεμβρίου. (Capital.gr, 20/10 — δεν επιβεβαιώνεται ακόμη από επίσημη πηγή)
+
+⚠️ [Παπασταύρου: Εξετάζουμε στοχευμένα μέτρα στήριξης των μικρομεσαίων επιχειρήσεων](https://www.capital.gr/politiki/4024807/st-papastaurou-exetazoume-metra-stirixis-ton-mikromesaion-epixeiriseon-entos-ton-dimosionomikon-orion/) — Ο υπουργός Περιβάλλοντος και Ενέργειας δήλωσε ότι εξετάζονται στοχευμένα μέτρα στήριξης μικρομεσαίων επιχειρήσεων για το ενεργειακό κόστος, εντός των δημοσιονομικών ορίων. (Capital.gr — δεν επιβεβαιώνεται ακόμη από επίσημη πηγή)
 
 ## 🌍 Διεθνή
 
-[European Council conclusions on competitiveness, the next multiannual financial framework and enlargement and reforms](https://www.consilium.europa.eu/en/press/press-releases/2026/10/16/european-council-conclusions-on-competitiveness-the-next-multiannual-financial-framework-and-enlargement-and-reforms/) — EU leaders meeting in Brussels on 15-16 October set the direction for difficult upcoming negotiations on the next multi-year EU budget, which directly affects Greece's agricultural and cohesion funding. (Source: consilium.europa.eu)
+[Kosovo Court Sentences Serb for War Crimes](https://balkaninsight.com/2026/10/21/kosovo-court-sentences-serb-for-war-crimes/btj) — A Kosovo court handed down a war-crimes conviction, keeping war-era accountability and Kosovo-Serbia relations in focus. (Balkan Insight)
+
+[Kosovo Risks Losing More EU Funds After Deadlock Delayed Reforms](https://balkaninsight.com/2026/10/20/kosovo-risks-losing-more-eu-funds-after-deadlock-delayed-reforms/bi) — Stalled domestic reforms are putting further EU funding at risk, highlighting friction in Kosovo's EU accession path. (Balkan Insight)
+
+[How Serbia's Ruling Party Turned State Institutions into 'Vote Machines'](https://balkaninsight.com/2026/10/20/how-serbias-ruling-party-turned-state-institutions-into-vote-machines/bi/serbia) — An investigation alleges Serbia's governing party has repurposed state institutions for electoral mobilization, a rule-of-law concern relevant to its EU accession bid. (Balkan Insight)
+
+[MFF 2028-2034: Council Agrees Position on the Common Market Organisation for Agricultural Products](https://www.consilium.europa.eu/en/press/press-releases/2026/10/19/mff-2028-2034-council-agrees-position-on-the-common-market-organisation-for-agricultural-products/) — EU member states agreed a negotiating stance on agricultural market rules within the next long-term EU budget (2028-2034), a step toward shaping future EU farm funding. (Council of the EU)
 
 ## 🔬 Τεχνολογία & Επιστήμη
 
-[NASA to Discuss Artemis Acceleration, Status of Upcoming Moon Missions](https://www.nasa.gov/news-release/nasa-to-discuss-artemis-acceleration-status-of-upcoming-moon-missions/) — NASA announced a briefing for October 23 at Kennedy Space Center on its plan to land astronauts on the Moon by 2028, including Artemis III preparations. (Source: nasa.gov)
+[Two NASA Commercial Satellite Communication Demonstrations Launch](https://nasa.gov/blogs/smallsatellites/2026/10/20/two-nasa-commercial-satellite-communication-demonstrations-launch) — NASA launched two commercial satellite-communications technology demonstrations, testing capabilities for future space communications networks. (NASA)
 
 ## 📈 Trends
 
-**"Scientists reveal the hi"** — viral meme με φωτογραφία πορτοκαλί γάτας και παράλογη λεζάντα. Ξεκίνησε από ένα άρθρο του BBC το 2025 για τη γενετική των κόκκινων γατών, μετατράπηκε σε meme στο Reddit, και τώρα διαδίδεται με remixes (αλλαγή χρωμάτων, πρόσωπα, ζώα) σε Instagram και TikTok. Δεν έχει ουσιαστικό νόημα — η πλάκα είναι ακριβώς η παραλογία της φράσης. (Πηγή: knowyourmeme.com, 19/10)
+Κανένα νέο trend σήμερα — δεν εντοπίστηκε, μέσω Know Your Meme, Google Trends ή LiFO/Athens Voice, trend που να έχει εμφανιστεί ή να έχει απογειωθεί τεκμηριωμένα τις τελευταίες 7 ημέρες.
 
 ## ⚽🏀 Ολυμπιακός
 
-Ολυμπιακός – Παναιτωλικός 2-0 (εκτός έδρας, Αγρίνιο, 18/10) — 5η σερί νίκη σε όλες τις διοργανώσεις. (Πηγή: [olympiacos.org](https://www.olympiacos.org/2026/10/18/teleiose-kai-me-ton-panaitoliko-sto-agrinio))
-
-Επόμενος αγώνας: Ολυμπιακός – Sparta Praha, UEFA Europa League (League Phase, 3η αγωνιστική), Πέμπτη 22/10, 22:00, Γ. Καραϊσκάκης. (Πηγή: [olympiacos.org](https://www.olympiacos.org/2026/10/20/to-programma-tou-agona-olympiakos-sparta-praha))
+[Μεταγραφές και επαγγελματικά συμβόλαια στην ακαδημία](https://www.olympiacos.org/2026/10/21/metagrafes-kai-epaggelmatika-symvolaia-stin-akadimia-4) — Η διοίκηση της Ακαδημίας ανακοίνωσε νέους παίκτες που εντάσσονται στις ομάδες βάσης για τη σεζόν 2026-27, καθώς και παίκτες που υπέγραψαν τα πρώτα επαγγελματικά τους συμβόλαια με τον σύλλογο. (Olympiacos.org — επίσημη ανακοίνωση)
 
 ## ✈️ Έλληνες στο εξωτερικό
 
@@ -28,13 +40,11 @@
 
 ## 🌤 Καιρός
 
-Αθήνα σήμερα (Τετ 21/10): ελάχιστη 18°C, μέγιστη 24°C, ασθενείς άνεμοι 1-2 μποφόρ, χωρίς βροχή.
-Αύριο (Πέμ 22/10): παρόμοιες συνθήκες, χωρίς αξιοσημείωτη μεταβολή.
-(Πηγή: [meteo.gr](https://www.meteo.gr/cf.cfm?city_id=12))
+Αθήνα σήμερα: αραιή νέφωση και ηλιοφάνεια, χωρίς βροχή· βραδινές θερμοκρασίες γύρω στους 20-21°C· νοτιοδυτικός/νότιος άνεμος έως 3 μποφόρ το βράδυ. Αύριο Πέμπτη: βροχές τις πρώτες πρωινές ώρες, με σταδιακή βελτίωση και αίθριο καιρό από το μεσημέρι. (meteo.gr)
+
+Πηγές που ελέγχθηκαν: 41
 
 ---
-Πηγές που ελέγχθηκαν: 6 επαληθευμένες πλήρως (primeminister.gr, consilium.europa.eu, nasa.gov, knowyourmeme.com, olympiacos.org, meteo.gr) από ~13 προσπάθειες σε πηγές του καταλόγου.
-
 ### 📚 Άλλες έγκυρες πηγές (μη προσβάσιμες σε μένα αυτόματα — δες τις εσύ απευθείας αν θες παραπάνω νέα)
 
 *Δείκτης αξιοπιστίας: ✅ υψηλή/πολύ υψηλή αξιοπιστία · ⚖️ μέτρια/χρήση με επιφύλαξη*
