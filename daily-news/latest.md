@@ -1,46 +1,34 @@
-# Daily Brief — 22/10/2026
+# Daily Brief — 23/10/2026
 
 ## 🇬🇷 Ελλάδα — Πολιτική & Οικονομία
 
-[Τουρκολιβυκό μνημόνιο: «αιφνιδιασμός» για την Αθήνα μετά την επικύρωση από τη Βουλή της Λιβύης](https://www.naftemporiki.gr/politics/2178443/n-farantoyris-gia-toyrkolivyko-aifnidiasmos-kai-diplomatiki-apomonosi-tis-athinas/) — Το Στέιτ Ντιπάρτμεντ κάλεσε Ελλάδα και Τουρκία να λύσουν τις θαλάσσιες διαφορές τους μέσω διαπραγματεύσεων, ενώ η Αθήνα εξετάζει τις επόμενες διπλωματικές της κινήσεις μαζί με την αντίδραση της ΕΕ. (Naftemporiki· επιβεβαιώνει: Capital)
+[Χρηματιστήριο Αθηνών: Βουτιά κάτω από τις 2.600 μονάδες, sell-off στις τράπεζες](https://naftemporiki.gr/finance/markets/2178767/chrimatistirio-voytia-kato-ton-2-600-monadon-sell-off-stis-trapezes) — Ο Γενικός Δείκτης έπεσε 2,11% και ο τραπεζικός δείκτης 4,38%, με φόντο το πετρέλαιο πάνω από 110$/βαρέλι, τις υψηλές αποδόσεις ομολόγων και τις ανησυχίες για AI. (Naftemporiki — επιβεβαιώνουν: Capital.gr, BusinessDaily.gr)
 
-[Υπουργείο Οικονομικών: εφικτός ο στόχος του 2% για την ανάπτυξη παρά τις πιο συγκρατημένες διεθνείς προβλέψεις](https://www.capital.gr/oikonomia/4024965/efikto-to-2-gia-tin-anaptuxi-para-tin-krisi/) — Το οικονομικό επιτελείο επιμένει ότι ο στόχος είναι ρεαλιστικός, ενώ διεθνείς οργανισμοί προβλέπουν χαμηλότερο ρυθμό. (Capital)
+[ΤτΕ: Ρεκόρ 28,5 εκατ. τουρίστες στο 8μηνο, έσοδα €18,2 δισ. (+9,4%)](https://www.naftemporiki.gr/finance/economy/2178665/tte-285-ekat-toyristes-ypodechthike-i-ellada-sto-8mino-oi-agores-poy-ektinaxan-ta-esoda/) — Οι αφίξεις αυξήθηκαν 10% σε σχέση με πέρυσι, με τη μεγαλύτερη άνοδο εσόδων από Ιταλία (+31,7%) και ΗΠΑ (+21%). (Naftemporiki, στοιχεία ΤτΕ)
 
-[Eurostat: αντίθετη πορεία χρέους — μειώνεται στην Ελλάδα, αυξάνεται στην Ευρωζώνη](https://www.capital.gr/oikonomia/4024955/eurostat-bioi-antithetoi-gia-to-xreos-meionetai-stin-ellada-auxanetai-stin-eurozoni/) — Η Ελλάδα ξεχωρίζει θετικά σε σχέση με τον μέσο όρο της Ευρωζώνης στα στοιχεία χρέους. (Capital, στοιχεία Eurostat)
+[Τράπεζα της Ελλάδος: Ανθεκτικές οι τράπεζες, αλλά ανεβαίνουν τα «κόκκινα» δάνεια και οι διεθνείς κίνδυνοι](https://www.capital.gr/oikonomia/4025049/trapeza-tis-ellados-anthektikes-oi-trapezes-alla-auxanontai-oi-diethneis-kindunoi-logo-geopolitikis-kai-texnitis-noimosunis/) — Η Έκθεση Χρηματοπιστωτικής Σταθερότητας δείχνει κέρδη τραπεζών +3,8% στο α' εξάμηνο, αλλά τα μη εξυπηρετούμενα δάνεια ανέβηκαν 9,3% στα €6,2 δισ. και η ΤτΕ προειδοποιεί για κινδύνους από γεωπολιτική και τεχνητή νοημοσύνη. (Capital.gr, στοιχεία ΤτΕ)
 
-[Νέα άνοδος του πληθωρισμού τον Οκτώβριο λόγω των τιμών ενέργειας](https://www.capital.gr/oikonomia/4024546/nea-anodos-tou-plithorismou-ton-oktobrio-logo-ton-timon-energeias-problimatismos-kai-gia-tis-times-ton-trofimon/) — Προβληματισμός και για τις τιμές τροφίμων, καθώς η ενέργεια ξαναβάζει πίεση στον πληθωρισμό. (Capital)
-
-[Η Titan στρέφεται στις αγορές για άντληση €100-150 εκατ.](https://www.capital.gr/agores/4024829/stis-agores-i-titan-gia-tin-antlisi-100-150-ekat-euro/) — Κίνηση άντλησης κεφαλαίων από τη μεγάλη ελληνική τσιμεντοβιομηχανία. (Capital)
+⚠️ [ΕΚΤ: Οικονομολόγοι βλέπουν παύση τον Οκτώβριο και νέα αύξηση επιτοκίων τον Δεκέμβριο](https://www.capital.gr/diethni/4025203/bloomberg-gia-ekt-mia-akomi-auxisi-epitokion-ton-dekembrio-kai-meta-pausi-eos-to-2028/) — Έρευνα οικονομολόγων βλέπει το επιτόκιο καταθέσεων στο 2,75% τον Δεκέμβριο, με τον πληθωρισμό στο 3,8% και τις αποδόσεις των γαλλικών ομολόγων στο υψηλότερο επίπεδο από το 2002· πρόκειται για πρόβλεψη, όχι επίσημη απόφαση ΕΚΤ. (Capital.gr)
 
 ## 🌍 Διεθνή
 
-⚠️ [NATO reportedly to let Ukraine buy weapons through its own procurement agency](https://www.naftemporiki.gr/kosmos/2178437/ft-to-nato-anoigei-mia-porta-stin-oykrania-epitrepei-tin-agora-stratiotikoy-ylikoy-meso-tis-ypiresias-amyntikon-promitheion/) — Would widen Kyiv's access to Western-standard arms; reported via the Financial Times and not yet confirmed on NATO's own channels. (Naftemporiki)
+[EU customs seize record 196 million counterfeit items worth €6.3 billion in 2025](https://taxation-customs.ec.europa.eu/news/eu-detains-record-196-million-counterfeit-items-worth-eur-63-billion-2025-2026-10-22_en) — Seizures rose 67% year-on-year, mostly in e-commerce parcels, according to a joint European Commission–EUIPO report. (European Commission)
 
-⚠️ [US and Israel reportedly preparing three days of intensive strikes on Iran](https://www.naftemporiki.gr/kosmos/2178430/ipa-kai-israil-etoimazoyn-treis-meres-entatikon-epicheiriseon-sto-iran-i-epicheirisi-epideixis-ischyos-ton-machitikon-toy-netaniachoy/) — Described as a "show of force" exercise timed after the US November 3 midterms; based on unnamed sources and not officially confirmed. (Naftemporiki)
-
-⚠️ [Attack on Dammam international airport in Saudi Arabia leaves one dead, eight injured](https://www.naftemporiki.gr/kosmos/2178426/saoydiki-aravia-epithesi-sto-diethnes-aerodromio-toy-ntamam-enas-nekros-okto-traymaties/) — Security incident at a major Gulf transport hub, so far reported by a single outlet in our source list. (Naftemporiki)
-
-[Heavy losses across Asian markets as China's CSI 300 nears bear-market territory](https://www.capital.gr/agores/4024986/baries-apoleies-stin-asia-konta-se-bear-market-o-kinezikos-csi-300/) — A sharp regional sell-off that could carry knock-on effects for global and European markets. (Capital)
-
-⚠️ [Trump says the end of the Ukraine war has "never been this close"](https://www.capital.gr/politiki/4024970/tramp-to-telos-tou-polemou-stin-oukrania-den-itan-pote-toso-konta/) — An upbeat claim from the US president on war-ending prospects; a single attributed statement, not independently corroborated here. (Capital)
+[UN: overnight Russian strikes across Ukraine kill at least 14 civilians](https://news.un.org/en/story/2026/10/1168648) — The barrage also hit Kyiv and injured 78 people, as a separate UN mission visited the West Bank over threats to the olive harvest and settler attacks. (UN News)
 
 ## 🔬 Τεχνολογία & Επιστήμη
 
-[ESA's Mars moon lander set to launch on 19 October](https://www.esa.int/Science_Exploration/Space_Science/Mars_moon_lander_set_to_launch_on_19_October) — Mission targeting Phobos adds to Europe's growing deep-space exploration push. (ESA)
+[NASA's Roman Space Telescope enters final commissioning phase](https://science.nasa.gov/blogs/roman/2026/10/22/nasas-roman-space-telescope-enters-final-commissioning-phase/) — The observatory can now guide, expose, and slew between targets, with science operations approaching after calibration tests. (NASA)
 
-[NASA launches two commercial satellite communication demonstrations](https://nasa.gov/blogs/smallsatellites/2026/10/20/two-nasa-commercial-satellite-communication-demonstrations-launch) — Tests aim to validate next-generation commercial comms links for future missions. (NASA)
+[Study: AI breakthroughs may be hastening their own "exhaustion" of new ideas](https://arxiv.org/abs/2610.27296) — μη αξιολογημένη μελέτη (arXiv preprint, υποβλήθηκε 19/10/2026) — Analyzing 36 years of computer science research, the authors argue the field's attention narrowed after the Transformer, with each major breakthrough followed by faster depletion of the ideas it opened up. (arXiv)
 
 ## 📈 Trends
 
-Κανένα νέο trend σήμερα.
+Thank You Baby / Thank You Babeh — viral ηχητικό trend στο TikTok: οι «50/50 Twins» ευχαριστούν χιουμοριστικά τους followers ντυμένες ως υπερβολικοί ράπερ · ξεκίνησε από TikTok LIVE στις 23/9/2026 · διαδόθηκε μέσω reposts και ενός τραγουδιού («Thank You Babeh», 12/10), φτάνοντας τα 240.000+ βίντεο με τον ήχο μέχρι τις 20/10 · για τον μέσο χρήστη είναι απλώς ο ήχος/η φράση που θα συναντήσει αυτές τις μέρες σε αμέτρητα TikTok βίντεο. (Know Your Meme, https://knowyourmeme.com/memes/thank-you-baby-thank-you-babeh)
 
 ## ⚽🏀 Ολυμπιακός
 
-[Η ΔΕΑΒ τιμώρησε τον Ολυμπιακό για το ντέρμπι με τον Παναθηναϊκό (11/10) — αθωώθηκε ο Αλγουασίλ](https://www.sport24.gr/football/olimpiakos-i-timoria-ton-erithrolefkon-apo-tin-deav-gia-to-ntermpi-me-ton-panathinaiko-apallaxthike-o-imanol/) — Πειθαρχική απόφαση σε βάρος του συλλόγου για το ντέρμπι, με τον προπονητή να γλιτώνει την τιμωρία. (Sport24)
-
-[Επόμενος αγώνας: Sparta Prague, Europa League (φάση ομίλων, 3η αγωνιστική), Πέμπτη 22/10, 22:00, Καραϊσκάκη](https://www.sport24.gr/media/olimpiakos-pou-tha-deite-tin-anametrisi-ton-erithrolefkon-me-tin-sparta-pragas-gia-to-europa-league/) — (Sport24)
-
-⚠️ [Σύμφωνα με την O Jogo, αποχώρησε ο Αντόνιο Μιγκέλ Καρντόζο](https://www.sport24.gr/football/olimpiakos-telos-o-antonio-migkel-karntoso-simfona-me-tin-o-jogo/) — Ο Πορτογάλος αποχωρεί από τη θέση του Γενικού Διευθυντή Ποδοσφαιρικών Υποθέσεων· δημοσιογραφική πληροφορία, όχι ακόμη επίσημη ανακοίνωση του συλλόγου. (Sport24, βάσει O Jogo)
+[Θρυλικό τρία στα τρία: Ολυμπιακός - Σπάρτα Πράγας 1-0](https://olympiacos.org/2026/10/23/thryliko-tria-sta-tria) — Γκολ του Γκονζάλες στο 78' χάρισε στους «ερυθρόλευκους» την τρίτη νίκη σε τρεις αγώνες στη League Phase του Europa League. (Olympiacos.org — επιβεβαιώνουν: Sport24.gr)
 
 ## ✈️ Έλληνες στο εξωτερικό
 
@@ -48,9 +36,9 @@
 
 ## 🌤 Καιρός
 
-Αθήνα σήμερα (Πέμπτη 22/10): 18–24°C, ασθενής βροχή τα ξημερώματα (έως τις 03:00) και ξηρός καιρός από τις 06:00, ασθενείς άνεμοι βόρειοι/ανατολικοί. Αύριο (Παρασκευή 23/10): 18–25°C, χωρίς βροχή, ασθενείς έως μέτριοι άνεμοι. Δεν υπάρχει έκτακτο δελτίο ΕΜΥ ή προειδοποίηση Πολιτικής Προστασίας σήμερα. ([meteo.gr](https://www.meteo.gr/cf-en.cfm?city_id=12))
+Αθήνα σήμερα Παρασκευή: 19°C έως 24°C, χωρίς βροχή, ασθενείς άνεμοι (3 μποφόρ το πρωί/μεσημέρι, υποχώρηση σε 2 το απόγευμα), καιρός από λίγα έως αρκετά νεφελώδης. Αύριο Σάββατο: 16°C έως 23°C, φυσιολογικός καιρός για την εποχή. Δεν υπάρχει σε ισχύ έκτακτο δελτίο ΕΜΥ ή προειδοποίηση Πολιτικής Προστασίας. (meteo.gr)
 
-Πηγές που ελέγχθηκαν: 39
+Πηγές που ελέγχθηκαν: 41
 
 ---
 ### 📚 Άλλες έγκυρες πηγές (μη προσβάσιμες σε μένα αυτόματα — δες τις εσύ απευθείας αν θες παραπάνω νέα)
