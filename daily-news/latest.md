@@ -1,34 +1,50 @@
-# Daily Brief — 23/10/2026
+# Daily Brief — 24/10/2026
 
 ## 🇬🇷 Ελλάδα — Πολιτική & Οικονομία
 
-[Χρηματιστήριο Αθηνών: Βουτιά κάτω από τις 2.600 μονάδες, sell-off στις τράπεζες](https://naftemporiki.gr/finance/markets/2178767/chrimatistirio-voytia-kato-ton-2-600-monadon-sell-off-stis-trapezes) — Ο Γενικός Δείκτης έπεσε 2,11% και ο τραπεζικός δείκτης 4,38%, με φόντο το πετρέλαιο πάνω από 110$/βαρέλι, τις υψηλές αποδόσεις ομολόγων και τις ανησυχίες για AI. (Naftemporiki — επιβεβαιώνουν: Capital.gr, BusinessDaily.gr)
+⚠️ [Η Ελλάδα απέστειλε επιστολή στον ΓΓ του ΟΗΕ για την ακυρότητα του τουρκολιβυκού μνημονίου](https://thepressproject.gr/epistoli-tis-elladas-ston-ng-tou-oie-gia-tin-akyrotita-tou-tourkolivykou-mnimoniou/) — Η κυβέρνηση κλιμακώνει διπλωματικά το ζήτημα, την ίδια μέρα που κυβερνητικός εκπρόσωπος δήλωσε ότι δεν χρειάζεται καμία άδεια για την άσκηση των κυριαρχικών δικαιωμάτων της χώρας. (ThePressProject)
 
-[ΤτΕ: Ρεκόρ 28,5 εκατ. τουρίστες στο 8μηνο, έσοδα €18,2 δισ. (+9,4%)](https://www.naftemporiki.gr/finance/economy/2178665/tte-285-ekat-toyristes-ypodechthike-i-ellada-sto-8mino-oi-agores-poy-ektinaxan-ta-esoda/) — Οι αφίξεις αυξήθηκαν 10% σε σχέση με πέρυσι, με τη μεγαλύτερη άνοδο εσόδων από Ιταλία (+31,7%) και ΗΠΑ (+21%). (Naftemporiki, στοιχεία ΤτΕ)
+[Ο Νίκος Δένδιας επικοινώνησε τηλεφωνικά με τον Πατριάρχη Ιεροσολύμων για την επίθεση σε εκκλησία στην Ιορδανία](https://www.naftemporiki.gr/politics/2179505/n-dendias-tilefoniki-epikoinonia-me-ton-patriarchi-ierosolymon-gia-tin-epithesi-stin-iordania/) — Η ελληνική διπλωματία κινητοποιείται μετά από επίθεση σε Ελληνορθόδοξη εκκλησία στην Ιορδανία. (Naftemporiki)
 
-[Τράπεζα της Ελλάδος: Ανθεκτικές οι τράπεζες, αλλά ανεβαίνουν τα «κόκκινα» δάνεια και οι διεθνείς κίνδυνοι](https://www.capital.gr/oikonomia/4025049/trapeza-tis-ellados-anthektikes-oi-trapezes-alla-auxanontai-oi-diethneis-kindunoi-logo-geopolitikis-kai-texnitis-noimosunis/) — Η Έκθεση Χρηματοπιστωτικής Σταθερότητας δείχνει κέρδη τραπεζών +3,8% στο α' εξάμηνο, αλλά τα μη εξυπηρετούμενα δάνεια ανέβηκαν 9,3% στα €6,2 δισ. και η ΤτΕ προειδοποιεί για κινδύνους από γεωπολιτική και τεχνητή νοημοσύνη. (Capital.gr, στοιχεία ΤτΕ)
+[S&P: Διατήρησε την Ελλάδα στην επενδυτική βαθμίδα BBB με σταθερές προοπτικές](https://www.capital.gr/agores/4025449/s-p-ametabliti-sto-bbb-i-ellada-me-stathero-to-outlook/) — Ο οίκος αξιολόγησης επιβεβαιώνει τη σταθερότητα της ελληνικής οικονομίας, κρίσιμη για το κόστος δανεισμού του δημοσίου. (Capital· επιβεβαιώνουν: Athens Voice)
 
-⚠️ [ΕΚΤ: Οικονομολόγοι βλέπουν παύση τον Οκτώβριο και νέα αύξηση επιτοκίων τον Δεκέμβριο](https://www.capital.gr/diethni/4025203/bloomberg-gia-ekt-mia-akomi-auxisi-epitokion-ton-dekembrio-kai-meta-pausi-eos-to-2028/) — Έρευνα οικονομολόγων βλέπει το επιτόκιο καταθέσεων στο 2,75% τον Δεκέμβριο, με τον πληθωρισμό στο 3,8% και τις αποδόσεις των γαλλικών ομολόγων στο υψηλότερο επίπεδο από το 2002· πρόκειται για πρόβλεψη, όχι επίσημη απόφαση ΕΚΤ. (Capital.gr)
+[Χρηματιστήριο Αθηνών: Υποχώρηση σε χαμηλά τριμήνου με δίημερο sell-off στις τράπεζες](https://www.capital.gr/agores/4025385/xrimatistirio-upoxorisi-se-xamila-triminou-me-diimero-sfurokopima-stis-trapezes/) — Σημαντική διόρθωση στην εγχώρια αγορά μετά από παρατεταμένο ανοδικό σερί. (Capital)
+
+[Παγκόσμιες αγορές υπό πίεση λόγω Μέσης Ανατολής: Dow Jones -1,2%](https://www.capital.gr/agores/4025457/wall-street-apoleies-1-2-gia-ton-dow-jones-en-meso-anisuxion-gia-ti-m-anatoli/) — Το πετρέλαιο (Brent) σημείωσε εβδομαδιαίο άλμα 6% σε υψηλό εξαμήνου και ο χρυσός υποχώρησε 4%, καθώς οι γεωπολιτικές εντάσεις επηρεάζουν τις αγορές ενέργειας. (Capital)
+
+[Ο όμιλος Κοπελούζου σχεδιάζει data center στην Ελλάδα](https://www.naftemporiki.gr/business/2179455/data-center-stin-ellada-schediazei-o-omilos-kopeloyzoy/) — Επένδυση-υποδομή για τράπεζες, τηλεπικοινωνίες, ναυτιλία και δημόσιο τομέα. (Naftemporiki)
+
+⚠️ [Διεθνής Αμνηστία: 6 συστάσεις για το δικαίωμα στη διαμαρτυρία στην Ελλάδα](https://thepressproject.gr/diethnis-amnistia-ypo-synechi-piesi-to-dikaioma-sti-diamartyria-stin-ellada-synista-6-allages/) — Η οργάνωση κάνει λόγο για συνεχή πίεση στο δικαίωμα διαδήλωσης και ζητά συγκεκριμένες αλλαγές στην αστυνομική πρακτική. (ThePressProject)
 
 ## 🌍 Διεθνή
 
-[EU customs seize record 196 million counterfeit items worth €6.3 billion in 2025](https://taxation-customs.ec.europa.eu/news/eu-detains-record-196-million-counterfeit-items-worth-eur-63-billion-2025-2026-10-22_en) — Seizures rose 67% year-on-year, mostly in e-commerce parcels, according to a joint European Commission–EUIPO report. (European Commission)
+[EU Inc: Council adopts position on a new EU corporate law for innovative companies](https://consilium.europa.eu/en/press/press-releases/2026/10/23/eu-inc-council-adopts-position-on-a-new-eu-corporate-law-for-innovative-companies) — A new pan-European legal structure meant to help startups and scale-ups operate across the single market. (Consilium)
 
-[UN: overnight Russian strikes across Ukraine kill at least 14 civilians](https://news.un.org/en/story/2026/10/1168648) — The barrage also hit Kyiv and injured 78 people, as a separate UN mission visited the West Bank over threats to the olive harvest and settler attacks. (UN News)
+[Serbia braces for its most uncertain elections in 14 years](https://balkaninsight.com/2026/10/23/serbia-braces-for-most-uncertain-elections-in-14-years/bi) — A pivotal vote for the ruling party's grip on power and for Serbia's EU accession path. (Balkan Insight)
+
+[Proposed law to curb powers of Hague-based court returned to Kosovo Assembly](https://balkaninsight.com/2026/10/23/proposed-law-to-curb-powers-of-hague-based-court-returned-to-kosovo-assembly/btj) — Affects the tribunal prosecuting Kosovo Liberation Army-era war crimes, with implications for EU-brokered rule-of-law standards. (Balkan Insight)
+
+⚠️ [Zelensky: Ukrainian, Russian and US negotiators to meet in Abu Dhabi in early November](https://thepressproject.gr/zelenski-synantisi-oukranon-roson-kai-amerikanon-diapragmtefton-stis-arches-noemvriou-sto-abou-ntabi/) — A potential next step in the peace talks, announced by Ukraine's president; not yet independently confirmed by the other parties. (ThePressProject)
+
+⚠️ [Netanyahu orders "full closure" of the West Bank after a shooting attack](https://thepressproject.gr/dytiki-ochthi-o-netaniachou-dietaxe-pliri-apokleismo-meta-apo-epithesi-me-pyrovolismous-dyo-palaistinioi-nekroi-pente-israilinoi-travmaties/) — The attack killed two Palestinians and injured five Israelis; reported via a single outlet in our source list. (ThePressProject)
 
 ## 🔬 Τεχνολογία & Επιστήμη
 
-[NASA's Roman Space Telescope enters final commissioning phase](https://science.nasa.gov/blogs/roman/2026/10/22/nasas-roman-space-telescope-enters-final-commissioning-phase/) — The observatory can now guide, expose, and slew between targets, with science operations approaching after calibration tests. (NASA)
+[NASA briefs on plan to return astronauts to the Moon by 2028](https://www.nasa.gov/news-release/nasa-to-discuss-artemis-acceleration-status-of-upcoming-moon-missions/) — Agency leadership updated the public on Artemis III progress and the accelerated lunar-landing timeline at a Kennedy Space Center briefing on October 23. (NASA)
 
-[Study: AI breakthroughs may be hastening their own "exhaustion" of new ideas](https://arxiv.org/abs/2610.27296) — μη αξιολογημένη μελέτη (arXiv preprint, υποβλήθηκε 19/10/2026) — Analyzing 36 years of computer science research, the authors argue the field's attention narrowed after the Transformer, with each major breakthrough followed by faster depletion of the ideas it opened up. (arXiv)
+[RA²: Retain-Anchored Attraction Preserves Forget-Adjacent Utility in LLM Unlearning](https://arxiv.org/abs/2610.19385v1) — Unreviewed study (arXiv preprint) proposing a new method for AI models to "unlearn" specific data without losing unrelated capabilities. (arXiv)
 
 ## 📈 Trends
 
-Thank You Baby / Thank You Babeh — viral ηχητικό trend στο TikTok: οι «50/50 Twins» ευχαριστούν χιουμοριστικά τους followers ντυμένες ως υπερβολικοί ράπερ · ξεκίνησε από TikTok LIVE στις 23/9/2026 · διαδόθηκε μέσω reposts και ενός τραγουδιού («Thank You Babeh», 12/10), φτάνοντας τα 240.000+ βίντεο με τον ήχο μέχρι τις 20/10 · για τον μέσο χρήστη είναι απλώς ο ήχος/η φράση που θα συναντήσει αυτές τις μέρες σε αμέτρητα TikTok βίντεο. (Know Your Meme, https://knowyourmeme.com/memes/thank-you-baby-thank-you-babeh)
+"I'm So Sorry" TikTok trend — Χρήστες ανεβάζουν σειρές φωτογραφιών/βίντεο που ξεκινούν με μια κολακευτική εκδοχή τους και καταλήγουν στην ωμή, αληθινή εκδοχή, με «απολογία» για το ψέμα. · Ξεκίνησε τον Αύγουστο του 2026 στο TikTok. · Απογειώθηκε τον Οκτώβριο λόγω Halloween, με χρήστες να αποκαλύπτουν πόσο πρόχειρες ή προσβλητικές ήταν παλιές στολές τους. · Για τον μέσο χρήστη: ένας αβλαβής, αυτοσαρκαστικός τρόπος χιούμορ γύρω από παλιές φωτογραφίες, χωρίς ιδιαίτερο ρίσκο συμμετοχής. (Know Your Meme, [link](https://trending.knowyourmeme.com/editorials/guides/what-is-the-im-so-sorry-trend-the-meaning-of-the-viral-tiktok-memes-explained))
+
+"Boo Trend" (TikTok) — Κάποιος κάνει μια αστεία γκριμάτσα λέγοντας «boo» καθώς πλησιάζει απειλητικά-κωμικά την κάμερα, συνήθως για να «τρομάξει» ανυποψίαστο φίλο ή συγγενή. · Ξεκίνησε στις 20 Σεπτεμβρίου 2026 από τον χρήστη @v99191 σε βίντεο με πάνω από 8,4 εκατ. προβολές. · Διαδόθηκε ως φάρσα-πρακτικό αστείο· έγινε ιδιαίτερα δημοφιλές μέσα στον Οκτώβριο. · Για τον μέσο χρήστη: αν κάποιος σου κάνει ξαφνικά περίεργη γκριμάτσα κοντά στο πρόσωπο, πιθανότατα σε βιντεοσκοπεί για το trend. (Know Your Meme, [link](https://trending.knowyourmeme.com/editorials/guides/what-is-the-boo-trend-on-tiktok-the-origin-of-the-viral-trend-and-prank-explained))
 
 ## ⚽🏀 Ολυμπιακός
 
-[Θρυλικό τρία στα τρία: Ολυμπιακός - Σπάρτα Πράγας 1-0](https://olympiacos.org/2026/10/23/thryliko-tria-sta-tria) — Γκολ του Γκονζάλες στο 78' χάρισε στους «ερυθρόλευκους» την τρίτη νίκη σε τρεις αγώνες στη League Phase του Europa League. (Olympiacos.org — επιβεβαιώνουν: Sport24.gr)
+[Ολυμπιακός - Σπάρτα Πράγας 1-0: Έκτη σερί νίκη στο Europa League, παραμένει αήττητος](https://www.olympiacos.org/en/2026/10/23/a-legendary-three-wins-out-of-three) — Οι «ερυθρόλευκοι» έφτασαν τις 6 σερί νίκες στη League Phase του Europa League, κάτι που δεν είχαν καταφέρει από το 2024. (Olympiacos.org)
+
+[Ολυμπιακός - Φενέρμπαχτσε 61-64: Ήττα στο φινάλε για τους Πειραιώτες στην EuroLeague](https://www.sport24.gr/basket/euroleague-basketball/olimpiakos-fenermpaxtse-61-64-ligisan-sto-finale-oi-sigkinitikoi-peiraiotes/) — Ο Ολυμπιακός έχασε το τρίποντο ισοφάρισης στο buzzer από τον Βεζένκοφ και έπεσε στο 5-2 στη EuroLeague. (Sport24)
 
 ## ✈️ Έλληνες στο εξωτερικό
 
@@ -36,7 +52,7 @@ Thank You Baby / Thank You Babeh — viral ηχητικό trend στο TikTok: �
 
 ## 🌤 Καιρός
 
-Αθήνα σήμερα Παρασκευή: 19°C έως 24°C, χωρίς βροχή, ασθενείς άνεμοι (3 μποφόρ το πρωί/μεσημέρι, υποχώρηση σε 2 το απόγευμα), καιρός από λίγα έως αρκετά νεφελώδης. Αύριο Σάββατο: 16°C έως 23°C, φυσιολογικός καιρός για την εποχή. Δεν υπάρχει σε ισχύ έκτακτο δελτίο ΕΜΥ ή προειδοποίηση Πολιτικής Προστασίας. (meteo.gr)
+Αθήνα σήμερα (24/10): 17-25°C, χωρίς βροχή, ασθενείς άνεμοι 1-3 μποφόρ (ανατολικοί/βορειοανατολικοί, γυρίζουν βορειοδυτικοί το απόγευμα). Αύριο (25/10): χαμηλότερη για την εποχή θερμοκρασία, 18-21°C. Δεν υπάρχει ενεργό έκτακτο δελτίο ΕΜΥ ή προειδοποίηση Πολιτικής Προστασίας (το πιο πρόσφατο δελτίο Πολιτικής Προστασίας είναι από 19/10). (meteo.gr, civilprotection.gov.gr)
 
 Πηγές που ελέγχθηκαν: 41
 
