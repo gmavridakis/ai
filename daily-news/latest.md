@@ -1,50 +1,44 @@
-# Daily Brief — 24/10/2026
+# Daily Brief — 25/10/2026
 
 ## 🇬🇷 Ελλάδα — Πολιτική & Οικονομία
 
-⚠️ [Η Ελλάδα απέστειλε επιστολή στον ΓΓ του ΟΗΕ για την ακυρότητα του τουρκολιβυκού μνημονίου](https://thepressproject.gr/epistoli-tis-elladas-ston-ng-tou-oie-gia-tin-akyrotita-tou-tourkolivykou-mnimoniou/) — Η κυβέρνηση κλιμακώνει διπλωματικά το ζήτημα, την ίδια μέρα που κυβερνητικός εκπρόσωπος δήλωσε ότι δεν χρειάζεται καμία άδεια για την άσκηση των κυριαρχικών δικαιωμάτων της χώρας. (ThePressProject)
-
-[Ο Νίκος Δένδιας επικοινώνησε τηλεφωνικά με τον Πατριάρχη Ιεροσολύμων για την επίθεση σε εκκλησία στην Ιορδανία](https://www.naftemporiki.gr/politics/2179505/n-dendias-tilefoniki-epikoinonia-me-ton-patriarchi-ierosolymon-gia-tin-epithesi-stin-iordania/) — Η ελληνική διπλωματία κινητοποιείται μετά από επίθεση σε Ελληνορθόδοξη εκκλησία στην Ιορδανία. (Naftemporiki)
-
-[S&P: Διατήρησε την Ελλάδα στην επενδυτική βαθμίδα BBB με σταθερές προοπτικές](https://www.capital.gr/agores/4025449/s-p-ametabliti-sto-bbb-i-ellada-me-stathero-to-outlook/) — Ο οίκος αξιολόγησης επιβεβαιώνει τη σταθερότητα της ελληνικής οικονομίας, κρίσιμη για το κόστος δανεισμού του δημοσίου. (Capital· επιβεβαιώνουν: Athens Voice)
-
-[Χρηματιστήριο Αθηνών: Υποχώρηση σε χαμηλά τριμήνου με δίημερο sell-off στις τράπεζες](https://www.capital.gr/agores/4025385/xrimatistirio-upoxorisi-se-xamila-triminou-me-diimero-sfurokopima-stis-trapezes/) — Σημαντική διόρθωση στην εγχώρια αγορά μετά από παρατεταμένο ανοδικό σερί. (Capital)
-
-[Παγκόσμιες αγορές υπό πίεση λόγω Μέσης Ανατολής: Dow Jones -1,2%](https://www.capital.gr/agores/4025457/wall-street-apoleies-1-2-gia-ton-dow-jones-en-meso-anisuxion-gia-ti-m-anatoli/) — Το πετρέλαιο (Brent) σημείωσε εβδομαδιαίο άλμα 6% σε υψηλό εξαμήνου και ο χρυσός υποχώρησε 4%, καθώς οι γεωπολιτικές εντάσεις επηρεάζουν τις αγορές ενέργειας. (Capital)
-
-[Ο όμιλος Κοπελούζου σχεδιάζει data center στην Ελλάδα](https://www.naftemporiki.gr/business/2179455/data-center-stin-ellada-schediazei-o-omilos-kopeloyzoy/) — Επένδυση-υποδομή για τράπεζες, τηλεπικοινωνίες, ναυτιλία και δημόσιο τομέα. (Naftemporiki)
-
-⚠️ [Διεθνής Αμνηστία: 6 συστάσεις για το δικαίωμα στη διαμαρτυρία στην Ελλάδα](https://thepressproject.gr/diethnis-amnistia-ypo-synechi-piesi-to-dikaioma-sti-diamartyria-stin-ellada-synista-6-allages/) — Η οργάνωση κάνει λόγο για συνεχή πίεση στο δικαίωμα διαδήλωσης και ζητά συγκεκριμένες αλλαγές στην αστυνομική πρακτική. (ThePressProject)
+- [Απάντηση ΥΠΕΞ στην Άγκυρα για τη μουσουλμανική μειονότητα της Θράκης](https://www.mfa.gr/anakoinosi-ypourgeiou-exoterikon-anaforika-me-anakoinosi-tou-tourkikou-ypourgeiou-exoterikon-kai-diloseis-tourkon-axiomatouchon-gia-ti-mousoulmaniki-meionotita-tis-thrakis-24-10-2026/) — Η Αθήνα απάντησε σε δηλώσεις Τούρκων αξιωματούχων, υπενθυμίζοντας ότι η μειονότητα ορίζεται θρησκευτικά από τη Συνθήκη της Λωζάνης και τα μέλη της είναι Έλληνες πολίτες. (ΥΠΕΞ)
+- [Ο Γεραπετρίτης στη Νέα Υόρκη για την προεδρία της Ελλάδας στο Συμβούλιο Ασφαλείας του ΟΗΕ](https://www.mfa.gr/episkepsi-ypourgou-exoterikon-giorgou-gerapetriti-sti-nea-yorki-sto-plaisio-tis-proedrias-tis-elladas-sto-symvoulio-asfaleias-ton-inomenon-ethnon-25-30-10-2026/) — Η Ελλάδα αναλαμβάνει την περιοδική προεδρία του Συμβουλίου Ασφαλείας του ΟΗΕ από 25 έως 30 Οκτωβρίου. (ΥΠΕΞ)
+- [Στεγαστικό: Τα 11 νέα μέτρα για προσιτή στέγη](https://www.capital.gr/oikonomia/4025470/stegastiko-ta-11-nea-metra-gia-prositi-stegi-500-ekat-euro-gia-anakainiseis-foroapallages-periorismoi-sta-airbnb-kai-neo-spiti-mou-iii/) — Η κυβέρνηση ανακοίνωσε πακέτο 500 εκατ. ευρώ για ανακαινίσεις, φοροαπαλλαγές και περιορισμούς στα Airbnb, μαζί με νέο πρόγραμμα «Σπίτι μου ΙΙΙ». (Capital.gr)
+- [S&P: Αμετάβλητη στο BBB η Ελλάδα με σταθερό outlook](https://www.capital.gr/agores/4025449/s-p-ametabliti-sto-bbb-i-ellada-me-stathero-to-outlook/) — Ο οίκος αξιολόγησης διατήρησε αμετάβλητη την πιστοληπτική ικανότητα της χώρας. (Capital.gr)
+- [ΤτΕ: Οι κίνδυνοι από την αύξηση επιτοκίων για τα νοικοκυριά](https://www.capital.gr/oikonomia/4025492/tte-oi-kindunoi-apo-tin-auxisi-epitokion-gia-ta-noikokuria/) — Η Τράπεζα της Ελλάδος προειδοποιεί για σταδιακή επιδείνωση των κινδύνων για τους δανειολήπτες. (Capital.gr)
+- [Χρηματιστήριο: Δεύτερη μέρα ισχυρών απωλειών με τραπεζικό sell-off](https://www.capital.gr/agores/4025272/xrimatistirio-deuteri-mera-isxuron-apoleion-me-trapeziko-sell-off/) — Το Χρηματιστήριο Αθηνών έκλεισε με νέες απώλειες, με πιέσεις στις τραπεζικές μετοχές. (Capital.gr)
+- [Καύσιμα: Υψηλό τετραετίας για το φυσικό αέριο](https://www.capital.gr/oikonomia/4025526/kausima-upsilo-tetraetias-gia-to-fusiko-aerio-me-miniaia-auxisi-25-24-ti-anamenetai-gia-ti-nea-ebdomada/) — Μηνιαία άνοδος 25,24% στην τιμή του φυσικού αερίου, υψηλό τετραετίας, με πιθανές επιπτώσεις στο ενεργειακό κόστος. (Capital.gr)
+- ⚠️ [Αντίστροφη μέτρηση για την επανέναρξη των ερευνών για το καλώδιο ηλεκτρικής διασύνδεσης](https://www.capital.gr/story/4025465/antistrofi-metrisi-gia-tin-epanenarxi-ton-ereunon-gia-to-kalodio-ilektrikis-diasundesis/) — Σύμφωνα με πληροφορίες αναμένεται NAVTEX στις αρχές Νοεμβρίου για τον υποθαλάσσιο αγωγό ηλεκτρικής διασύνδεσης· δεν υπάρχει ακόμη επίσημη επιβεβαίωση. (Capital.gr)
 
 ## 🌍 Διεθνή
 
-[EU Inc: Council adopts position on a new EU corporate law for innovative companies](https://consilium.europa.eu/en/press/press-releases/2026/10/23/eu-inc-council-adopts-position-on-a-new-eu-corporate-law-for-innovative-companies) — A new pan-European legal structure meant to help startups and scale-ups operate across the single market. (Consilium)
-
-[Serbia braces for its most uncertain elections in 14 years](https://balkaninsight.com/2026/10/23/serbia-braces-for-most-uncertain-elections-in-14-years/bi) — A pivotal vote for the ruling party's grip on power and for Serbia's EU accession path. (Balkan Insight)
-
-[Proposed law to curb powers of Hague-based court returned to Kosovo Assembly](https://balkaninsight.com/2026/10/23/proposed-law-to-curb-powers-of-hague-based-court-returned-to-kosovo-assembly/btj) — Affects the tribunal prosecuting Kosovo Liberation Army-era war crimes, with implications for EU-brokered rule-of-law standards. (Balkan Insight)
-
-⚠️ [Zelensky: Ukrainian, Russian and US negotiators to meet in Abu Dhabi in early November](https://thepressproject.gr/zelenski-synantisi-oukranon-roson-kai-amerikanon-diapragmtefton-stis-arches-noemvriou-sto-abou-ntabi/) — A potential next step in the peace talks, announced by Ukraine's president; not yet independently confirmed by the other parties. (ThePressProject)
-
-⚠️ [Netanyahu orders "full closure" of the West Bank after a shooting attack](https://thepressproject.gr/dytiki-ochthi-o-netaniachou-dietaxe-pliri-apokleismo-meta-apo-epithesi-me-pyrovolismous-dyo-palaistinioi-nekroi-pente-israilinoi-travmaties/) — The attack killed two Palestinians and injured five Israelis; reported via a single outlet in our source list. (ThePressProject)
+- [Deadly attack on a funeral at a church in Jordan](https://news.un.org/en/story/2026/10/1168664) — UN chief Guterres condemned the attack in Hmoud, which the UN says killed at least 7 people (confirms: Naftemporiki, reporting a toll of 8). (UN News)
+- [IAEA chief urges Iran to let inspectors return](https://news.un.org/en/story/2026/10/1168664) — Rafael Grossi told the UN General Assembly the groundwork exists for a new diplomatic agreement on Iran's nuclear programme. (UN News)
+- ⚠️ [US reportedly weighing a new round of strikes on Iran](https://www.capital.gr/diethni/4025462/ipa-isxures-endeixeis-oti-etoimazetai-neos-guros-epitheseon-sto-iran/) — Analysts cited by Capital.gr see rising odds of new strikes after the November 3 US midterm elections; not officially confirmed. (Capital.gr)
+- [EU-Western Balkans summit set for Brussels on 25 November](https://www.consilium.europa.eu/en/press/press-releases/2026/10/23/eu-western-balkans-summit-to-take-place-in-brussels-on-25-november/) — The summit will bring together EU and Western Balkan leaders with enlargement high on the agenda. (Council of the EU)
+- [EU Inc: Council adopts position on a new corporate law for innovative companies](https://www.consilium.europa.eu/en/press/press-releases/2026/10/23/eu-inc-council-adopts-position-on-a-new-eu-corporate-law-for-innovative-companies/) — EU governments agreed a negotiating stance on a proposed 28th-regime legal framework meant to help startups scale across the bloc. (Council of the EU)
+- [Serbia's Vučić faces one of the tightest elections of his tenure](https://www.naftemporiki.gr/kosmos/2179531/servia-krinetai-to-politiko-mellon-toy-voytsits-stin-pio-amfirropi-eklogiki-anametrisi-ton-teleytaion-eton/) — The vote is seen as a key test of the Serbian president's political future after months of unrest. (Naftemporiki)
+- [Bulgaria's presidential frontrunner holds lead despite drone controversy](https://balkaninsight.com/2026/10/23/bulgarias-presidential-frontrunner-holds-lead-despite-drone-controversy/bi/) — The controversy has not dented the candidate's standing ahead of the vote. (Balkan Insight)
+- [Wall Street: Dow falls 1.2% amid Middle East concerns](https://www.capital.gr/agores/4025457/wall-street-apoleies-1-2-gia-ton-dow-jones-en-meso-anisuxion-gia-ti-m-anatoli/) — US stocks retreated as investors weighed rising geopolitical risk. (Capital.gr)
+- [Brent crude jumps 6% in a week to a six-month high](https://www.capital.gr/agores/4025455/ebdomadiaio-alma-6-gia-to-brent-se-upsilo-exi-minon/) — Oil prices surged on supply and geopolitical concerns, with knock-on effects for energy costs. (Capital.gr)
+- [Moody's did not downgrade France, but markets are signalling alarm](https://www.capital.gr/oikonomia/4025467/moody-s-den-upobathmise-ti-gallia-alla-oi-agores-simainoun-sunagermo/) — Concerns persist over France's public debt and borrowing costs despite the rating hold. (Capital.gr)
+- [Markets expect the ECB's next rate hike in December — possibly its last](https://www.capital.gr/oikonomia/4025460/ton-dekembrio-i-epomeni-auxisi-ton-epitokion-tis-ekt-giati-mporei-na-einai-kai-i-teleutaia/) — The European Central Bank is expected to hold steady at this week's meeting before a final move. (Capital.gr)
 
 ## 🔬 Τεχνολογία & Επιστήμη
 
-[NASA briefs on plan to return astronauts to the Moon by 2028](https://www.nasa.gov/news-release/nasa-to-discuss-artemis-acceleration-status-of-upcoming-moon-missions/) — Agency leadership updated the public on Artemis III progress and the accelerated lunar-landing timeline at a Kennedy Space Center briefing on October 23. (NASA)
-
-[RA²: Retain-Anchored Attraction Preserves Forget-Adjacent Utility in LLM Unlearning](https://arxiv.org/abs/2610.19385v1) — Unreviewed study (arXiv preprint) proposing a new method for AI models to "unlearn" specific data without losing unrelated capabilities. (arXiv)
+- [NASA's Roman Space Telescope enters final commissioning phase](https://science.nasa.gov/blogs/roman/2026/10/22/nasas-roman-space-telescope-enters-final-commissioning-phase/) — The telescope is nearing the start of science operations after launch. (NASA)
+- [NASA's Psyche heads toward the asteroid belt](https://science.nasa.gov/blogs/psyche/2026/10/22/pedal-to-the-metal-nasas-psyche-heads-toward-asteroid-belt/) — The spacecraft passed a trajectory milestone on its multi-year journey to the metal-rich asteroid 16 Psyche. (NASA)
+- [ESA Council meeting: key outcomes](https://www.esa.int/Newsroom/Press_Releases/Key_outcomes_of_the_350th_ESA_Council_meeting) — ESA member states discussed space exploration priorities, EU-ESA relations, and preparations for the upcoming ministerial council. (ESA)
 
 ## 📈 Trends
 
-"I'm So Sorry" TikTok trend — Χρήστες ανεβάζουν σειρές φωτογραφιών/βίντεο που ξεκινούν με μια κολακευτική εκδοχή τους και καταλήγουν στην ωμή, αληθινή εκδοχή, με «απολογία» για το ψέμα. · Ξεκίνησε τον Αύγουστο του 2026 στο TikTok. · Απογειώθηκε τον Οκτώβριο λόγω Halloween, με χρήστες να αποκαλύπτουν πόσο πρόχειρες ή προσβλητικές ήταν παλιές στολές τους. · Για τον μέσο χρήστη: ένας αβλαβής, αυτοσαρκαστικός τρόπος χιούμορ γύρω από παλιές φωτογραφίες, χωρίς ιδιαίτερο ρίσκο συμμετοχής. (Know Your Meme, [link](https://trending.knowyourmeme.com/editorials/guides/what-is-the-im-so-sorry-trend-the-meaning-of-the-viral-tiktok-memes-explained))
-
-"Boo Trend" (TikTok) — Κάποιος κάνει μια αστεία γκριμάτσα λέγοντας «boo» καθώς πλησιάζει απειλητικά-κωμικά την κάμερα, συνήθως για να «τρομάξει» ανυποψίαστο φίλο ή συγγενή. · Ξεκίνησε στις 20 Σεπτεμβρίου 2026 από τον χρήστη @v99191 σε βίντεο με πάνω από 8,4 εκατ. προβολές. · Διαδόθηκε ως φάρσα-πρακτικό αστείο· έγινε ιδιαίτερα δημοφιλές μέσα στον Οκτώβριο. · Για τον μέσο χρήστη: αν κάποιος σου κάνει ξαφνικά περίεργη γκριμάτσα κοντά στο πρόσωπο, πιθανότατα σε βιντεοσκοπεί για το trend. (Know Your Meme, [link](https://trending.knowyourmeme.com/editorials/guides/what-is-the-boo-trend-on-tiktok-the-origin-of-the-viral-trend-and-prank-explained))
+Κανένα νέο trend σήμερα.
 
 ## ⚽🏀 Ολυμπιακός
 
-[Ολυμπιακός - Σπάρτα Πράγας 1-0: Έκτη σερί νίκη στο Europa League, παραμένει αήττητος](https://www.olympiacos.org/en/2026/10/23/a-legendary-three-wins-out-of-three) — Οι «ερυθρόλευκοι» έφτασαν τις 6 σερί νίκες στη League Phase του Europa League, κάτι που δεν είχαν καταφέρει από το 2024. (Olympiacos.org)
-
-[Ολυμπιακός - Φενέρμπαχτσε 61-64: Ήττα στο φινάλε για τους Πειραιώτες στην EuroLeague](https://www.sport24.gr/basket/euroleague-basketball/olimpiakos-fenermpaxtse-61-64-ligisan-sto-finale-oi-sigkinitikoi-peiraiotes/) — Ο Ολυμπιακός έχασε το τρίποντο ισοφάρισης στο buzzer από τον Βεζένκοφ και έπεσε στο 5-2 στη EuroLeague. (Sport24)
+- [Ολυμπιακός - Φενερμπαχτσέ 61-64: Λύγισαν στο φινάλε οι Πειραιώτες](https://www.sport24.gr/basket/euroleague-basketball/olimpiakos-fenermpaxtse-61-64-ligisan-sto-finale-oi-sigkinitikoi-peiraiotes/) — Ήττα στο ΣΕΦ από τη Φενερμπαχτσέ στη Euroleague (23/10), παρότι ο Ολυμπιακός προηγήθηκε με 16 πόντους στο ημίχρονο. (Sport24.gr)
+- [Ολυμπιακός - Σπάρτα Πράγας 1-0: Το 3/3 στο League Phase του Europa League](https://www.sport24.gr/football/olimpiakos-sparta-1-0-ligise-kai-tous-tsexous-me-to-magiko-ravdi-tou-imanol-ekane-to-3-3-sti-league-phase-kai-gkazonei-gia-tin-oktada/) — Γκολ του Armando Gonzalez στο 78' χάρισε τη νίκη στο Καραϊσκάκη (22/10) και το απόλυτο 3/3 στη φάση ομίλων. (Sport24.gr)
 
 ## ✈️ Έλληνες στο εξωτερικό
 
@@ -52,9 +46,11 @@
 
 ## 🌤 Καιρός
 
-Αθήνα σήμερα (24/10): 17-25°C, χωρίς βροχή, ασθενείς άνεμοι 1-3 μποφόρ (ανατολικοί/βορειοανατολικοί, γυρίζουν βορειοδυτικοί το απόγευμα). Αύριο (25/10): χαμηλότερη για την εποχή θερμοκρασία, 18-21°C. Δεν υπάρχει ενεργό έκτακτο δελτίο ΕΜΥ ή προειδοποίηση Πολιτικής Προστασίας (το πιο πρόσφατο δελτίο Πολιτικής Προστασίας είναι από 19/10). (meteo.gr, civilprotection.gov.gr)
+- Αθήνα σήμερα (Κυριακή 25/10): 19°C–23°C, κανονικά για την εποχή· ασθενής βροχή 14:00–20:00· ασθενείς άνεμοι 1–3 μποφόρ, μεταβλητής διεύθυνσης.
+- Αύριο (Δευτέρα 26/10): Αισθητή πτώση θερμοκρασίας, 16°C–18°C, πολύ χαμηλά για την εποχή, με βροχή από το βράδυ έως το πρωί.
+- Δεν υπάρχει ενεργό έκτακτο δελτίο Πολιτικής Προστασίας σήμερα. (meteo.gr)
 
-Πηγές που ελέγχθηκαν: 41
+Πηγές που ελέγχθηκαν: 38
 
 ---
 ### 📚 Άλλες έγκυρες πηγές (μη προσβάσιμες σε μένα αυτόματα — δες τις εσύ απευθείας αν θες παραπάνω νέα)
