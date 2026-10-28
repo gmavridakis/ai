@@ -1,54 +1,64 @@
-# Daily Brief — 27/10/2026
+# Daily Brief — 28/10/2026
 
-🇬🇷 Ελλάδα — Πολιτική & Οικονομία
+## 🇬🇷 Ελλάδα — Πολιτική & Οικονομία
 
-[Ελληνοτουρκικά: η Ελλάδα καταδικάζει το τουρκολιβυκό μνημόνιο στο Συμβούλιο Ασφαλείας του ΟΗΕ](https://www.mfa.gr/ekfonisi-dilosis-apo-ton-ypourgo-exoterikon-giorgo-gerapetriti-schetika-me-tin-apofasi-kyrosis-tou-tourko-livykou-mnimoniou-tou-2019-apo-ti-vouli-ton-antiprosopon-tis-livyis-nea-yorki-26-10-2026/) — Ο ΥΠΕΞ Γ. Γεραπετρίτης ανέγνωσε στη Νέα Υόρκη κοινή δήλωση Ελλάδας, Αιγύπτου, Κύπρου, Μπαχρέιν, ΗΑΕ και ΕΕ κατά της κύρωσης του τουρκολιβυκού μνημονίου από τη Βουλή των Αντιπροσώπων της Λιβύης, κάνοντας λόγο για παραβίαση του διεθνούς δικαίου· η Ελλάδα δηλώνει έτοιμη για διμερείς συνομιλίες οριοθέτησης με τη Λιβύη. (ΥΠΕΞ — mfa.gr· επιβεβαιώνουν: LiFO.gr, ThePressProject.gr, BusinessDaily.gr)
+[Βουλή: Νομοσχέδιο για τον Πανελλήνιο Σύλλογο Ψυχολόγων προς ψήφιση την Πέμπτη](https://www.hellenicparliament.gr/Nomothetiko-Ergo/dailyplan) — Η Ολομέλεια συζητά και ψηφίζει στις 29/10 νομοσχέδιο του Υπουργείου Υγείας που ιδρύει ΝΠΔΔ τον Σύλλογο Ψυχολόγων, με ρυθμίσεις και για φάρμακα/τεχνολογίες υγείας. (Βουλή των Ελλήνων)
 
-[Ηλεκτρονικές αποδείξεις: η «παγίδα» του 22% για 4,5 εκατ. φορολογούμενους](https://www.naftemporiki.gr/finance/economy/2180566/ilektronikes-apodeixeis-i-pagida-toy-22-gia-45-ekat-forologoymenoys-pos-tha-apofygete-ton-extra-foro/) — Όσοι δεν φτάσουν το 30% ηλεκτρονικών συναλλαγών επί του εισοδήματός τους έως τέλος 2026 θα επιβαρυνθούν με πρόσθετο φόρο 22% επί της διαφοράς, με εξαιρέσεις όπως οι άνω των 70 ετών. (Naftemporiki.gr)
+[Καλώδιο Ελλάδας–Κύπρου: Γαλλικό σκάφος στην Κρήτη για την επανέναρξη των ερευνών](https://www.capital.gr/epikairotita/4026003/kalodio-elladas-kuprou-stin-kriti-to-galliko-skafos-antistrofi-metrisi-gia-tin-epanenarxi-ton-ereunon/) — Κομβικό ενεργειακό-γεωστρατηγικό έργο διασύνδεσης (Great Sea Interconnector) μπαίνει σε νέα φάση. (Capital.gr)
 
-[Τράπεζες: επαναγορές μετοχών άνω των 363 εκατ. ευρώ σε 3,5 μήνες](https://www.businessdaily.gr/epiheiriseis/240231_trapezes-pano-apo-363-ekat-eyro-se-programmata-buybacks-sto-trimino) — Οι τέσσερις συστημικές τράπεζες έχουν επαναγοράσει από τον Ιούλιο ίδιες μετοχές αξίας περίπου 363,3 εκατ. ευρώ, κυρίως προς ακύρωση, ενισχύοντας κέρδη και μερίσματα ανά μετοχή. (BusinessDaily.gr)
+[Αυξήθηκε στο 2,44% η απόδοση των εντόκων γραμματίων τριμήνου – υπερκάλυψη 2,5 φορές](https://www.capital.gr/agores/4026004/auximeni-sto-2-44-i-apodosi-ton-entokon-triminou-uperkalupsi-kata-2-5-fores/) — Δείκτης του κόστους δανεισμού του Δημοσίου και της ζήτησης αγορών για ελληνικό χρέος. (Capital.gr)
 
-[Masdar: επενδυτικό σχέδιο 5,5 δισ. ευρώ στη ΝΑ Ευρώπη μέσω ΤΕΡΝΑ Ενεργειακή](https://www.businessdaily.gr/epiheiriseis/240226_masdar-stis-rages-ependytiko-plano-55-dis-eyro-meso-tis-terna-energeiaki) — Ο όμιλος Masdar στοχεύει σε 6GW λειτουργικής ισχύος στην Κεντρική και ΝΑ Ευρώπη έως το 2030, ξεκινώντας με την εξαγορά του φωτοβολταϊκού Ενιπέας (560MW) από τη Lightsource bp. (BusinessDaily.gr)
+[ΕΛΣΤΑΤ: Υποχώρησε τον Ιούλιο η οικοδομική δραστηριότητα – μείωση 8,7% στις άδειες](https://www.capital.gr/oikonomia/4026002/elstat-upoxorise-ton-ioulio-i-oikodomiki-drastiriotita-meiosi-8-7-stis-oikodomikes-adeies/) — Επίσημος δείκτης της ΕΛΣΤΑΤ για την πορεία της κατασκευαστικής δραστηριότητας. (ΕΛΣΤΑΤ, μέσω Capital.gr)
 
-[Νέες περιοδείες Μητσοτάκη: η Μακεδονία στο «ραντάρ» του Μαξίμου](https://www.capital.gr/politiki/4025950/nees-periodeies-mitsotaki-me-stoxo-ti-sustrateusi-giati-i-makedonia-brisketai-sta-rantar-tou-maximou/) — Νέος γύρος περιοδειών του πρωθυπουργού σε Βόρεια Ελλάδα με στόχο τη συστράτευση της ΝΔ ενόψει εκλογών 2027, περιοχή όπου το κόμμα έχει χάσει έδαφος. (Capital.gr)
+[Καινοτομία: Παραμένει ουραγός στην ΕΕ η Ελλάδα](https://capital.gr/epikairotita/4026119/kainotomia-paramenei-ouragos-stin-ee-i-ellada) — Διαρθρωτικό πρόβλημα ανταγωνιστικότητας με μακροπρόθεσμες επιπτώσεις στην οικονομία. (Capital.gr)
 
-[⚠️] [Έρευνα: οι ακριβοπληρωμένοι Έλληνες σύμβουλοι του Μάνφρεντ Βέμπερ](https://insidestory.gr/article/oi-akribopliromenoi-ellines-symboyloi-toy-manfrent-bemper) — Κοινή έρευνα με το Follow the Money: Έλληνες σύμβουλοι του προέδρου του ΕΛΚ κόστισαν πάνω από μισό εκατομμύριο ευρώ σε 6 μήνες. (InsideStory.gr)
+[Η αμυντική διπλωματία της Αθήνας: Πάροχος ασφάλειας, χωρίς στρατηγική](https://www.businessdaily.gr/politiki/240478_i-amyntiki-diplomatia-tis-elladas-parohos-asfaleias-horis-stratigiki) — Ανάλυση για τον περιφερειακό ρόλο της Ελλάδας εν μέσω γεωπολιτικών ανακατατάξεων. (BusinessDaily.gr)
 
-[⚠️] [Greenpeace: η αύξηση των τιμών ενέργειας εκτόξευσε τον πληθωρισμό στο 3,2% στην Ευρωζώνη](https://thepressproject.gr/greenpeace-i-afxisi-ton-timon-tis-energeias-ektoxefse-ton-plithorismo-sto-32-stin-evrozoni/) — Στοιχείο από ανάλυση της Greenpeace (όχι απευθείας Eurostat/ΕΚΤ) για τη σύνδεση ενεργειακής κρίσης και πληθωρισμού. (ThePressProject.gr)
+[Απάτες στις πληρωμές: Υποχώρηση στις κάρτες, άλμα 95% στις μεταφορές χρημάτων](https://www.businessdaily.gr/oikonomia/240468_apates-stis-pliromes-ypohorisi-stis-kartes-alma-95-stis-metafores) — Μεγάλη μετατόπιση της απάτης προς τα instant transfers, με επίπτωση σε καταναλωτές και τράπεζες. (BusinessDaily.gr)
 
-[⚠️] [Απεργιακός ξεσηκωμός στα λιμάνια: 24ωρη απεργία ναυτεργατών και κινητοποιήσεις λιμενεργατών την Παρασκευή 30/10](https://thepressproject.gr/apergiakos-xesikomos-sta-limania-tin-paraskevi-30-oktovriou-24ori-apergia-naftergaton-kai-kinitopoiiseis-limenergaton/) — Εθνικής εμβέλειας κινητοποίηση με αναμενόμενη επίπτωση σε ακτοπλοΐα και λιμάνια. (ThePressProject.gr· επιβεβαιώνει: AthensVoice.gr)
+[ΔΕΣΦΑ: Επενδύσεις στο δίκτυο και προετοιμασία για υδρογόνο και βιομεθάνιο](https://www.businessdaily.gr/epiheiriseis/240425_desfa-ependyseis-se-ypodomes-fysikoy-aerioy-kai-ta-shedia-gia-ydrogono-kai) — Στρατηγική κίνηση εν όψει του ενεργειακού μετασχηματισμού της χώρας. (BusinessDaily.gr)
 
-🌍 Διεθνή
+[Οι όροι για την ένταξη χρεών προς εφορία και ΕΦΚΑ σε έως 120 δόσεις](https://www.businessdaily.gr/oikonomia/240495_olo-plaisio-gia-tin-entaxi-stis-120-doseis-poy-problepei-nomoshedio-toy-ypethoo) — Αφορά άμεσα εκατοντάδες χιλιάδες οφειλέτες· οι πλατφόρμες αναμένεται να ανοίξουν τον Νοέμβριο. (BusinessDaily.gr)
 
-[EU support for Ukraine: Council mobilises €4.9 billion under the European Peace Facility](https://www.consilium.europa.eu/en/press/press-releases/2026/10/26/eu-support-for-ukraine-council-mobilises-49-billion-under-the-european-peace-facility/) — The Council of the EU approved new military-assistance funding for Ukraine under the European Peace Facility. (Consilium.europa.eu)
+[Ο διαδικτυακός τζόγος «κερδίζει» τα πρακτορεία και αυξάνει μερίδια αγοράς](https://www.businessdaily.gr/oikonomia/240466_sta-854-ekat-ta-esoda-toy-online-sto-oktamino-afinei-piso-ta-praktoreia) — Έσοδα €854 εκατ. στο οκτάμηνο (+13,1%)· δομική μετατόπιση στην αγορά τυχερών παιχνιδιών. (BusinessDaily.gr)
 
-[MFF 2028-2034: Council secures negotiating position for a strong and future-oriented common agricultural policy](https://www.consilium.europa.eu/en/press/press-releases/2026/10/26/mff-2028-2034-council-secures-negotiating-position-for-a-strong-and-future-oriented-common-agricultural-policy/) — EU member states agreed their negotiating stance on the agriculture chapter of the next long-term EU budget (2028-2034). (Consilium.europa.eu)
+[ΔΑΑ: Μειώθηκαν 6,6% τα κέρδη παρά την αύξηση της επιβατικής κίνησης](https://www.businessdaily.gr/hrimatistiriakes-anakoinoseis/240453_daa-basika-oikonomika-megethi-enneaminoy-2026) — Οικονομικά αποτελέσματα εννεαμήνου του Αερολιμένα Αθηνών, βασικού υποδομικού περιουσιακού στοιχείου της χώρας. (BusinessDaily.gr)
 
-[EU sanctions against ISIL/Da'esh and Al-Qaeda: Council renews regime until 2027](https://www.consilium.europa.eu/en/press/press-releases/2026/10/26/eu-sanctions-against-isilda-esh-and-al-qaeda-council-renews-regime-until-2027/) — The Council extended the EU's counterterrorism sanctions framework targeting ISIL and Al-Qaeda through 2027. (Consilium.europa.eu)
+## 🌍 Διεθνή
 
-🔬 Τεχνολογία & Επιστήμη
+[Security Council remains split over Iran's nuclear file amid "snapback" sanctions dispute](https://press.un.org/en/2026/sc16491.doc.htm) — Keeps a major nuclear non-proliferation and Middle East security flashpoint unresolved. (UN, 27 Oct 2026)
 
-[NASA's Perseverance Offers Clues to Protect Crews From Mars Dust](https://www.nasa.gov/missions/mars-2020-perseverance/nasas-perseverance-offers-clues-to-protect-crews-from-mars-dust/) — New rover findings on Mars dust hazards could inform how future crewed missions protect astronauts and equipment. (NASA.gov)
+[Myanmar's conflict death toll surpasses 100,000, UN Third Committee hears](https://press.un.org/en/2026/ga/shc4451.doc.htm) — A grim threshold in a civil conflict with real regional spillover risk. (UN, 27 Oct 2026)
 
-📈 Trends
+[Ukraine war: Finland and Norway open a communication channel with the Kremlin](https://www.capital.gr/diethni/4026005/polemos-stin-oukrania-finlandia-kai-norbigia-anoigoun-diaulo-epikoinonias-me-to-kremlino/) — A notable diplomatic move from two states close to Russia's sphere, amid the wider war. (Capital.gr, 28 Oct 2026)
 
-Κανένα νέο trend σήμερα.
+[Israel election: Netanyahu's alliance leads with 50% of votes counted](https://www.businessdaily.gr/diethni/240514_probadisma-tis-symmahias-netaniahoy-stis-ekloges-israil-meta-50-ton-psifon) — A pivotal vote for the country's — and the region's — political direction. (BusinessDaily.gr, 28 Oct 2026)
 
-⚽🏀 Ολυμπιακός
+[Eurozone economy loses momentum as ECB is expected to stay on hold](https://www.capital.gr/diethni/4025722/eurozoni-xamilonei-taxutita-i-oikonomia-stasi-anamonis-apo-tin-ekt/) — Eurozone growth and ECB policy directly shape Greek borrowing costs and growth prospects. (Capital.gr)
 
-Μπάσκετ — Επόμενος αγώνας: Ολυμπιακός–Μπεσίκτας, EuroLeague, Τετάρτη 28/10/2026, 19:30. (Olympiacosbc.gr)
+## 🔬 Τεχνολογία & Επιστήμη
 
-Ποδόσφαιρο — Επόμενος αγώνας: εκτός έδρας στο Μαρκόπουλο, Κύπελλο Ελλάδος — ακριβής ημέρα/ώρα δεν ήταν διαθέσιμη στο επίσημο site σήμερα. (Olympiacos.org)
+[ESA procures four new Galileo Second Generation satellites](https://www.esa.int/Applications/Satellite_navigation/Galileo/ESA_procures_four_new_Galileo_Second_Generation_satellites) — Strengthens Europe's independent satellite-navigation infrastructure for the coming decade. (ESA, 27 Oct 2026)
 
-✈️ Έλληνες στο εξωτερικό
+## 📈 Trends
 
-Δεν βρέθηκε επιβεβαιωμένη ενημέρωση σήμερα μέσω προσβάσιμων πηγών.
+⚠️ **Skull Cap Trend** — TikTok βίντεο «πριν/μετά»: ο χρήστης ξεκινά υπερβολικά άβολος και, φορώντας ένα μαύρο σκουφάκι (skull cap) στον ρυθμό του "Wild Thoughts" (DJ Khaled/Rihanna), μεταμορφώνεται σε αυτοπεποίθηση. Ξεκίνησε γύρω στις 16/10/2026 σε λογαριασμούς TikTok, χωρίς σαφή μεμονωμένο δημιουργό, και διαδόθηκε γρήγορα επειδή είναι εύκολο «glow-up» format προς αντιγραφή (βίντεο-παραδείγματα συγκέντρωσαν 7-13 εκατ. προβολές μέσα σε λίγες μέρες). Για τον μέσο χρήστη είναι απλώς ακόμα ένα διασκεδαστικό TikTok trend μεταμόρφωσης, χωρίς πρακτική σημασία. (Know Your Meme — ⚠️ επιβεβαιώνεται προς το παρόν μόνο από μία πηγή, όχι ακόμα από Google Trends/TikTok Creative Center)
 
-🌤 Καιρός
+## ⚽🏀 Ολυμπιακός
 
-Αθήνα σήμερα (Τρίτη 27/10): ασυνήθιστα χαμηλή θερμοκρασία για την εποχή, 15–17°C, με νεφώσεις, ανέμους έως 4 μποφόρ (ριπές ως 55χλμ/ώρα το πρωί) που ασθενούν προς το απόγευμα. Αύριο (Τετάρτη 28/10): περαιτέρω πτώση στους 13–15°C. Έκτακτο δελτίο Πολιτικής Προστασίας σε ισχύ: προβλέπονται βροχές, καταιγίδες και τοπική χαλαζόπτωση σήμερα και αύριο, κυρίως σε περιοχές της Ανατολικής Ελλάδας· το αρμόδιο υπουργείο καλεί σε αυξημένη ετοιμότητα ενόψει περαιτέρω επιδείνωσης στις 28/10. (Civilprotection.gov.gr, Meteo.gr)
+[Ολυμπιακός ΚΑΕ: Ανακοίνωση για τον Τζον Κόντσαρ](https://www.olympiacosbc.gr/el/nea/anakoinoseis/19818-sta-erythrolefka-o-konchar.html) — Επίσημη μεταγραφή: ο Αμερικανός γκαρντ υπέγραψε διετές συμβόλαιο με τους «ερυθρόλευκους». (Olympiacosbc.gr)
 
-Πηγές που ελέγχθηκαν: 36
+Επόμενος αγώνας (μπάσκετ): Μπεσίκτας, εκτός έδρας, EuroLeague, σήμερα 28/10 στις 19:30. (Πηγή: [Sport24.gr](https://www.sport24.gr/tag/olympiacos/))
+
+## ✈️ Έλληνες στο εξωτερικό
+
+Δεν βρέθηκε επιβεβαιωμένη ενημέρωση σήμερα μέσω προσβάσιμων πηγών (uefa.com, fifa.com).
+
+## 🌤 Καιρός
+
+Αθήνα σήμερα (28/10): 12–15°C στο κέντρο, βροχές σε όλη την Αττική με πιθανότητα σποραδικών καταιγίδων, βόρειοι άνεμοι 3–5 μποφόρ. Αύριο (29/10): δεν υπήρχε ακόμη αναλυτική πρόγνωση διαθέσιμη στο δελτίο κατά τον έλεγχο. Έκτακτο: ισχυρές βροχές/καταιγίδες σήμερα σε πολλές περιοχές (τοπικά στις Σποράδες, Κυκλάδες, Δωδεκάνησα, πιθανόν Εύβοια/Κρήτη) και χιόνια πάνω από ~1.200μ. σε Δ./Κ. Μακεδονία, Θεσσαλία και τμήματα Στερεάς/Εύβοιας. (Πηγή: [meteo.gr](https://www.meteo.gr/deltio.cfm))
+
+Πηγές που ελέγχθηκαν: 39
 
 ---
 ### 📚 Άλλες έγκυρες πηγές (μη προσβάσιμες σε μένα αυτόματα — δες τις εσύ απευθείας αν θες παραπάνω νέα)
