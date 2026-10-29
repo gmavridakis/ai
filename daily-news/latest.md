@@ -1,64 +1,42 @@
-# Daily Brief — 28/10/2026
+# Daily Brief — 29/10/2026
 
 ## 🇬🇷 Ελλάδα — Πολιτική & Οικονομία
 
-[Βουλή: Νομοσχέδιο για τον Πανελλήνιο Σύλλογο Ψυχολόγων προς ψήφιση την Πέμπτη](https://www.hellenicparliament.gr/Nomothetiko-Ergo/dailyplan) — Η Ολομέλεια συζητά και ψηφίζει στις 29/10 νομοσχέδιο του Υπουργείου Υγείας που ιδρύει ΝΠΔΔ τον Σύλλογο Ψυχολόγων, με ρυθμίσεις και για φάρμακα/τεχνολογίες υγείας. (Βουλή των Ελλήνων)
+[Μητσοτάκης προεδρεύει σήμερα σε ανοιχτή συζήτηση του Συμβουλίου Ασφαλείας του ΟΗΕ](https://www.athensvoice.gr/epikairotita/politiki-oikonomia/993968/sti-nea-uorki-simera-o-kuriakos-mitsotakis-tha-proedreusei-se-anoihti-suzitisi-tou-sumvouliou-asfaleias-tou-oie/) — Η Ελλάδα ασκεί την προεδρία του Συμβουλίου Ασφαλείας και ο πρωθυπουργός προεδρεύει σε συζήτηση υψηλού επιπέδου για αναδυόμενες τεχνολογίες και θαλάσσια ασφάλεια, ενώ αύριο συμμετέχει με τηλεδιάσκεψη στο Manama Dialogue. (Athens Voice)
 
-[Καλώδιο Ελλάδας–Κύπρου: Γαλλικό σκάφος στην Κρήτη για την επανέναρξη των ερευνών](https://www.capital.gr/epikairotita/4026003/kalodio-elladas-kuprou-stin-kriti-to-galliko-skafos-antistrofi-metrisi-gia-tin-epanenarxi-ton-ereunon/) — Κομβικό ενεργειακό-γεωστρατηγικό έργο διασύνδεσης (Great Sea Interconnector) μπαίνει σε νέα φάση. (Capital.gr)
+[Μητσοτάκης στην παρέλαση της 28ης Οκτωβρίου: «Η Ελλάδα είναι μία δύναμη ειρήνης»](https://www.capital.gr/politiki/4026294/k-mitsotakis-i-ellada-den-ekbiazei-alla-oute-ekbiazetai-kai-den-apeilei-alla-oute-kai-dexetai-apeiles/) — Μιλώντας στη Θεσσαλονίκη, ο πρωθυπουργός συνέδεσε το μεγαλύτερο πρόγραμμα εξοπλισμών στην ιστορία των Ενόπλων Δυνάμεων με μήνυμα αποτροπής προς όποιον αμφισβητήσει την ελληνική κυριαρχία. (Capital.gr· επιβεβαιώνει: Athens Voice)
 
-[Αυξήθηκε στο 2,44% η απόδοση των εντόκων γραμματίων τριμήνου – υπερκάλυψη 2,5 φορές](https://www.capital.gr/agores/4026004/auximeni-sto-2-44-i-apodosi-ton-entokon-triminou-uperkalupsi-kata-2-5-fores/) — Δείκτης του κόστους δανεισμού του Δημοσίου και της ζήτησης αγορών για ελληνικό χρέος. (Capital.gr)
+[ΕΚΤ: Συνεδριάζει σήμερα, αγορές αναμένουν διατήρηση των επιτοκίων στο 2,5%](https://www.businessdaily.gr/oikonomia/240440_ekt-simera-i-synedriasi-gia-ta-epitokia-anamenetai-diatirisi-sto-25) — Ο πληθωρισμός στην Ελλάδα βρίσκεται στο 5,1% και στην Ευρωζώνη στο 3,8%, με τις αγορές να τιμολογούν ακόμη 2-3 αυξήσεις επιτοκίων μέσα στους επόμενους 12 μήνες. (BusinessDaily.gr)
 
-[ΕΛΣΤΑΤ: Υποχώρησε τον Ιούλιο η οικοδομική δραστηριότητα – μείωση 8,7% στις άδειες](https://www.capital.gr/oikonomia/4026002/elstat-upoxorise-ton-ioulio-i-oikodomiki-drastiriotita-meiosi-8-7-stis-oikodomikes-adeies/) — Επίσημος δείκτης της ΕΛΣΤΑΤ για την πορεία της κατασκευαστικής δραστηριότητας. (ΕΛΣΤΑΤ, μέσω Capital.gr)
-
-[Καινοτομία: Παραμένει ουραγός στην ΕΕ η Ελλάδα](https://capital.gr/epikairotita/4026119/kainotomia-paramenei-ouragos-stin-ee-i-ellada) — Διαρθρωτικό πρόβλημα ανταγωνιστικότητας με μακροπρόθεσμες επιπτώσεις στην οικονομία. (Capital.gr)
-
-[Η αμυντική διπλωματία της Αθήνας: Πάροχος ασφάλειας, χωρίς στρατηγική](https://www.businessdaily.gr/politiki/240478_i-amyntiki-diplomatia-tis-elladas-parohos-asfaleias-horis-stratigiki) — Ανάλυση για τον περιφερειακό ρόλο της Ελλάδας εν μέσω γεωπολιτικών ανακατατάξεων. (BusinessDaily.gr)
-
-[Απάτες στις πληρωμές: Υποχώρηση στις κάρτες, άλμα 95% στις μεταφορές χρημάτων](https://www.businessdaily.gr/oikonomia/240468_apates-stis-pliromes-ypohorisi-stis-kartes-alma-95-stis-metafores) — Μεγάλη μετατόπιση της απάτης προς τα instant transfers, με επίπτωση σε καταναλωτές και τράπεζες. (BusinessDaily.gr)
-
-[ΔΕΣΦΑ: Επενδύσεις στο δίκτυο και προετοιμασία για υδρογόνο και βιομεθάνιο](https://www.businessdaily.gr/epiheiriseis/240425_desfa-ependyseis-se-ypodomes-fysikoy-aerioy-kai-ta-shedia-gia-ydrogono-kai) — Στρατηγική κίνηση εν όψει του ενεργειακού μετασχηματισμού της χώρας. (BusinessDaily.gr)
-
-[Οι όροι για την ένταξη χρεών προς εφορία και ΕΦΚΑ σε έως 120 δόσεις](https://www.businessdaily.gr/oikonomia/240495_olo-plaisio-gia-tin-entaxi-stis-120-doseis-poy-problepei-nomoshedio-toy-ypethoo) — Αφορά άμεσα εκατοντάδες χιλιάδες οφειλέτες· οι πλατφόρμες αναμένεται να ανοίξουν τον Νοέμβριο. (BusinessDaily.gr)
-
-[Ο διαδικτυακός τζόγος «κερδίζει» τα πρακτορεία και αυξάνει μερίδια αγοράς](https://www.businessdaily.gr/oikonomia/240466_sta-854-ekat-ta-esoda-toy-online-sto-oktamino-afinei-piso-ta-praktoreia) — Έσοδα €854 εκατ. στο οκτάμηνο (+13,1%)· δομική μετατόπιση στην αγορά τυχερών παιχνιδιών. (BusinessDaily.gr)
-
-[ΔΑΑ: Μειώθηκαν 6,6% τα κέρδη παρά την αύξηση της επιβατικής κίνησης](https://www.businessdaily.gr/hrimatistiriakes-anakoinoseis/240453_daa-basika-oikonomika-megethi-enneaminoy-2026) — Οικονομικά αποτελέσματα εννεαμήνου του Αερολιμένα Αθηνών, βασικού υποδομικού περιουσιακού στοιχείου της χώρας. (BusinessDaily.gr)
+[Έντοκα γραμμάτια: Το Δημόσιο άντλησε 500 εκατ. ευρώ, ανέβηκε η απόδοση στο 2,44%](https://www.naftemporiki.gr/finance/economy/2180780/trimina-entoka-antlithikan-500-ekat-sto-244-i-apodosi/) — Η απόδοση του 13μηνου εντόκου γραμματίου ανέβηκε από 2,38% στην προηγούμενη έκδοση, με τη ζήτηση να ξεπερνά 2,5 φορές την προσφορά. (Naftemporiki.gr)
 
 ## 🌍 Διεθνή
 
-[Security Council remains split over Iran's nuclear file amid "snapback" sanctions dispute](https://press.un.org/en/2026/sc16491.doc.htm) — Keeps a major nuclear non-proliferation and Middle East security flashpoint unresolved. (UN, 27 Oct 2026)
+[UN chief warns Iran-US war risks spiralling "out of control"](https://news.un.org/en/story/2026/10/1168669) — Speaking in Cairo, Secretary-General Guterres urged "maximum restraint and diplomatic solutions" from both sides and called for freedom of navigation to be restored around the Strait of Hormuz and Bab el-Mandeb. (UN News)
 
-[Myanmar's conflict death toll surpasses 100,000, UN Third Committee hears](https://press.un.org/en/2026/ga/shc4451.doc.htm) — A grim threshold in a civil conflict with real regional spillover risk. (UN, 27 Oct 2026)
+[Fed holds rates steady at 3.75–4%, two officials dissent in favour of a hike](https://capital.gr/diethni/4026415/fed-ametablita-ta-epitokia-opos-anamenotan-para-ton-auximeno-plithorismo) — Governor Lisa Cook and Cleveland Fed President Beth Hammack both pushed for a 25-basis-point increase as the Fed itself describes inflation as "elevated" even while growth is now called "strong." (Capital.gr)
 
-[Ukraine war: Finland and Norway open a communication channel with the Kremlin](https://www.capital.gr/diethni/4026005/polemos-stin-oukrania-finlandia-kai-norbigia-anoigoun-diaulo-epikoinonias-me-to-kremlino/) — A notable diplomatic move from two states close to Russia's sphere, amid the wider war. (Capital.gr, 28 Oct 2026)
+⚠️ [Kosovo protesters demand ministerial and judicial resignations after latest femicide](https://balkaninsight.com/2026/10/28/kosovo-protesters-demand-ministerial-judicial-resignations-after-latest-femicide/bi) — Public anger over the handling of a femicide case is translating into street demands for accountability from Kosovo's government and courts. (Balkan Insight)
 
-[Israel election: Netanyahu's alliance leads with 50% of votes counted](https://www.businessdaily.gr/diethni/240514_probadisma-tis-symmahias-netaniahoy-stis-ekloges-israil-meta-50-ton-psifon) — A pivotal vote for the country's — and the region's — political direction. (BusinessDaily.gr, 28 Oct 2026)
-
-[Eurozone economy loses momentum as ECB is expected to stay on hold](https://www.capital.gr/diethni/4025722/eurozoni-xamilonei-taxutita-i-oikonomia-stasi-anamonis-apo-tin-ekt/) — Eurozone growth and ECB policy directly shape Greek borrowing costs and growth prospects. (Capital.gr)
-
-## 🔬 Τεχνολογία & Επιστήμη
-
-[ESA procures four new Galileo Second Generation satellites](https://www.esa.int/Applications/Satellite_navigation/Galileo/ESA_procures_four_new_Galileo_Second_Generation_satellites) — Strengthens Europe's independent satellite-navigation infrastructure for the coming decade. (ESA, 27 Oct 2026)
+⚠️ [Serbian students' protests reportedly pushed Vučić to concede an election result](https://balkaninsight.com/2026/10/27/serbian-students-mass-support-forced-vucic-to-concede-election/bi/all-balkan-countries/) — Headline-level report only (the full article text wasn't accessible to verify details), but large student-led mobilization is described as the decisive factor. (Balkan Insight)
 
 ## 📈 Trends
 
-⚠️ **Skull Cap Trend** — TikTok βίντεο «πριν/μετά»: ο χρήστης ξεκινά υπερβολικά άβολος και, φορώντας ένα μαύρο σκουφάκι (skull cap) στον ρυθμό του "Wild Thoughts" (DJ Khaled/Rihanna), μεταμορφώνεται σε αυτοπεποίθηση. Ξεκίνησε γύρω στις 16/10/2026 σε λογαριασμούς TikTok, χωρίς σαφή μεμονωμένο δημιουργό, και διαδόθηκε γρήγορα επειδή είναι εύκολο «glow-up» format προς αντιγραφή (βίντεο-παραδείγματα συγκέντρωσαν 7-13 εκατ. προβολές μέσα σε λίγες μέρες). Για τον μέσο χρήστη είναι απλώς ακόμα ένα διασκεδαστικό TikTok trend μεταμόρφωσης, χωρίς πρακτική σημασία. (Know Your Meme — ⚠️ επιβεβαιώνεται προς το παρόν μόνο από μία πηγή, όχι ακόμα από Google Trends/TikTok Creative Center)
+Κανένα νέο trend σήμερα.
 
 ## ⚽🏀 Ολυμπιακός
 
-[Ολυμπιακός ΚΑΕ: Ανακοίνωση για τον Τζον Κόντσαρ](https://www.olympiacosbc.gr/el/nea/anakoinoseis/19818-sta-erythrolefka-o-konchar.html) — Επίσημη μεταγραφή: ο Αμερικανός γκαρντ υπέγραψε διετές συμβόλαιο με τους «ερυθρόλευκους». (Olympiacosbc.gr)
-
-Επόμενος αγώνας (μπάσκετ): Μπεσίκτας, εκτός έδρας, EuroLeague, σήμερα 28/10 στις 19:30. (Πηγή: [Sport24.gr](https://www.sport24.gr/tag/olympiacos/))
+[Μπεσίκτας - Ολυμπιακός 73-81: Έκτη νίκη σε οκτώ αγωνιστικές στην EuroLeague](https://www.sport24.gr/basket/euroleague-basketball/besiktas-olimpiakos-73-81-thriamvos-me-plota-gouornt-kai-odostrotires-sto-pente/) — Οι ερυθρόλευκοι πήραν εκτός έδρας τη νίκη στην Κωνσταντινούπολη (ρεκόρ 6-2), με τον Γκουντ MVP (13 πόντους) και τον Βεζένκοφ να προσθέτει 16 πόντους. (Sport24.gr)
 
 ## ✈️ Έλληνες στο εξωτερικό
 
-Δεν βρέθηκε επιβεβαιωμένη ενημέρωση σήμερα μέσω προσβάσιμων πηγών (uefa.com, fifa.com).
+Δεν βρέθηκε επιβεβαιωμένη ενημέρωση σήμερα μέσω προσβάσιμων πηγών.
 
 ## 🌤 Καιρός
 
-Αθήνα σήμερα (28/10): 12–15°C στο κέντρο, βροχές σε όλη την Αττική με πιθανότητα σποραδικών καταιγίδων, βόρειοι άνεμοι 3–5 μποφόρ. Αύριο (29/10): δεν υπήρχε ακόμη αναλυτική πρόγνωση διαθέσιμη στο δελτίο κατά τον έλεγχο. Έκτακτο: ισχυρές βροχές/καταιγίδες σήμερα σε πολλές περιοχές (τοπικά στις Σποράδες, Κυκλάδες, Δωδεκάνησα, πιθανόν Εύβοια/Κρήτη) και χιόνια πάνω από ~1.200μ. σε Δ./Κ. Μακεδονία, Θεσσαλία και τμήματα Στερεάς/Εύβοιας. (Πηγή: [meteo.gr](https://www.meteo.gr/deltio.cfm))
+Αθήνα σήμερα Πέμπτη: υψηλή γύρω στους 19°C, χαμηλή 16°C, χωρίς βροχή, με ανέμους μέτριους έως ισχυρούς και ριπές έως 55 χλμ/ώρα γύρω στις 11:00. Αύριο Παρασκευή: 22°C/15°C, λίγα σύννεφα, ασθενέστεροι άνεμοι. (meteo.gr)
 
-Πηγές που ελέγχθηκαν: 39
+Πηγές που ελέγχθηκαν: 40
 
 ---
 ### 📚 Άλλες έγκυρες πηγές (μη προσβάσιμες σε μένα αυτόματα — δες τις εσύ απευθείας αν θες παραπάνω νέα)
